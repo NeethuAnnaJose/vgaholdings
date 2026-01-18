@@ -14,6 +14,7 @@ const NAV_ITEMS = [
 export default function Header() {
   const [active, setActive] = useState('home');
   const [shrink, setShrink] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     // Scrollspy: observe sections and set active when in view
@@ -78,11 +79,16 @@ export default function Header() {
 
   function handleNavClick(e, id) {
     e.preventDefault();
+    setMobileMenuOpen(false); // Close mobile menu on navigation
     scrollToId(id, { duration: 1400 })
       .then(() => setActive(id))
       .catch(() => {
         /* canceled or interrupted */
       });
+  }
+
+  function toggleMobileMenu() {
+    setMobileMenuOpen(!mobileMenuOpen);
   }
 
   // handle initial hash on mount and hash changes
@@ -103,9 +109,21 @@ export default function Header() {
   const RIGHT_NAV = NAV_ITEMS.slice(3);
 
   return (
-    <header className={`site-header ${shrink ? 'shrink' : ''}`}>
+    <header className={`site-header ${shrink ? 'shrink' : ''} ${mobileMenuOpen ? 'mobile-menu-open' : ''}`}>
       <div className="header-overlay" aria-hidden="true" />
       <div className="header-container">
+
+        {/* Hamburger Menu Button (Mobile Only) */}
+        <button
+          className="hamburger-btn"
+          onClick={toggleMobileMenu}
+          aria-label="Toggle menu"
+          aria-expanded={mobileMenuOpen}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
 
         {/* Left Nav */}
         <nav className="site-nav nav-left" aria-label="Main navigation left">
@@ -140,7 +158,7 @@ export default function Header() {
             src="/vgalogo.png"
             alt="VGA Holdings Logo"
             style={{
-              height: "55px",
+              height: "85px",
               width: "auto",
               objectFit: "contain",
               display: "block",
@@ -166,7 +184,33 @@ export default function Header() {
           </ul>
         </nav>
 
+        {/* Mobile Navigation Drawer */}
+        <nav className="mobile-nav" aria-label="Mobile navigation">
+          <ul>
+            {NAV_ITEMS.map((item) => (
+              <li key={item.id}>
+                <a
+                  href={`#${item.id}`}
+                  className={active === item.id ? 'active' : ''}
+                  onClick={(e) => handleNavClick(e, item.id)}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
       </div>
+
+      {/* Mobile Menu Overlay */}
+      {mobileMenuOpen && (
+        <div
+          className="mobile-menu-overlay"
+          onClick={() => setMobileMenuOpen(false)}
+          aria-hidden="true"
+        />
+      )}
     </header>
   );
 }

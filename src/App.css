@@ -42,8 +42,11 @@ body {
   font-size: 42px;
   font-weight: 700;
   margin-top: 0;
-  margin-bottom: 24px;
+  margin-bottom: 48px;
   color: #000000;
+  text-align: center;
+  text-transform: none;
+  letter-spacing: normal;
 }
 
 h3,
@@ -119,19 +122,10 @@ h3,
   padding: 80px 100px;
 }
 
-.about-heading {
-  font-size: 14px;
-  font-weight: 800;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--vga-gold);
-  margin-bottom: 24px;
-}
-
 .about-text h2 {
-  font-size: 48px;
-  line-height: 1.1;
   margin-bottom: 32px;
+  text-align: left;
+  /* Keep left alignment specifically for the about card layout */
 }
 
 .about-text p {
@@ -162,7 +156,7 @@ h3,
 }
 
 #main-content-flow.pull-up {
-  margin-top: -380px;
+  margin-top: -300px;
 }
 
 .what-we-do-container {
@@ -170,20 +164,10 @@ h3,
   margin: 0 auto;
 }
 
-.what-we-do-heading {
-  font-size: 14px;
-  font-weight: 800;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--vga-gold);
-  margin-bottom: 40px;
-  text-align: center;
-}
-
 .what-we-do-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
 }
 
 .what-we-do-item {
@@ -191,25 +175,32 @@ h3,
   padding: 0;
   display: flex;
   flex-direction: column;
+  min-height: 100%;
 }
 
 .wd-title {
-  font-size: 28px;
+  font-size: 18px;
   font-weight: 700;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
+  padding: 0 20px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
 }
 
 .wd-desc {
-  font-size: 15px;
-  line-height: 1.8;
+  font-size: 13px;
+  line-height: 1.6;
   color: var(--vga-gray);
-  margin-bottom: 32px;
+  margin-bottom: 20px;
+  padding: 0 20px;
+  flex-grow: 1;
 }
 
 .wd-image-wrapper {
   width: 100%;
-  height: 200px;
-  margin-bottom: 30px;
+  height: 180px;
+  margin-bottom: 20px;
   position: relative;
   overflow: hidden;
 }
@@ -235,10 +226,71 @@ h3,
 
 .wd-progress {
   margin-top: auto;
+  padding: 0 20px 20px;
+}
+
+/* Horizontal Progress Bar */
+.progress-bar-container {
+  width: 100%;
+}
+
+.progress-bar-label {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  padding-top: 24px;
+  margin-bottom: 10px;
+}
+
+.progress-bar-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--vga-gray);
+}
+
+.progress-bar-percentage {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--vga-gold);
+}
+
+.progress-bar-track {
+  width: 100%;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--vga-gold) 0%, #d4af37 100%);
+  border-radius: 10px;
+  transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.progress-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 /* --- 4. INVESTMENT PORTFOLIO --- */
@@ -249,11 +301,6 @@ h3,
   padding: 30px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
   text-align: center;
-}
-
-.portfolio-heading {
-  font-size: 32px;
-  margin-bottom: 16px;
 }
 
 .portfolio-subheading {
@@ -278,19 +325,25 @@ h3,
 }
 
 .portfolio-logo-item {
-  width: 120px;
-  height: 60px;
+  width: 100px;
+  height: 90px;
   border: 1px solid var(--vga-gray-light);
-  border-radius: 4px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible;
+  background: #fff;
+  padding: 10px;
 }
 
 .portfolio-logo-img {
-  width: 80%;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
   object-fit: contain;
+  display: block;
 }
 
 .progress-circle-container {
@@ -412,12 +465,19 @@ h3,
   margin-bottom: 24px;
   overflow: hidden;
   border: 1px solid var(--vga-gray-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff; /* keeps logos clean */
 }
 
 .news-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;   
+  object-position: center;
+  display: block;
+  padding: 14px;        
 }
 
 .news-title {
@@ -772,14 +832,12 @@ h3,
   text-align: center;
   margin-bottom: 60px;
   color: #FFFFFF;
-  /* Ensure visibility on dark background */
 }
 
 .contact-heading-hello {
   text-align: center;
   margin-bottom: 60px;
   color: #FFFFFF !important;
-  /* Ensure visibility on dark background */
 }
 
 .contact-grid {
@@ -867,7 +925,17 @@ h3,
 }
 
 /* --- RESPONSIVENESS --- */
+
+/* Tablet and below */
 @media (max-width: 1000px) {
+  .page-section {
+    padding: 60px 30px;
+  }
+
+  h2,
+  .page-section h2 {
+    font-size: 36px;
+  }
 
   .about-card,
   .stealth-card {
@@ -875,9 +943,19 @@ h3,
     display: block;
   }
 
-  .services-grid,
+  .what-we-do-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
   .why-us-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
   }
 
   .contact-grid,
@@ -894,16 +972,131 @@ h3,
   .inspiration-content {
     padding: 40px 24px;
   }
-}
 
-@media (max-width: 600px) {
-
-  .services-grid,
-  .why-us-grid {
-    grid-template-columns: 1fr;
+  .portfolio-logos {
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .leaders-grid {
-    gap: 40px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #main-content-flow.pull-up {
+    margin-top: -280px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .page-section {
+    padding: 40px 20px;
+  }
+
+  h2,
+  .page-section h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  h3,
+  .wd-title,
+  .service-title,
+  .news-title {
+    font-size: 16px;
+  }
+
+  .what-we-do-grid,
+  .services-grid,
+  .why-us-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .leaders-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .portfolio-logos {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .about-text {
+    padding: 30px 20px;
+  }
+
+  .about-intro {
+    font-size: 16px;
+  }
+
+  .stealth-content {
+    padding: 40px 24px;
+  }
+
+  .stealth-title {
+    font-size: 20px;
+  }
+
+  .inspiration-content {
+    padding: 30px 20px;
+  }
+
+  .inspiration-quote {
+    font-size: 18px;
+  }
+
+  .service-icon svg,
+  .why-us-icon svg {
+    width: 48px;
+    height: 48px;
+  }
+
+  .news-grid {
+    gap: 30px;
+  }
+
+  .contact-grid {
+    gap: 30px;
+  }
+
+  #main-content-flow.pull-up {
+    margin-top: -200px;
+  }
+
+  .scroll-top-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+
+  .reveal {
+    transform: translateY(40px) scale(0.98);
+  }
+
+  .reveal-left,
+  .reveal-right {
+    transform: translateY(40px) scale(0.98);
+  }
+}
+
+/* Extra small mobile */
+@media (max-width: 375px) {
+  .page-section {
+    padding: 30px 16px;
+  }
+
+  h2,
+  .page-section h2 {
+    font-size: 24px;
+  }
+
+  .portfolio-logos {
+    grid-template-columns: 1fr;
+  }
+
+  .what-we-do-grid,
+  .services-grid {
+    gap: 20px;
   }
 }

@@ -34,12 +34,12 @@ export function animateScrollTo(
   return new Promise((resolve, reject) => {
     const startY = window.scrollY || window.pageYOffset;
     const delta = targetY - startY;
-    
+
     // Adjust duration based on scroll distance for consistent feel (but keep min fairly high)
     const distance = Math.abs(delta);
     const adjustedDuration = Math.min(Math.max(distance * 0.5 + 700, 900), 1700);
     const finalDuration = duration === 1300 ? adjustedDuration : duration;
-    
+
     const startTime = performance.now();
     let rafId = null;
     let canceled = false;
@@ -82,9 +82,42 @@ export function scrollToId(id, opts = {}) {
   const el = document.getElementById(id);
   if (!el) return Promise.reject(new Error('element not found'));
 
-  const headerEl = document.querySelector('.site-header');
-  const headerHeight = headerEl ? headerEl.offsetHeight : 120;
-  const target = Math.round(el.getBoundingClientRect().top + window.scrollY - headerHeight + 8);
+  // Home section always scrolls to the very top (fixed 0)
+  if (id === 'home') {
+    return animateScrollTo(0, opts);
+  }
+
+  // For interior sections, use the "shrunk" header height (78px) as the consistent offset.
+  // This prevents the gap caused by the header shrinking from 120px during scroll.
+  const SHRUNK_HEADER_HEIGHT = 78;
+
+  // Account for specialized animations
+  let specializedOffset = 0;
+  if (id === 'about') {
+    // The about card "rises" 300px into the Hero space
+    specializedOffset -= 300;
+  }
+
+  // Check if #main-content-flow has the pull-up class active
+  const mainContentFlow = document.getElementById('main-content-flow');
+  const isPulledUp = mainContentFlow && mainContentFlow.classList.contains('pull-up');
+
+  if (isPulledUp) {
+    // Check if the target element is inside #main-content-flow
+    const isInsideMainFlow = mainContentFlow.contains(el);
+
+    // Check if the target element comes after #main-content-flow in the DOM
+    const isAfterMainFlow = !isInsideMainFlow &&
+      mainContentFlow.compareDocumentPosition(el) === Node.DOCUMENT_POSITION_FOLLOWING;
+
+    // If the element is inside or comes after #main-content-flow, and pull-up is active,
+    // we need to add 300px because the pull-up will be removed as we scroll away from About
+    if (isInsideMainFlow || isAfterMainFlow) {
+      specializedOffset += 300;
+    }
+  }
+
+  const target = Math.round(el.getBoundingClientRect().top + window.scrollY - SHRUNK_HEADER_HEIGHT + specializedOffset);
 
   const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (prefersReduced) {
