@@ -1,0 +1,200 @@
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  width: 100%;
+  overflow: hidden;
+  z-index: 1000;
+  background: rgba(12, 12, 12, 0.7);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: height 300ms cubic-bezier(0.16, 1, 0.3, 1), background 300ms ease;
+}
+
+.site-header.shrink {
+  height: 78px;
+  transition: height 220ms ease, box-shadow 220ms ease;
+  box-shadow: 0 6px 18px rgba(10, 10, 10, 0.08);
+}
+
+.site-header .header-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.05));
+  z-index: 1;
+}
+
+.site-header .header-container {
+  position: relative;
+  z-index: 10;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Center the whole group */
+  padding: 0 24px;
+}
+
+.site-nav {
+  flex: 1;
+  /* Take up available space */
+  display: flex;
+}
+
+.nav-left {
+  justify-content: flex-end;
+  /* Push items towards center */
+  padding-right: 40px;
+  /* Space from logo */
+}
+
+.nav-right {
+  justify-content: flex-start;
+  /* Push items towards center */
+  padding-left: 40px;
+  /* Space from logo */
+}
+
+.brand {
+  /* Removed absolute positioning */
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: #ffffff;
+  /* White logo to pop against dark header bg */
+  font-weight: 700;
+  text-align: center;
+  transition: transform 180ms ease, font-size 180ms ease;
+  z-index: 10;
+}
+
+.brand-sub {
+  font-size: 10px;
+  letter-spacing: 4px;
+  margin-top: -4px;
+  color: rgba(255, 255, 255, 0.7);
+  /* Subtle white */
+}
+
+/* ... */
+
+.site-nav a:hover {
+  color: #ffffff;
+  /* Keep white */
+  transform: translateY(-1px);
+}
+
+.site-nav a.active {
+  color: #ffffff;
+}
+
+/* subtle underline effect */
+.site-nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.4);
+  transform: scaleX(0);
+  /* Start hidden */
+  transform-origin: center;
+  /* Expand from center */
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.3s ease;
+}
+
+.site-nav a:hover::after,
+.site-nav a.active::after {
+  transform: scaleX(1);
+  /* Expand to full width */
+  background: #ffffff;
+}
+
+.site-nav a.active::after {
+  background: #ffffff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+  /* White glow */
+}
+
+.site-header.shrink .brand-main {
+  font-size: 22px;
+}
+
+.site-header.shrink .brand-sub {
+  font-size: 9px;
+}
+
+.site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 26px;
+  align-items: center;
+}
+
+.site-nav a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  padding: 8px 12px;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-transform: uppercase;
+}
+
+.site-nav a:hover {
+  color: var(--vga-gold-light);
+  transform: translateY(-2px);
+}
+
+.site-nav a.active {
+  color: var(--vga-gold-light);
+  font-weight: 600;
+}
+
+/* subtle underline effect */
+.site-nav a::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  width: 4px;
+  height: 4px;
+  background: var(--vga-gold-light);
+  border-radius: 50%;
+  transform: translateX(-50%) scale(0);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.site-nav a:hover::after,
+.site-nav a.active::after {
+  transform: translateX(-50%) scale(1);
+}
+
+.site-nav a.active::after {
+  box-shadow: 0 0 10px var(--vga-gold-light);
+}
+
+@media (max-width: 720px) {
+  .site-header {
+    height: 100px;
+  }
+
+  .brand-main {
+    font-size: 26px;
+  }
+
+  .site-nav ul {
+    gap: 12px;
+    font-size: 12px;
+  }
+}
