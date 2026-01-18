@@ -21,11 +21,11 @@ function App() {
             if (entry.isIntersecting) {
               home.classList.add('home-fade-out');
               aboutShell.classList.add('about-rise');
-              document.getElementById('what-we-do').classList.add('pull-up');
+              document.getElementById('main-content-flow').classList.add('pull-up');
             } else {
               home.classList.remove('home-fade-out');
               aboutShell.classList.remove('about-rise');
-              document.getElementById('what-we-do').classList.remove('pull-up');
+              document.getElementById('main-content-flow').classList.remove('pull-up');
             }
           }
         });
@@ -66,14 +66,17 @@ function App() {
         <section id="home" className="page-section section-odd fullscreen-video-section">
           <div className="fullscreen-video-container">
             <div className="fullscreen-video-wrapper">
-              <iframe
-                src="https://www.youtube.com/embed/kMNKJ4wAfL8?autoplay=1&mute=1&playsinline=1&rel=0&controls=0&loop=1&playlist=kMNKJ4wAfL8&modestbranding=1&showinfo=0&iv_load_policy=3&cc_load_policy=0&fs=0&disablekb=1"
-                title="VGA Holdings intro video"
-                frameBorder="0"
-                allow="autoplay; encrypted-media; picture-in-picture"
-                allowFullScreen
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                disablePictureInPicture
                 className="fullscreen-video"
-              />
+              >
+                <source src="/VGA_Holdings_Corporate_Video_1080P.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
             </div>
           </div>
         </section>
@@ -108,150 +111,152 @@ function App() {
           </div>
         </section>
 
-        <section id="what-we-do" className="page-section section-odd">
-          <div className="what-we-do-container">
-            <h2 className="what-we-do-heading">What We Do</h2>
+        <div id="main-content-flow">
+          <section id="what-we-do" className="page-section section-odd">
+            <div className="what-we-do-container">
+              <h2 className="what-we-do-heading">What We Do</h2>
 
-            <div className="what-we-do-grid">
-              {/* Item 1: Oil and Gas - LEFT */}
-              <div className="what-we-do-item reveal reveal-left">
-                <h3 className="wd-title">Oil and Gas Pipeline Services</h3>
-                <p className="wd-desc">
-                  AGODCO the proprietary owner of the Stealth-Lock technology designs, builds and develops, innovative and technically advanced Pipeline construction technology. But it doesn't stop there. Its Integrated Services Resource typically delivers pipeline construction ten times faster than welding with 2km of constructed carbon steel pipeline per crew, per day. We carry your energy in safe, reliable and responsible ways. We are committed to the communities to which we serve to.
-                </p>
-                <div className="wd-image-wrapper">
-                  <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80" alt="Brokerage" className="wd-image" />
-                  <span className="wd-img-label">Agodco Group</span>
+              <div className="what-we-do-grid">
+                {/* Item 1: Oil and Gas - LEFT */}
+                <div className="what-we-do-item reveal reveal-left">
+                  <h3 className="wd-title">Oil and Gas Pipeline Services</h3>
+                  <p className="wd-desc">
+                    AGODCO the proprietary owner of the Stealth-Lock technology designs, builds and develops, innovative and technically advanced Pipeline construction technology. But it doesn't stop there. Its Integrated Services Resource typically delivers pipeline construction ten times faster than welding with 2km of constructed carbon steel pipeline per crew, per day. We carry your energy in safe, reliable and responsible ways. We are committed to the communities to which we serve to.
+                  </p>
+                  <div className="wd-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80" alt="Brokerage" className="wd-image" />
+                    <span className="wd-img-label">Agodco Group</span>
+                  </div>
+                  <div className="wd-progress">
+                    <svg className="progress-circle" viewBox="0 0 100 100">
+                      <circle className="progress-circle-bg" cx="50" cy="50" r="45" />
+                      <circle className="progress-circle-fill" cx="50" cy="50" r="45"
+                        strokeDasharray={`${2 * Math.PI * 45 * 0.5} ${2 * Math.PI * 45}`} />
+                      <text className="progress-circle-text" x="50" y="55">50%</text>
+                    </svg>
+                  </div>
                 </div>
-                <div className="wd-progress">
-                  <svg className="progress-circle" viewBox="0 0 100 100">
-                    <circle className="progress-circle-bg" cx="50" cy="50" r="45" />
-                    <circle className="progress-circle-fill" cx="50" cy="50" r="45"
-                      strokeDasharray={`${2 * Math.PI * 45 * 0.5} ${2 * Math.PI * 45}`} />
-                    <text className="progress-circle-text" x="50" y="55">50%</text>
-                  </svg>
-                </div>
-              </div>
 
-              {/* Item 2: Chemical Distribution - RIGHT */}
-              <div className="what-we-do-item reveal reveal-right">
-                <h3 className="wd-title">Chemical Distribution</h3>
-                <p className="wd-desc">
-                  VGA Chemicals is the exclusive distributor of Carbontech in the Kingdom of Bahrain. The place where chemistry, engineering and global expertise are brought together to drive progressive innovation in advanced composite technologies for the emergency repair of critical assets. "There is nothing generic about us" we don't just sell pipe wraps; we provide accurate engineering backing to deliver tailored solutions in accordance with ASME Pcc2 and ISO TS 24817.
-                </p>
-                <div className="wd-image-wrapper">
-                  <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=600&q=80" alt="Chemical Distribution" className="wd-image" />
-                  <span className="wd-img-label">Carbontech</span>
+                {/* Item 2: Chemical Distribution - RIGHT */}
+                <div className="what-we-do-item reveal reveal-right">
+                  <h3 className="wd-title">Chemical Distribution</h3>
+                  <p className="wd-desc">
+                    VGA Chemicals is the exclusive distributor of Carbontech in the Kingdom of Bahrain. The place where chemistry, engineering and global expertise are brought together to drive progressive innovation in advanced composite technologies for the emergency repair of critical assets. "There is nothing generic about us" we don't just sell pipe wraps; we provide accurate engineering backing to deliver tailored solutions in accordance with ASME Pcc2 and ISO TS 24817.
+                  </p>
+                  <div className="wd-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=600&q=80" alt="Chemical Distribution" className="wd-image" />
+                    <span className="wd-img-label">Carbontech</span>
+                  </div>
+                  <div className="wd-progress">
+                    <svg className="progress-circle" viewBox="0 0 100 100">
+                      <circle className="progress-circle-bg" cx="50" cy="50" r="45" />
+                      <circle className="progress-circle-fill" cx="50" cy="50" r="45"
+                        strokeDasharray={`${2 * Math.PI * 45 * 0.2} ${2 * Math.PI * 45}`} />
+                      <text className="progress-circle-text" x="50" y="55">20%</text>
+                    </svg>
+                    {/* <p className="wd-progress-label">CHEMICAL<br />DISTRIBUTION</p> */}
+                  </div>
                 </div>
-                <div className="wd-progress">
-                  <svg className="progress-circle" viewBox="0 0 100 100">
-                    <circle className="progress-circle-bg" cx="50" cy="50" r="45" />
-                    <circle className="progress-circle-fill" cx="50" cy="50" r="45"
-                      strokeDasharray={`${2 * Math.PI * 45 * 0.2} ${2 * Math.PI * 45}`} />
-                    <text className="progress-circle-text" x="50" y="55">20%</text>
-                  </svg>
-                  {/* <p className="wd-progress-label">CHEMICAL<br />DISTRIBUTION</p> */}
-                </div>
-              </div>
 
-              {/* Item 3: Consultancy Services - LEFT */}
-              <div className="what-we-do-item reveal reveal-left">
-                <h3 className="wd-title">Consultancy Services</h3>
-                <p className="wd-desc">
-                  We are a group of multi-skilled and diverse business advisors experienced in global markets, specifically in the Middle East. Our practitioners have worked in the United States, Europe, and across the Middle East in Finance/Banking, Oil, Gas & Energy, Transaction Advisory, Process Improvement and Project & Programme Management. We’re always curious and totally invested in finding the best solution to every challenge.
-                </p>
-                <div className="wd-image-wrapper">
-                  <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=600&q=80" alt="Consultancy" className="wd-image" />
-                  <span className="wd-img-label"></span>
+                {/* Item 3: Consultancy Services - LEFT */}
+                <div className="what-we-do-item reveal reveal-left">
+                  <h3 className="wd-title">Consultancy Services</h3>
+                  <p className="wd-desc">
+                    We are a group of multi-skilled and diverse business advisors experienced in global markets, specifically in the Middle East. Our practitioners have worked in the United States, Europe, and across the Middle East in Finance/Banking, Oil, Gas & Energy, Transaction Advisory, Process Improvement and Project & Programme Management. We’re always curious and totally invested in finding the best solution to every challenge.
+                  </p>
+                  <div className="wd-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=600&q=80" alt="Consultancy" className="wd-image" />
+                    <span className="wd-img-label"></span>
+                  </div>
+                  <div className="wd-progress">
+                    <svg className="progress-circle" viewBox="0 0 100 100">
+                      <circle className="progress-circle-bg" cx="50" cy="50" r="45" />
+                      <circle className="progress-circle-fill" cx="50" cy="50" r="45"
+                        strokeDasharray={`${2 * Math.PI * 45 * 0.05} ${2 * Math.PI * 45}`} />
+                      <text className="progress-circle-text" x="50" y="55">5%</text>
+                    </svg>
+                  </div>
                 </div>
-                <div className="wd-progress">
-                  <svg className="progress-circle" viewBox="0 0 100 100">
-                    <circle className="progress-circle-bg" cx="50" cy="50" r="45" />
-                    <circle className="progress-circle-fill" cx="50" cy="50" r="45"
-                      strokeDasharray={`${2 * Math.PI * 45 * 0.05} ${2 * Math.PI * 45}`} />
-                    <text className="progress-circle-text" x="50" y="55">5%</text>
-                  </svg>
-                </div>
-              </div>
 
-              {/* Item 4: Brokerage Services - RIGHT */}
-              <div className="what-we-do-item reveal reveal-right">
-                <h3 className="wd-title">Brokerage Services</h3>
-                <p className="wd-desc">
-                  Connecting the west to the Middle East and to the Far East, VGA has longstanding, mutually respectful relationships with industry leaders; governmental and non-governmental key players not only for Energy and Maritime but related and also much wider sectors of business and industry. VGA’s team of experienced, skilled and detail-oriented brokers are at your disposal for executing client orders.
-                </p>
-                <div className="wd-image-wrapper">
-                  <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80" alt="Brokerage" className="wd-image" />
-                  <span className="wd-img-label"></span>
-                </div>
-                <div className="wd-progress">
-                  <svg className="progress-circle" viewBox="0 0 100 100">
-                    <circle className="progress-circle-bg" cx="50" cy="50" r="45" />
-                    <circle className="progress-circle-fill" cx="50" cy="50" r="45"
-                      strokeDasharray={`${2 * Math.PI * 45 * 0.05} ${2 * Math.PI * 45}`} />
-                    <text className="progress-circle-text" x="50" y="55">5%</text>
-                  </svg>
+                {/* Item 4: Brokerage Services - RIGHT */}
+                <div className="what-we-do-item reveal reveal-right">
+                  <h3 className="wd-title">Brokerage Services</h3>
+                  <p className="wd-desc">
+                    Connecting the west to the Middle East and to the Far East, VGA has longstanding, mutually respectful relationships with industry leaders; governmental and non-governmental key players not only for Energy and Maritime but related and also much wider sectors of business and industry. VGA’s team of experienced, skilled and detail-oriented brokers are at your disposal for executing client orders.
+                  </p>
+                  <div className="wd-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80" alt="Brokerage" className="wd-image" />
+                    <span className="wd-img-label"></span>
+                  </div>
+                  <div className="wd-progress">
+                    <svg className="progress-circle" viewBox="0 0 100 100">
+                      <circle className="progress-circle-bg" cx="50" cy="50" r="45" />
+                      <circle className="progress-circle-fill" cx="50" cy="50" r="45"
+                        strokeDasharray={`${2 * Math.PI * 45 * 0.05} ${2 * Math.PI * 45}`} />
+                      <text className="progress-circle-text" x="50" y="55">5%</text>
+                    </svg>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section id="investment-portfolio" className="page-section section-even reveal">
-          <div className="portfolio-content">
-            <h2 className="portfolio-heading">
-              Investment Portfolio
-            </h2>
-            <p className="portfolio-subheading">
-              Welcome to VGA Holdings Investment Portfolios, where innovation meets opportunity!
-            </p>
-            <p className="portfolio-text">
-              Our diverse offerings are designed to enhance your entertainment, event planning, and educational experiences.
-              At the forefront is Playsy, our dual reality innovative play center that seamlessly merges creativity and
-              technology for unparalleled fun. We also feature VGA Events, your one-stop shop for event solutions,
-              serving everything from corporate gatherings to VIP events. The Agency introduces Orizon, our groundbreaking
-              3-step system that transforms sales and marketing strategies for measurable success. Additionally, Playbox
-              encourages kids to step away from screens and engage their craft skills and imagination through hands-on
-              activities. Metakid offers interactive dual challenges, teaching kids how to use technology as a tool rather
-              than mere entertainment. Finally, MoneyTree is our initiative focused on fostering financial literacy in
-              children from an early age, ensuring they are well-prepared for the future.
-            </p>
-            <p className="portfolio-cta">
-              Discover the potential of each portfolio by clicking on the logos below and embark on a journey of engagement and growth with VGA!
-            </p>
+          <section id="investment-portfolio" className="page-section section-even">
+            <div className="portfolio-content reveal">
+              <h2 className="portfolio-heading">
+                Investment Portfolio
+              </h2>
+              <p className="portfolio-subheading">
+                Welcome to VGA Holdings Investment Portfolios, where innovation meets opportunity!
+              </p>
+              <p className="portfolio-text">
+                Our diverse offerings are designed to enhance your entertainment, event planning, and educational experiences.
+                At the forefront is Playsy, our dual reality innovative play center that seamlessly merges creativity and
+                technology for unparalleled fun. We also feature VGA Events, your one-stop shop for event solutions,
+                serving everything from corporate gatherings to VIP events. The Agency introduces Orizon, our groundbreaking
+                3-step system that transforms sales and marketing strategies for measurable success. Additionally, Playbox
+                encourages kids to step away from screens and engage their craft skills and imagination through hands-on
+                activities. Metakid offers interactive dual challenges, teaching kids how to use technology as a tool rather
+                than mere entertainment. Finally, MoneyTree is our initiative focused on fostering financial literacy in
+                children from an early age, ensuring they are well-prepared for the future.
+              </p>
+              <p className="portfolio-cta">
+                Discover the potential of each portfolio by clicking on the logos below and embark on a journey of engagement and growth with VGA!
+              </p>
 
-            <div className="portfolio-logos">
-              <div className="portfolio-logo-item">
-                <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=200&q=80" alt="MoneyTree" className="portfolio-logo-img" />
+              <div className="portfolio-logos">
+                <div className="portfolio-logo-item">
+                  <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=200&q=80" alt="MoneyTree" className="portfolio-logo-img" />
+                </div>
+                <div className="portfolio-logo-item">
+                  <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=200&q=80" alt="VGA Events" className="portfolio-logo-img" />
+                </div>
+                <div className="portfolio-logo-item">
+                  <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=200&q=80" alt="The Agency" className="portfolio-logo-img" />
+                </div>
+                <div className="portfolio-logo-item">
+                  <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=200&q=80" alt="VGA Events" className="portfolio-logo-img" />
+                </div>
+                <div className="portfolio-logo-item">
+                  <img src="https://images.unsplash.com/photo-1617802690992-15d93263d3a9?auto=format&fit=crop&w=200&q=80" alt="metakid" className="portfolio-logo-img" />
+                </div>
+                <div className="portfolio-logo-item">
+                  <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=200&q=80" alt="MoneyTree" className="portfolio-logo-img" />
+                </div>
               </div>
-              <div className="portfolio-logo-item">
-                <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=200&q=80" alt="VGA Events" className="portfolio-logo-img" />
-              </div>
-              <div className="portfolio-logo-item">
-                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=200&q=80" alt="The Agency" className="portfolio-logo-img" />
-              </div>
-              <div className="portfolio-logo-item">
-                <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=200&q=80" alt="VGA Events" className="portfolio-logo-img" />
-              </div>
-              <div className="portfolio-logo-item">
-                <img src="https://images.unsplash.com/photo-1617802690992-15d93263d3a9?auto=format&fit=crop&w=200&q=80" alt="metakid" className="portfolio-logo-img" />
-              </div>
-              <div className="portfolio-logo-item">
-                <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=200&q=80" alt="MoneyTree" className="portfolio-logo-img" />
+
+              <div className="progress-circle-container">
+                <svg className="progress-circle" viewBox="0 0 100 100">
+                  <circle className="progress-circle-bg" cx="50" cy="50" r="45" />
+                  <circle className="progress-circle-fill" cx="50" cy="50" r="45"
+                    strokeDasharray={`${2 * Math.PI * 45 * 0.2} ${2 * Math.PI * 45}`} />
+                  <text className="progress-circle-text" x="50" y="55">20%</text>
+                </svg>
+                {/* <p className="progress-label">INVESTMENT PORTFOLIO</p> */}
               </div>
             </div>
-
-            <div className="progress-circle-container">
-              <svg className="progress-circle" viewBox="0 0 100 100">
-                <circle className="progress-circle-bg" cx="50" cy="50" r="45" />
-                <circle className="progress-circle-fill" cx="50" cy="50" r="45"
-                  strokeDasharray={`${2 * Math.PI * 45 * 0.2} ${2 * Math.PI * 45}`} />
-                <text className="progress-circle-text" x="50" y="55">20%</text>
-              </svg>
-              <p className="progress-label">INVESTMENT PORTFOLIO</p>
-            </div>
-          </div>
-        </section>
+          </section>
+        </div>
 
         <section id="services" className="page-section section-odd">
           <div className="services-container">
@@ -445,7 +450,7 @@ function App() {
           </div>
         </section>
 
-        <section id="leaders" className="page-section section-even">
+        <section id="leaders" className="page-section section-even" data-nav="clients">
           <div className="leaders-container">
             <h2 className="leaders-heading">
               Meet Our Leaders
@@ -494,7 +499,7 @@ function App() {
           </div>
         </section>
 
-        <section id="inspiration" className="page-section full-width-section">
+        <section id="inspiration" className="page-section full-width-section" data-nav="clients">
           <div className="inspiration-container">
             <div className="inspiration-image-panel reveal reveal-left" />
             <div className="inspiration-content reveal reveal-right">
@@ -513,7 +518,7 @@ function App() {
           </div>
         </section>
 
-        <section id="why-choose-us" className="page-section section-odd">
+        <section id="why-choose-us" className="page-section section-odd" data-nav="clients">
           <div className="why-us-container">
             <h2 className="why-us-heading">WHY CHOOSE US?</h2>
 
@@ -591,7 +596,7 @@ function App() {
           </div>
         </section>
 
-        <section id="stealth-video" className="page-section section-even reveal">
+        <section id="stealth-video" className="page-section section-even reveal" data-nav="clients">
           <div className="stealth-video-container">
             <div className="stealth-card">
               <div className="stealth-image" />
@@ -618,7 +623,7 @@ function App() {
 
         <section id="contact" className="page-section section-dark reveal">
           <div className="contact-container">
-            <h2 className="contact-heading">
+            <h2 className="contact-heading-hello">
               Say hello
             </h2>
 

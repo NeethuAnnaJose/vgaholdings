@@ -24,7 +24,18 @@ export default function Header() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setActive(entry.target.id);
+            const id = entry.target.id;
+            const dataNav = entry.target.getAttribute('data-nav');
+
+            // Use data-nav attribute if present, otherwise use direct mapping
+            if (dataNav) {
+              setActive(dataNav);
+            } else if (id === 'what-we-do' || id === 'investment-portfolio') {
+              // Map What We Do and Investment Portfolio to About
+              setActive('about');
+            } else {
+              setActive(id);
+            }
           }
         });
       },

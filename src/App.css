@@ -44,7 +44,6 @@ body {
   margin-top: 0;
   margin-bottom: 24px;
   color: #000000;
-  /* Force pure black for maximum visibility */
 }
 
 h3,
@@ -78,9 +77,8 @@ h3,
   transform: translate(-50%, -50%);
   width: 100vw;
   height: 100vh;
-  min-width: 100%;
-  min-height: 100%;
   object-fit: cover;
+  z-index: -1;
 }
 
 .fullscreen-video-section.home-fade-out {
@@ -157,15 +155,14 @@ h3,
 }
 
 /* --- 3. WHAT WE DO (PULL-UP) --- */
-#what-we-do {
+#main-content-flow {
   transition: margin-top 800ms cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   z-index: 5;
 }
 
-#what-we-do.pull-up {
+#main-content-flow.pull-up {
   margin-top: -380px;
-  /* Bridge the gap and slightly overlap to ensure no pixel gap */
 }
 
 .what-we-do-container {
@@ -774,6 +771,15 @@ h3,
 .contact-heading {
   text-align: center;
   margin-bottom: 60px;
+  color: #FFFFFF;
+  /* Ensure visibility on dark background */
+}
+
+.contact-heading-hello {
+  text-align: center;
+  margin-bottom: 60px;
+  color: #FFFFFF !important;
+  /* Ensure visibility on dark background */
 }
 
 .contact-grid {
@@ -797,6 +803,7 @@ h3,
   font-weight: 800;
   text-transform: uppercase;
   margin-bottom: 12px;
+  color: #FFFFFF;
 }
 
 .contact-info {
