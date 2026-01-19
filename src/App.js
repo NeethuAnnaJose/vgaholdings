@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import Header from './components/Header';
-import { scrollToId } from './utils/smoothScroll';
+// import { scrollToId } from './utils/smoothScroll';
 
 function App() {
   const [videoModalOpen, setVideoModalOpen] = useState(false);
