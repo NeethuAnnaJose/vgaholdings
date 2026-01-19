@@ -13,7 +13,6 @@ const NAV_ITEMS = [
 
 export default function Header() {
   const [active, setActive] = useState('home');
-  const [shrink, setShrink] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -53,13 +52,6 @@ export default function Header() {
     };
   }, []);
 
-  useEffect(() => {
-    const onScroll = () => setShrink(window.scrollY > 60);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
   // Keep a CSS variable in sync with the header height so anchors and CSS can
   // use a correct offset even when the header shrinks or the window resizes.
   useEffect(() => {
@@ -79,13 +71,15 @@ export default function Header() {
 
   function handleNavClick(e, id) {
     e.preventDefault();
-    setMobileMenuOpen(false); // Close mobile menu on navigation
-    scrollToId(id, { duration: 1400 })
-      .then(() => setActive(id))
-      .catch(() => {
-        /* canceled or interrupted */
-      });
+    setMobileMenuOpen(false);
+
+    setTimeout(() => {
+      scrollToId(id, { duration: 1400 })
+        .then(() => setActive(id))
+        .catch(() => { });
+    }, 50);
   }
+
 
   function toggleMobileMenu() {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -109,7 +103,7 @@ export default function Header() {
   const RIGHT_NAV = NAV_ITEMS.slice(3);
 
   return (
-    <header className={`site-header ${shrink ? 'shrink' : ''} ${mobileMenuOpen ? 'mobile-menu-open' : ''}`}>
+    <header className={`site-header ${mobileMenuOpen ? 'mobile-menu-open' : ''}`}>
       <div className="header-overlay" aria-hidden="true" />
       <div className="header-container">
 
@@ -202,6 +196,23 @@ export default function Header() {
         </nav>
 
       </div>
+      {/* ✅ Mobile Navigation Drawer */}
+      <nav className="mobile-nav" aria-label="Mobile navigation">
+        <ul>
+          {NAV_ITEMS.map((item) => (
+            <li key={item.id}>
+              <a
+                href={`#${item.id}`}
+                className={active === item.id ? 'active' : ''}
+                onClick={(e) => handleNavClick(e, item.id)}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
 
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (

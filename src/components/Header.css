@@ -11,14 +11,20 @@
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   backdrop-filter: blur(20px) saturate(180%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  transition: height 300ms cubic-bezier(0.16, 1, 0.3, 1), background 300ms ease;
+  transition: background 300ms ease;
 }
 
-.site-header.shrink {
-  height: 78px;
-  transition: height 220ms ease, box-shadow 220ms ease;
-  box-shadow: 0 6px 18px rgba(10, 10, 10, 0.08);
+/* Allow mobile menu to be visible when open */
+.site-header.mobile-menu-open {
+  overflow: visible;
 }
+
+/* Ensure header container is above overlay when menu is open */
+.mobile-menu-open .header-container {
+  z-index: 1001;
+}
+
+
 
 .site-header .header-overlay {
   position: absolute;
@@ -122,13 +128,7 @@
   /* White glow */
 }
 
-.site-header.shrink .brand-main {
-  font-size: 22px;
-}
 
-.site-header.shrink .brand-sub {
-  font-size: 9px;
-}
 
 .site-nav ul {
   list-style: none;
@@ -333,7 +333,7 @@
 }
 
 /* Mobile landscape and below */
-@media (max-width: 720px) {
+@media (max-width: 999px) {
 
   /* Show hamburger button */
   .hamburger-btn {
@@ -359,17 +359,13 @@
     height: 90px;
   }
 
-  .site-header.shrink {
-    height: 70px;
-  }
+
 
   .brand img {
     height: 45px;
   }
 
-  .site-header.shrink .brand img {
-    height: 38px;
-  }
+
 }
 
 /* Mobile portrait */
@@ -378,17 +374,13 @@
     height: 80px;
   }
 
-  .site-header.shrink {
-    height: 65px;
-  }
+
 
   .brand img {
     height: 40px;
   }
 
-  .site-header.shrink .brand img {
-    height: 35px;
-  }
+
 
   .mobile-nav {
     width: 250px;
@@ -401,17 +393,13 @@
     height: 70px;
   }
 
-  .site-header.shrink {
-    height: 60px;
-  }
+
 
   .brand img {
     height: 35px;
   }
 
-  .site-header.shrink .brand img {
-    height: 30px;
-  }
+
 
   .mobile-nav {
     width: 220px;

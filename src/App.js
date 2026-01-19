@@ -110,151 +110,151 @@ function App() {
             <div className="what-we-do-container">
               <h2 className="what-we-do-heading">What We Do</h2>
 
-             <div className="what-we-do-grid">
-  {/* Item 1: Oil and Gas - LEFT */}
-  <div className="what-we-do-item reveal reveal-left">
-    <h3 className="wd-title">Oil and Gas Pipeline Services</h3>
-    <p className="wd-desc">
-      AGODCO the proprietary owner of the Stealth-Lock technology designs, builds and develops,
-      innovative and technically advanced Pipeline construction technology. But it doesn't stop there.
-      Its Integrated Services Resource typically delivers pipeline construction ten times faster than
-      welding with 2km of constructed carbon steel pipeline per crew, per day. We carry your energy
-      in safe, reliable and responsible ways. We are committed to the communities to which we serve to.
-    </p>
+              <div className="what-we-do-grid">
+                {/* Item 1: Oil and Gas - LEFT */}
+                <div className="what-we-do-item reveal reveal-left">
+                  <h3 className="wd-title">Oil and Gas Pipeline Services</h3>
+                  <p className="wd-desc">
+                    AGODCO the proprietary owner of the Stealth-Lock technology designs, builds and develops,
+                    innovative and technically advanced Pipeline construction technology. But it doesn't stop there.
+                    Its Integrated Services Resource typically delivers pipeline construction ten times faster than
+                    welding with 2km of constructed carbon steel pipeline per crew, per day. We carry your energy
+                    in safe, reliable and responsible ways. We are committed to the communities to which we serve to.
+                  </p>
 
-    <div className="wd-image-wrapper">
-      <a href="https://www.agodco.com/" target="_blank" rel="noreferrer">
-        <img
-          src="/SL-Pipeline-Construction.jpeg"
-          alt="Oil and Gas Pipeline Services"
-          className="wd-image"
-        />
-      </a>
-    </div>
+                  <div className="wd-image-wrapper">
+                    <a href="https://www.agodco.com/" target="_blank" rel="noreferrer">
+                      <img
+                        src="/SL-Pipeline-Construction.jpeg"
+                        alt="Oil and Gas Pipeline Services"
+                        className="wd-image"
+                      />
+                    </a>
+                  </div>
 
-    <div className="wd-progress">
-      <div className="progress-bar-container">
-        <div className="progress-bar-label">
-          <span className="progress-bar-title">Oil and Gas</span>
-          <span className="progress-bar-percentage">50%</span>
-        </div>
-        <div className="progress-bar-track">
-          <div className="progress-bar-fill" style={{ width: '50%' }}></div>
-        </div>
-      </div>
-    </div>
-  </div>
+                  <div className="wd-progress">
+                    <div className="progress-bar-container">
+                      <div className="progress-bar-label">
+                        <span className="progress-bar-title">Oil and Gas</span>
+                        <span className="progress-bar-percentage">50%</span>
+                      </div>
+                      <div className="progress-bar-track">
+                        <div className="progress-bar-fill" style={{ width: '50%' }}></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-  {/* Item 2: Chemical Distribution - RIGHT */}
-  <div className="what-we-do-item reveal reveal-right">
-    <h3 className="wd-title">Chemical Distribution</h3>
-    <p className="wd-desc">
-      VGA Chemicals is the exclusive distributor of Carbontech in the Kingdom of Bahrain. The place
-      where chemistry, engineering and global expertise are brought together to drive progressive
-      innovation in advanced composite technologies for the emergency repair of critical assets.
-      "There is nothing generic about us" we don't just sell pipe wraps; we provide accurate
-      engineering backing to deliver tailored solutions in accordance with ASME Pcc2 and ISO TS 24817.
-    </p>
+                {/* Item 2: Chemical Distribution - RIGHT */}
+                <div className="what-we-do-item reveal reveal-right">
+                  <h3 className="wd-title">Chemical Distribution</h3>
+                  <p className="wd-desc">
+                    VGA Chemicals is the exclusive distributor of Carbontech in the Kingdom of Bahrain. The place
+                    where chemistry, engineering and global expertise are brought together to drive progressive
+                    innovation in advanced composite technologies for the emergency repair of critical assets.
+                    "There is nothing generic about us" we don't just sell pipe wraps; we provide accurate
+                    engineering backing to deliver tailored solutions in accordance with ASME Pcc2 and ISO TS 24817.
+                  </p>
 
-    <div className="wd-image-wrapper">
-      <a href="https://revowrap.com/" target="_blank" rel="noreferrer">
-        <img
-          src="/carbontechimg.jpg"
-          alt="Chemical Distribution"
-          className="wd-image"
-        />
-      </a>
-    </div>
+                  <div className="wd-image-wrapper">
+                    <a href="https://revowrap.com/" target="_blank" rel="noreferrer">
+                      <img
+                        src="/carbontechimg.jpg"
+                        alt="Chemical Distribution"
+                        className="wd-image"
+                      />
+                    </a>
+                  </div>
 
-    <div className="wd-progress">
-      <div className="progress-bar-container">
-        <div className="progress-bar-label">
-          <span className="progress-bar-title">Chemical Distribution</span>
-          <span className="progress-bar-percentage">20%</span>
-        </div>
-        <div className="progress-bar-track">
-          <div className="progress-bar-fill" style={{ width: '20%' }}></div>
-        </div>
-      </div>
-    </div>
-  </div>
+                  <div className="wd-progress">
+                    <div className="progress-bar-container">
+                      <div className="progress-bar-label">
+                        <span className="progress-bar-title">Chemical Distribution</span>
+                        <span className="progress-bar-percentage">20%</span>
+                      </div>
+                      <div className="progress-bar-track">
+                        <div className="progress-bar-fill" style={{ width: '20%' }}></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-  {/* Item 3: Consultancy Services - LEFT */}
-  <div className="what-we-do-item reveal reveal-left">
-    <h3 className="wd-title">Consultancy Services</h3>
-    <p className="wd-desc">
-      We are a group of multi-skilled and diverse business advisors experienced in global markets,
-      specifically in the Middle East. Our practitioners have worked in the United States, Europe,
-      and across the Middle East in Finance/Banking, Oil, Gas & Energy, Transaction Advisory,
-      Process Improvement and Project & Programme Management. We’re always curious and totally
-      invested in finding the best solution to every challenge.
-    </p>
+                {/* Item 3: Consultancy Services - LEFT */}
+                <div className="what-we-do-item reveal reveal-left">
+                  <h3 className="wd-title">Consultancy Services</h3>
+                  <p className="wd-desc">
+                    We are a group of multi-skilled and diverse business advisors experienced in global markets,
+                    specifically in the Middle East. Our practitioners have worked in the United States, Europe,
+                    and across the Middle East in Finance/Banking, Oil, Gas & Energy, Transaction Advisory,
+                    Process Improvement and Project & Programme Management. We’re always curious and totally
+                    invested in finding the best solution to every challenge.
+                  </p>
 
-    <div className="wd-image-wrapper">
-      <a
-        href="https://vgaholdings.com/wp-content/uploads/2024/09/VGA-CONSULTANCY-SERVICES.pdf"
-        target="_blank"
-        rel="noreferrer"
-      >
-        <img
-          src="/Consultancy-service.jpg"
-          alt="Consultancy Services"
-          className="wd-image"
-        />
-      </a>
-    </div>
+                  <div className="wd-image-wrapper">
+                    <a
+                      href="https://vgaholdings.com/wp-content/uploads/2024/09/VGA-CONSULTANCY-SERVICES.pdf"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <img
+                        src="/Consultancy-service.jpg"
+                        alt="Consultancy Services"
+                        className="wd-image"
+                      />
+                    </a>
+                  </div>
 
-    <div className="wd-progress">
-      <div className="progress-bar-container">
-        <div className="progress-bar-label">
-          <span className="progress-bar-title">Consultancy</span>
-          <span className="progress-bar-percentage">5%</span>
-        </div>
-        <div className="progress-bar-track">
-          <div className="progress-bar-fill" style={{ width: '5%' }}></div>
-        </div>
-      </div>
-    </div>
-  </div>
+                  <div className="wd-progress">
+                    <div className="progress-bar-container">
+                      <div className="progress-bar-label">
+                        <span className="progress-bar-title">Consultancy</span>
+                        <span className="progress-bar-percentage">5%</span>
+                      </div>
+                      <div className="progress-bar-track">
+                        <div className="progress-bar-fill" style={{ width: '5%' }}></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-  {/* Item 4: Brokerage Services - RIGHT */}
-  <div className="what-we-do-item reveal reveal-right">
-    <h3 className="wd-title">Brokerage Services</h3>
-    <p className="wd-desc">
-      Connecting the west to the Middle East and to the Far East, VGA has longstanding, mutually
-      respectful relationships with industry leaders; governmental and non-governmental key players
-      not only for Energy and Maritime but related and also much wider sectors of business and industry.
-      VGA’s team of experienced, skilled and detail-oriented brokers are at your disposal for executing
-      client orders.
-    </p>
+                {/* Item 4: Brokerage Services - RIGHT */}
+                <div className="what-we-do-item reveal reveal-right">
+                  <h3 className="wd-title">Brokerage Services</h3>
+                  <p className="wd-desc">
+                    Connecting the west to the Middle East and to the Far East, VGA has longstanding, mutually
+                    respectful relationships with industry leaders; governmental and non-governmental key players
+                    not only for Energy and Maritime but related and also much wider sectors of business and industry.
+                    VGA’s team of experienced, skilled and detail-oriented brokers are at your disposal for executing
+                    client orders.
+                  </p>
 
-    <div className="wd-image-wrapper">
-      <a
-        href="https://vgaholdings.com/wp-content/uploads/2024/09/VGA-BROKERAGE-SERVICES.pdf"
-        target="_blank"
-        rel="noreferrer"
-      >
-        <img
-          src="/Brokerage.jpg"
-          alt="Brokerage Services"
-          className="wd-image"
-        />
-      </a>
-    </div>
+                  <div className="wd-image-wrapper">
+                    <a
+                      href="https://vgaholdings.com/wp-content/uploads/2024/09/VGA-BROKERAGE-SERVICES.pdf"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <img
+                        src="/Brokerage.jpg"
+                        alt="Brokerage Services"
+                        className="wd-image"
+                      />
+                    </a>
+                  </div>
 
-    <div className="wd-progress">
-      <div className="progress-bar-container">
-        <div className="progress-bar-label">
-          <span className="progress-bar-title">Brokerage</span>
-          <span className="progress-bar-percentage">5%</span>
-        </div>
-        <div className="progress-bar-track">
-          <div className="progress-bar-fill" style={{ width: '5%' }}></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+                  <div className="wd-progress">
+                    <div className="progress-bar-container">
+                      <div className="progress-bar-label">
+                        <span className="progress-bar-title">Brokerage</span>
+                        <span className="progress-bar-percentage">5%</span>
+                      </div>
+                      <div className="progress-bar-track">
+                        <div className="progress-bar-fill" style={{ width: '5%' }}></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
             </div>
           </section>
@@ -281,55 +281,55 @@ function App() {
               <p className="portfolio-cta">
                 Discover the potential of each portfolio by clicking on the logos below and embark on a journey of engagement and growth with VGA!
               </p>
-<div className="portfolio-logos">
-  {/* Image 1 */}
-  <div className="portfolio-logo-item">
-    <a href="https://www.playsy.com/" target="_blank" rel="noreferrer">
-      <img src="/Playsy-logo.jpg" alt="Playsy" className="portfolio-logo-img" />
-    </a>
-  </div>
+              <div className="portfolio-logos">
+                {/* Image 1 */}
+                <div className="portfolio-logo-item">
+                  <a href="https://www.playsy.com/" target="_blank" rel="noreferrer">
+                    <img src="/Playsy-logo.jpg" alt="Playsy" className="portfolio-logo-img" />
+                  </a>
+                </div>
 
-  {/* Image 2 */}
-  <div className="portfolio-logo-item">
-    <a href="https://vga-events.com/" target="_blank" rel="noreferrer">
-      <img src="/vga-events-logo.jpg" alt="VGA Events" className="portfolio-logo-img" />
-    </a>
-  </div>
+                {/* Image 2 */}
+                <div className="portfolio-logo-item">
+                  <a href="https://vga-events.com/" target="_blank" rel="noreferrer">
+                    <img src="/vga-events-logo.jpg" alt="VGA Events" className="portfolio-logo-img" />
+                  </a>
+                </div>
 
-  {/* Image 3 */}
-  <div className="portfolio-logo-item">
-    <a
-      href="https://vgaholdings.com/wp-content/uploads/2024/09/The-Agency-3-Step-System.pdf"
-      target="_blank"
-      rel="noreferrer"
-    >
-      <img src="/agency-logo.jpg" alt="The Agency" className="portfolio-logo-img" />
-    </a>
-  </div>
+                {/* Image 3 */}
+                <div className="portfolio-logo-item">
+                  <a
+                    href="https://vgaholdings.com/wp-content/uploads/2024/09/The-Agency-3-Step-System.pdf"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img src="/agency-logo.jpg" alt="The Agency" className="portfolio-logo-img" />
+                  </a>
+                </div>
 
-  {/* Image 4 */}
-  <div className="portfolio-logo-item">
-    <a href="https://playboxbh.com/" target="_blank" rel="noreferrer">
-      <img src="/Playbox-Logo.jpg" alt="Playbox" className="portfolio-logo-img" />
-    </a>
-  </div>
+                {/* Image 4 */}
+                <div className="portfolio-logo-item">
+                  <a href="https://playboxbh.com/" target="_blank" rel="noreferrer">
+                    <img src="/Playbox-Logo.jpg" alt="Playbox" className="portfolio-logo-img" />
+                  </a>
+                </div>
 
-  {/* Image 5 (No redirection) */}
-  <div className="portfolio-logo-item">
-    <img src="/metakid-logo.jpg" alt="Metakid" className="portfolio-logo-img" />
-  </div>
+                {/* Image 5 (No redirection) */}
+                <div className="portfolio-logo-item">
+                  <img src="/metakid-logo.jpg" alt="Metakid" className="portfolio-logo-img" />
+                </div>
 
-  {/* Image 6 */}
-  <div className="portfolio-logo-item">
-    <a
-      href="https://vgaholdings.com/wp-content/uploads/2024/09/MoneyTree_2024.pdf"
-      target="_blank"
-      rel="noreferrer"
-    >
-      <img src="/Moneytree_logo.png" alt="MoneyTree" className="portfolio-logo-img" />
-    </a>
-  </div>
-</div>
+                {/* Image 6 */}
+                <div className="portfolio-logo-item">
+                  <a
+                    href="https://vgaholdings.com/wp-content/uploads/2024/09/MoneyTree_2024.pdf"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img src="/Moneytree_logo.png" alt="MoneyTree" className="portfolio-logo-img" />
+                  </a>
+                </div>
+              </div>
 
 
 
@@ -487,76 +487,76 @@ function App() {
             </h2>
 
             <div className="news-grid">
-  {[
-    {
-      id: 1,
-      title: 'GREEK STREET "MYKONOS" GETS SOLD TO THE BAHRAIN SOLYMAR GROUP.',
-      text: 'Greek Street first opened its doors on the 6th April 2022. In a very short period of time our customers became regulars and Greek Street became the most attractive hang-out spot in the Kingdom of Bahrain.',
-      image: "/Greekstreet.jpg",
-      link: "https://vgaholdings.com/latest-news-01/",
-    },
-    {
-      id: 2,
-      title: 'GREEK STREET "MYKONOS" GOES LIVE ON BAHRAIN & GREEK TV CHANNELS.',
-      text: 'Live on Bahrain and ALPHA Greek TV. The founders who have brought "a taste of Mykonos" to the Kingdom of Bahrain.',
-      image: "/alphalive.jpg",
-      link: "https://vgaholdings.com/latest-news-02/",
-    },
-    {
-      id: 3,
-      title: 'VGA CHEMICALS SIGNS AGREEMENT WITH CARBONTECH IN BAHRAIN.',
-      text: 'VGA Chemicals signs an exclusive agreement with Carbontech for the supply of Revowrap, a very High-End Leak repair product for the Oil & Gas Industry in the Kingdom of Bahrain.',
-      image: "/CARBONTECH-composite.jpg",
-      link: "https://vgaholdings.com/latest-news-03/",
-    },
-    {
-      id: 4,
-      title: 'VGA CONSULTANTS SIGN AGREEMENT WITH ARTHUR D. LITTLE IN SAUDI ARABIA.',
-      text: 'VGA and Arthur D. Little sign an agreement in Saudi to provide excellent consultancy and planning services for a large insurance firm.',
-      image: "/arthurlittle.jpg",
-      link: "https://vgaholdings.com/latest-news-04/",
-    },
-    {
-      id: 5,
-      title: 'STEALTH-LOCK "NEW GENERATION" LAUNCHED.',
-      text: 'Automation, remote-control, data capture, stabilizer modules – this new generation of the Stealth-Lock pipeline connection technology is the product of innovation.',
-      image: "/STEALTH-LOGO.png",
-      link: "https://vgaholdings.com/latest-news-05/",
-    },
-    {
-      id: 6,
-      title: 'AGODCO & TENARIS INK STEALTH-LOCK LATIN AMERICA CONTRACT.',
-      text: 'After 4 years of relationship development, field trials, end-user qualifications and contractual negotiations, AGODCO and TENARIS inked their deal.',
-      image: "/TENARIS.png",
-      link: "https://vgaholdings.com/latest-news-06/",
-    },
-  ].map((item) => (
-    <article key={item.id} className="news-card reveal">
-      <div className="news-thumb">
-        <img src={item.image} alt={item.title} className="news-image" />
-      </div>
+              {[
+                {
+                  id: 1,
+                  title: 'GREEK STREET "MYKONOS" GETS SOLD TO THE BAHRAIN SOLYMAR GROUP.',
+                  text: 'Greek Street first opened its doors on the 6th April 2022. In a very short period of time our customers became regulars and Greek Street became the most attractive hang-out spot in the Kingdom of Bahrain.',
+                  image: "/Greekstreet.jpg",
+                  link: "https://vgaholdings.com/latest-news-01/",
+                },
+                {
+                  id: 2,
+                  title: 'GREEK STREET "MYKONOS" GOES LIVE ON BAHRAIN & GREEK TV CHANNELS.',
+                  text: 'Live on Bahrain and ALPHA Greek TV. The founders who have brought "a taste of Mykonos" to the Kingdom of Bahrain.',
+                  image: "/alphalive.jpg",
+                  link: "https://vgaholdings.com/latest-news-02/",
+                },
+                {
+                  id: 3,
+                  title: 'VGA CHEMICALS SIGNS AGREEMENT WITH CARBONTECH IN BAHRAIN.',
+                  text: 'VGA Chemicals signs an exclusive agreement with Carbontech for the supply of Revowrap, a very High-End Leak repair product for the Oil & Gas Industry in the Kingdom of Bahrain.',
+                  image: "/CARBONTECH-composite.jpg",
+                  link: "https://vgaholdings.com/latest-news-03/",
+                },
+                {
+                  id: 4,
+                  title: 'VGA CONSULTANTS SIGN AGREEMENT WITH ARTHUR D. LITTLE IN SAUDI ARABIA.',
+                  text: 'VGA and Arthur D. Little sign an agreement in Saudi to provide excellent consultancy and planning services for a large insurance firm.',
+                  image: "/arthurlittle.jpg",
+                  link: "https://vgaholdings.com/latest-news-04/",
+                },
+                {
+                  id: 5,
+                  title: 'STEALTH-LOCK "NEW GENERATION" LAUNCHED.',
+                  text: 'Automation, remote-control, data capture, stabilizer modules – this new generation of the Stealth-Lock pipeline connection technology is the product of innovation.',
+                  image: "/STEALTH-LOGO.png",
+                  link: "https://vgaholdings.com/latest-news-05/",
+                },
+                {
+                  id: 6,
+                  title: 'AGODCO & TENARIS INK STEALTH-LOCK LATIN AMERICA CONTRACT.',
+                  text: 'After 4 years of relationship development, field trials, end-user qualifications and contractual negotiations, AGODCO and TENARIS inked their deal.',
+                  image: "/TENARIS.png",
+                  link: "https://vgaholdings.com/latest-news-06/",
+                },
+              ].map((item) => (
+                <article key={item.id} className="news-card reveal">
+                  <div className="news-thumb">
+                    <img src={item.image} alt={item.title} className="news-image" />
+                  </div>
 
-      <div className="news-body">
-        <h3 className="news-title">{item.title}</h3>
+                  <div className="news-body">
+                    <h3 className="news-title">{item.title}</h3>
 
-        <p className="news-excerpt">
-          {item.text}
-          <br /><br />
-          Tap on the "Read More" tab to read our story.
-        </p>
+                    <p className="news-excerpt">
+                      {item.text}
+                      <br /><br />
+                      Tap on the "Read More" tab to read our story.
+                    </p>
 
-        <div className="news-meta">
-          <button
-            className="news-cta"
-            onClick={() => window.open(item.link, "_blank")}
-          >
-            READ MORE
-          </button>
-        </div>
-      </div>
-    </article>
-  ))}
-</div>
+                    <div className="news-meta">
+                      <button
+                        className="news-cta"
+                        onClick={() => window.open(item.link, "_blank")}
+                      >
+                        READ MORE
+                      </button>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
 
           </div>
         </section>
