@@ -11,46 +11,10 @@ const NAV_ITEMS = [
   { id: 'contact', label: 'CONTACT' },
 ];
 
-export default function Header() {
-  const [active, setActive] = useState('home');
+export default function Header({ scrolled, activeSection }) {
+  const active = activeSection || 'home';
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    // Scrollspy: observe sections and set active when in view
-    const sections = Array.from(document.querySelectorAll('.page-section'));
-    if (sections.length === 0) return;
-
-    const spy = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const id = entry.target.id;
-            const dataNav = entry.target.getAttribute('data-nav');
-
-            // Use data-nav attribute if present, otherwise use direct mapping
-            if (dataNav) {
-              setActive(dataNav);
-            } else if (id === 'what-we-do' || id === 'investment-portfolio') {
-              // Map What We Do and Investment Portfolio to About
-              setActive('about');
-            } else {
-              setActive(id);
-            }
-          }
-        });
-      },
-      {
-        root: null,
-        threshold: 0.45,
-      }
-    );
-
-    sections.forEach((s) => spy.observe(s));
-
-    return () => {
-      spy.disconnect();
-    };
-  }, []);
+  const isScrolled = scrolled;
 
   // Keep a CSS variable in sync with the header height so anchors and CSS can
   // use a correct offset even when the header shrinks or the window resizes.
@@ -75,7 +39,6 @@ export default function Header() {
 
     setTimeout(() => {
       scrollToId(id, { duration: 1400 })
-        .then(() => setActive(id))
         .catch(() => { });
     }, 50);
   }
@@ -91,7 +54,6 @@ export default function Header() {
       const hash = window.location.hash && window.location.hash.replace('#', '');
       if (hash) {
         scrollToId(hash, { duration: 1400 }).catch(() => { });
-        setActive(hash);
       }
     }
     handleHash();
@@ -103,7 +65,7 @@ export default function Header() {
   const RIGHT_NAV = NAV_ITEMS.slice(3);
 
   return (
-    <header className={`site-header ${mobileMenuOpen ? 'mobile-menu-open' : ''}`}>
+    <header className={`site-header ${mobileMenuOpen ? 'mobile-menu-open' : ''} ${isScrolled ? 'scrolled' : ''}`}>
       <div className="header-overlay" aria-hidden="true" />
       <div className="header-container">
 
