@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import Header from './components/Header';
-import { scrollToId } from './utils/smoothScroll';
+// import { scrollToId } from './utils/smoothScroll';
 
 function App() {
   const [videoModalOpen, setVideoModalOpen] = useState(false);
@@ -10,22 +10,22 @@ function App() {
 
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const [isScrolling, setIsScrolling] = useState(false);
+  // const [isScrolling, setIsScrolling] = useState(false);
 
-  const sections = [
-    'home',
-    'about',
-    'what-we-do',
-    'investment-portfolio',
-    'services',
-    'news',
-    'clients',
-    'leaders',
-    'inspiration',
-    'why-choose-us',
-    'stealth-video',
-    'contact'
-  ];
+  // const sections = [
+  //   'home',
+  //   'about',
+  //   'what-we-do',
+  //   'investment-portfolio',
+  //   'services',
+  //   'news',
+  //   'clients',
+  //   'leaders',
+  //   'inspiration',
+  //   'why-choose-us',
+  //   'stealth-video',
+  //   'contact'
+  // ];
 
 
 
@@ -364,26 +364,26 @@ function App() {
     };
   }, []);
 
-  const handleNavClick = (e, id) => {
-    e.preventDefault();
-    const targetSection = document.getElementById(id);
-    if (targetSection) {
-      targetSection.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-  };
+  // const handleNavClick = (e, id) => {
+  //   e.preventDefault();
+  //   const targetSection = document.getElementById(id);
+  //   if (targetSection) {
+  //     targetSection.scrollIntoView({
+  //       behavior: 'smooth',
+  //       block: 'start'
+  //     });
+  //   }
+  // };
 
-  const navDots = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'what-we-do', label: 'Services' },
-    { id: 'news', label: 'News' },
-    { id: 'clients', label: 'Clients' },
-    { id: 'leaders', label: 'Leaders' },
-    { id: 'contact', label: 'Contact' }
-  ];
+  // const navDots = [
+  //   { id: 'home', label: 'Home' },
+  //   { id: 'about', label: 'About' },
+  //   { id: 'what-we-do', label: 'Services' },
+  //   { id: 'news', label: 'News' },
+  //   { id: 'clients', label: 'Clients' },
+  //   { id: 'leaders', label: 'Leaders' },
+  //   { id: 'contact', label: 'Contact' }
+  // ];
 
   return (
     <div className="App">
