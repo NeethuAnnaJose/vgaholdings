@@ -121,7 +121,7 @@ function App() {
 
       // Check for scrollable internal content
       // We look for specific scrollable containers we know of, or generic scrollable divs
-      const scrollableContent = activeSection ? activeSection.querySelector('.about-text, .what-we-do-container, .portfolio-content, .news-container') : null;
+      const scrollableContent = activeSection ? activeSection.querySelector('.about-shell, .what-we-do-grid-wrapper, .portfolio-content, .services-grid, .news-carousel-container, .leaders-grid, .clients-scroll-wrapper, .wcu-grid') : null;
 
       if (scrollableContent) {
         const { scrollTop, scrollHeight, clientHeight } = scrollableContent;
@@ -129,7 +129,7 @@ function App() {
 
         if (isScrollable) {
           // Special handling for what-we-do-container: NEVER auto-transition
-          if (scrollableContent.classList.contains('what-we-do-container')) {
+          if (scrollableContent.classList.contains('what-we-do-grid-wrapper')) {
             // Always allow native scroll, never trigger page transition
             // User must scroll past the section boundary to move to next section
             return;
@@ -242,7 +242,8 @@ function App() {
       }
 
       const activeSection = sections[targetIndex];
-      if (activeSection && activeSection.id === 'what-we-do') {
+      const activeSectionId = activeSection ? activeSection.id : '';
+      if (['what-we-do', 'about', 'investment-portfolio', 'services', 'news', 'leaders', 'clients', 'why-choose-us'].includes(activeSectionId)) {
         return; // Allow native swipe scroll
       }
 
@@ -447,122 +448,122 @@ function App() {
         <section id="what-we-do" className="section page-section section-odd" data-anchor="what-we-do">
           <div className="what-we-do-container">
             <h2 className="what-we-do-heading">What We Do</h2>
-            
+
             <div className="what-we-do-grid-wrapper">
               <div className="what-we-do-grid">
-              {/* Item 1: Oil and Gas */}
-              <div className="what-we-do-card reveal delay-100">
-                <div className="wd-card-content-top">
-                  <h3 className="wd-title">Oil and Gas Pipeline Services</h3>
-                  <p className="wd-text">
-                    AGODCO the proprietary owner of the Stealth-Lock technology designs, builds and develops,
-                    innovative and technically advanced pipeline construction technology. But it doesn't stop there.
-                    Its Integrated Services Resource typically delivers pipeline construction ten times faster than
-                    welding with 2km of constructed carbon steel pipeline per crew, per day. We carry your energy
-                    in safe, reliable and responsible ways. We are committed to the communities to which we serve to.
-                  </p>
-                </div>
-                <div className="wd-card-image-box">
-                  <a href="https://www.agodco.com/" target="_blank" rel="noreferrer">
-                    <img src="/SL-Pipeline-Construction.jpeg" alt="Oil and Gas" className="wd-card-img" />
-                  </a>
-                  <div className="wd-card-img-overlay"></div>
-                </div>
-                <footer className="wd-card-footer">
-                  <div className="wd-footer-top">
-                    <span className="wd-footer-label">OIL AND GAS</span>
-                    <span className="wd-footer-percent">50%</span>
+                {/* Item 1: Oil and Gas */}
+                <div className="what-we-do-card reveal delay-100">
+                  <div className="wd-card-content-top">
+                    <h3 className="wd-title">Oil and Gas Pipeline Services</h3>
+                    <p className="wd-text">
+                      AGODCO the proprietary owner of the Stealth-Lock technology designs, builds and develops,
+                      innovative and technically advanced pipeline construction technology. But it doesn't stop there.
+                      Its Integrated Services Resource typically delivers pipeline construction ten times faster than
+                      welding with 2km of constructed carbon steel pipeline per crew, per day. We carry your energy
+                      in safe, reliable and responsible ways. We are committed to the communities to which we serve to.
+                    </p>
                   </div>
-                  <div className="wd-footer-progress">
-                    <div className="wd-footer-progress-bar" style={{ width: '50%' }}></div>
+                  <div className="wd-card-image-box">
+                    <a href="https://www.agodco.com/" target="_blank" rel="noreferrer">
+                      <img src="/SL-Pipeline-Construction.jpeg" alt="Oil and Gas" className="wd-card-img" />
+                    </a>
+                    <div className="wd-card-img-overlay"></div>
                   </div>
-                </footer>
-              </div>
+                  <footer className="wd-card-footer">
+                    <div className="wd-footer-top">
+                      <span className="wd-footer-label">OIL AND GAS</span>
+                      <span className="wd-footer-percent">50%</span>
+                    </div>
+                    <div className="wd-footer-progress">
+                      <div className="wd-footer-progress-bar" style={{ width: '50%' }}></div>
+                    </div>
+                  </footer>
+                </div>
 
-              {/* Item 2: Chemical Distribution */}
-              <div className="what-we-do-card reveal delay-200">
-                <div className="wd-card-content-top">
-                  <h3 className="wd-title">Chemical Distribution</h3>
-                  <p className="wd-text">
-                    VGA Chemicals is the exclusive distributor of Carbontech in the Kingdom of Bahrain. The place
-                    where chemistry, engineering and global expertise meet to create a solution for your every need.
-                    Carbontech is a leading developer and manufacturer of composite repair systems. It provides
-                    engineered solutions for the repair of damaged equipment and pipelines.
-                  </p>
-                </div>
-                <div className="wd-card-image-box">
-                  <a href="https://revowrap.com/" target="_blank" rel="noreferrer">
-                    <img src="/carbontechimg.jpg" alt="Chemical Distribution" className="wd-card-img" />
-                  </a>
-                  <div className="wd-card-img-overlay"></div>
-                </div>
-                <footer className="wd-card-footer">
-                  <div className="wd-footer-top">
-                    <span className="wd-footer-label">CHEMICAL DISTRIBUTION</span>
-                    <span className="wd-footer-percent">20%</span>
+                {/* Item 2: Chemical Distribution */}
+                <div className="what-we-do-card reveal delay-200">
+                  <div className="wd-card-content-top">
+                    <h3 className="wd-title">Chemical Distribution</h3>
+                    <p className="wd-text">
+                      VGA Chemicals is the exclusive distributor of Carbontech in the Kingdom of Bahrain. The place
+                      where chemistry, engineering and global expertise meet to create a solution for your every need.
+                      Carbontech is a leading developer and manufacturer of composite repair systems. It provides
+                      engineered solutions for the repair of damaged equipment and pipelines.
+                    </p>
                   </div>
-                  <div className="wd-footer-progress">
-                    <div className="wd-footer-progress-bar" style={{ width: '20%' }}></div>
+                  <div className="wd-card-image-box">
+                    <a href="https://revowrap.com/" target="_blank" rel="noreferrer">
+                      <img src="/carbontechimg.jpg" alt="Chemical Distribution" className="wd-card-img" />
+                    </a>
+                    <div className="wd-card-img-overlay"></div>
                   </div>
-                </footer>
-              </div>
+                  <footer className="wd-card-footer">
+                    <div className="wd-footer-top">
+                      <span className="wd-footer-label">CHEMICAL DISTRIBUTION</span>
+                      <span className="wd-footer-percent">20%</span>
+                    </div>
+                    <div className="wd-footer-progress">
+                      <div className="wd-footer-progress-bar" style={{ width: '20%' }}></div>
+                    </div>
+                  </footer>
+                </div>
 
-              {/* Item 3: Consultancy Services */}
-              <div className="what-we-do-card reveal delay-300">
-                <div className="wd-card-content-top">
-                  <h3 className="wd-title">Consultancy Services</h3>
-                  <p className="wd-text">
-                    We are a group of multi-skilled and diverse business advisors experienced in global markets,
-                    specifically in the Middle East. Our practitioners have worked in the United States, Europe,
-                    and across the Middle East in Finance/Banking, Oil, Gas & Energy, Transaction Advisory,
-                    Process Improvement and Project & Programme Management.
-                  </p>
-                </div>
-                <div className="wd-card-image-box">
-                  <a href="https://vgaholdings.com/wp-content/uploads/2024/09/VGA-CONSULTANCY-SERVICES.pdf" target="_blank" rel="noreferrer">
-                    <img src="/Consultancy-service.jpg" alt="Consultancy" className="wd-card-img" />
-                  </a>
-                  <div className="wd-card-img-overlay"></div>
-                </div>
-                <footer className="wd-card-footer">
-                  <div className="wd-footer-top">
-                    <span className="wd-footer-label">CONSULTANCY</span>
-                    <span className="wd-footer-percent">5%</span>
+                {/* Item 3: Consultancy Services */}
+                <div className="what-we-do-card reveal delay-300">
+                  <div className="wd-card-content-top">
+                    <h3 className="wd-title">Consultancy Services</h3>
+                    <p className="wd-text">
+                      We are a group of multi-skilled and diverse business advisors experienced in global markets,
+                      specifically in the Middle East. Our practitioners have worked in the United States, Europe,
+                      and across the Middle East in Finance/Banking, Oil, Gas & Energy, Transaction Advisory,
+                      Process Improvement and Project & Programme Management.
+                    </p>
                   </div>
-                  <div className="wd-footer-progress">
-                    <div className="wd-footer-progress-bar" style={{ width: '5%' }}></div>
+                  <div className="wd-card-image-box">
+                    <a href="https://vgaholdings.com/wp-content/uploads/2024/09/VGA-CONSULTANCY-SERVICES.pdf" target="_blank" rel="noreferrer">
+                      <img src="/Consultancy-service.jpg" alt="Consultancy" className="wd-card-img" />
+                    </a>
+                    <div className="wd-card-img-overlay"></div>
                   </div>
-                </footer>
-              </div>
+                  <footer className="wd-card-footer">
+                    <div className="wd-footer-top">
+                      <span className="wd-footer-label">CONSULTANCY</span>
+                      <span className="wd-footer-percent">5%</span>
+                    </div>
+                    <div className="wd-footer-progress">
+                      <div className="wd-footer-progress-bar" style={{ width: '5%' }}></div>
+                    </div>
+                  </footer>
+                </div>
 
-              {/* Item 4: Brokerage Services */}
-              <div className="what-we-do-card reveal delay-400">
-                <div className="wd-card-content-top">
-                  <h3 className="wd-title">Brokerage Services</h3>
-                  <p className="wd-text">
-                    Connecting the west to the Middle East and to the Far East, VGA has longstanding, mutually
-                    respectful relationships with industry leaders, as well as governments across the world.
-                    As part of its brokerage services, VGA is well positioned to act as a principal or an agent
-                    across various sectors, and its global presence enables its access to diverse markets and opportunities.
-                  </p>
-                </div>
-                <div className="wd-card-image-box">
-                  <a href="https://vgaholdings.com/wp-content/uploads/2024/09/VGA-BROKERAGE-SERVICES.pdf" target="_blank" rel="noreferrer">
-                    <img src="/Brokerage.jpg" alt="Brokerage" className="wd-card-img" />
-                  </a>
-                  <div className="wd-card-img-overlay"></div>
-                </div>
-                <footer className="wd-card-footer">
-                  <div className="wd-footer-top">
-                    <span className="wd-footer-label">BROKERAGE</span>
-                    <span className="wd-footer-percent">5%</span>
+                {/* Item 4: Brokerage Services */}
+                <div className="what-we-do-card reveal delay-400">
+                  <div className="wd-card-content-top">
+                    <h3 className="wd-title">Brokerage Services</h3>
+                    <p className="wd-text">
+                      Connecting the west to the Middle East and to the Far East, VGA has longstanding, mutually
+                      respectful relationships with industry leaders, as well as governments across the world.
+                      As part of its brokerage services, VGA is well positioned to act as a principal or an agent
+                      across various sectors, and its global presence enables its access to diverse markets and opportunities.
+                    </p>
                   </div>
-                  <div className="wd-footer-progress">
-                    <div className="wd-footer-progress-bar" style={{ width: '5%' }}></div>
+                  <div className="wd-card-image-box">
+                    <a href="https://vgaholdings.com/wp-content/uploads/2024/09/VGA-BROKERAGE-SERVICES.pdf" target="_blank" rel="noreferrer">
+                      <img src="/Brokerage.jpg" alt="Brokerage" className="wd-card-img" />
+                    </a>
+                    <div className="wd-card-img-overlay"></div>
                   </div>
-                </footer>
+                  <footer className="wd-card-footer">
+                    <div className="wd-footer-top">
+                      <span className="wd-footer-label">BROKERAGE</span>
+                      <span className="wd-footer-percent">5%</span>
+                    </div>
+                    <div className="wd-footer-progress">
+                      <div className="wd-footer-progress-bar" style={{ width: '5%' }}></div>
+                    </div>
+                  </footer>
+                </div>
               </div>
-            </div>
             </div>
           </div>
         </section>
@@ -837,122 +838,124 @@ function App() {
             <h2 className="clients-heading">
               Meet Our Clients
             </h2>
-            
-            {/* First Row - Left to Right */}
-            <div className="marquee-row marquee-left">
-              <div className="marquee-content">
-                {[...Array(2)].map((_, i) => (
-                  <React.Fragment key={i}>
-                    <div className="client-logo-item"><img src="/ADNOC.png" alt="ADNOC" /></div>
-                    <div className="client-logo-item"><img src="/Bapco.jpg" alt="Bapco" /></div>
-                    <div className="client-logo-item"><img src="/GALFAR.png" alt="GALFAR" /></div>
-                    <div className="client-logo-item"><img src="/PDO.png" alt="PDO" /></div>
-                    <div className="client-logo-item"><img src="/TENARIS.png" alt="TENARIS" /></div>
-                    <div className="client-logo-item"><img src="/RAFCO.png" alt="RAFCO" /></div>
-                    <div className="client-logo-item"><img src="/OXY.png" alt="OXY" /></div>
-                  </React.Fragment>
-                ))}
-              </div>
-            </div>
 
-            {/* Second Row - Right to Left */}
-            <div className="marquee-row marquee-right">
-              <div className="marquee-content">
-                {[...Array(2)].map((_, i) => (
-                  <React.Fragment key={i}>
-                    <div className="client-logo-item"><img src="/ADNOC.png" alt="ADNOC" /></div>
-                    <div className="client-logo-item"><img src="/Bapco.jpg" alt="Bapco" /></div>
-                    <div className="client-logo-item"><img src="/GALFAR.png" alt="GALFAR" /></div>
-                    <div className="client-logo-item"><img src="/PDO.png" alt="PDO" /></div>
-                    <div className="client-logo-item"><img src="/TENARIS.png" alt="TENARIS" /></div>
-                    <div className="client-logo-item"><img src="/RAFCO.png" alt="RAFCO" /></div>
-                    <div className="client-logo-item"><img src="/OXY.png" alt="OXY" /></div>
-                  </React.Fragment>
-                ))}
+            <div className="clients-scroll-wrapper">
+              {/* First Row - Left to Right */}
+              <div className="marquee-row marquee-left">
+                <div className="marquee-content">
+                  {[...Array(2)].map((_, i) => (
+                    <React.Fragment key={i}>
+                      <div className="client-logo-item"><img src="/ADNOC.png" alt="ADNOC" /></div>
+                      <div className="client-logo-item"><img src="/Bapco.jpg" alt="Bapco" /></div>
+                      <div className="client-logo-item"><img src="/GALFAR.png" alt="GALFAR" /></div>
+                      <div className="client-logo-item"><img src="/PDO.png" alt="PDO" /></div>
+                      <div className="client-logo-item"><img src="/TENARIS.png" alt="TENARIS" /></div>
+                      <div className="client-logo-item"><img src="/RAFCO.png" alt="RAFCO" /></div>
+                      <div className="client-logo-item"><img src="/OXY.png" alt="OXY" /></div>
+                    </React.Fragment>
+                  ))}
+                </div>
+              </div>
+
+              {/* Second Row - Right to Left */}
+              <div className="marquee-row marquee-right">
+                <div className="marquee-content">
+                  {[...Array(2)].map((_, i) => (
+                    <React.Fragment key={i}>
+                      <div className="client-logo-item"><img src="/ADNOC.png" alt="ADNOC" /></div>
+                      <div className="client-logo-item"><img src="/Bapco.jpg" alt="Bapco" /></div>
+                      <div className="client-logo-item"><img src="/GALFAR.png" alt="GALFAR" /></div>
+                      <div className="client-logo-item"><img src="/PDO.png" alt="PDO" /></div>
+                      <div className="client-logo-item"><img src="/TENARIS.png" alt="TENARIS" /></div>
+                      <div className="client-logo-item"><img src="/RAFCO.png" alt="RAFCO" /></div>
+                      <div className="client-logo-item"><img src="/OXY.png" alt="OXY" /></div>
+                    </React.Fragment>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-       <section id="leaders" className="section page-section section-even" data-anchor="leaders">
-  <div className="leaders-container">
-    <h2 className="leaders-heading">
-      Meet Our Leaders
-    </h2>
+        <section id="leaders" className="section page-section section-even" data-anchor="leaders">
+          <div className="leaders-container">
+            <h2 className="leaders-heading">
+              Meet Our Leaders
+            </h2>
 
-    <div className="leaders-grid">
-      {/* Terry */}
-      <div className="leader-card reveal delay-100">
-        <div className="leader-image-wrapper">
-          <img src="/ceo.jpg" alt="Terry Antoniadis" className="leader-image" />
-        </div>
-        <h3 className="leader-role">CEO</h3>
-        <p className="leader-name">Terry Antoniadis</p>
+            <div className="leaders-grid">
+              {/* Terry */}
+              <div className="leader-card reveal delay-100">
+                <div className="leader-image-wrapper">
+                  <img src="/ceo.jpg" alt="Terry Antoniadis" className="leader-image" />
+                </div>
+                <h3 className="leader-role">CEO</h3>
+                <p className="leader-name">Terry Antoniadis</p>
 
-        <div className="leader-social">
-          <a
-            href="https://www.linkedin.com/in/eleftherios-antoniadis-64675820?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Terry Antoniadis LinkedIn"
-            className="leader-linkedin-link"
-          >
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-            </svg>
-          </a>
-        </div>
-      </div>
+                <div className="leader-social">
+                  <a
+                    href="https://www.linkedin.com/in/eleftherios-antoniadis-64675820?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Terry Antoniadis LinkedIn"
+                    className="leader-linkedin-link"
+                  >
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
 
-      {/* Yana */}
-      <div className="leader-card reveal delay-200">
-        <div className="leader-image-wrapper">
-          <img src="/managingdirector.png" alt="Yana Antoniadis" className="leader-image" />
-        </div>
-        <h3 className="leader-role">Managing Director</h3>
-        <p className="leader-name">Yana Antoniadis</p>
+              {/* Yana */}
+              <div className="leader-card reveal delay-200">
+                <div className="leader-image-wrapper">
+                  <img src="/managingdirector.png" alt="Yana Antoniadis" className="leader-image" />
+                </div>
+                <h3 className="leader-role">Managing Director</h3>
+                <p className="leader-name">Yana Antoniadis</p>
 
-        <div className="leader-social">
-          <a
-            href="https://www.linkedin.com/in/yana-antoniadis-a66817148/"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Yana Antoniadis LinkedIn"
-            className="leader-linkedin-link"
-          >
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-            </svg>
-          </a>
-        </div>
-      </div>
+                <div className="leader-social">
+                  <a
+                    href="https://www.linkedin.com/in/yana-antoniadis-a66817148/"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Yana Antoniadis LinkedIn"
+                    className="leader-linkedin-link"
+                  >
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
 
-      {/* Brett */}
-      <div className="leader-card reveal delay-300">
-        <div className="leader-image-wrapper">
-          <img src="/compliancedirector.png" alt="Brett Paul Maclagan" className="leader-image" />
-        </div>
-        <h3 className="leader-role">Compliance Director</h3>
-        <p className="leader-name">Brett Paul Maclagan</p>
+              {/* Brett */}
+              <div className="leader-card reveal delay-300">
+                <div className="leader-image-wrapper">
+                  <img src="/compliancedirector.png" alt="Brett Paul Maclagan" className="leader-image" />
+                </div>
+                <h3 className="leader-role">Compliance Director</h3>
+                <p className="leader-name">Brett Paul Maclagan</p>
 
-        <div className="leader-social">
-          <a
-            href="https://www.linkedin.com/in/brett-maclagan-b250975/"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Brett Paul Maclagan LinkedIn"
-            className="leader-linkedin-link"
-          >
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-            </svg>
-          </a>
-        </div>
-      </div>
+                <div className="leader-social">
+                  <a
+                    href="https://www.linkedin.com/in/brett-maclagan-b250975/"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Brett Paul Maclagan LinkedIn"
+                    className="leader-linkedin-link"
+                  >
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
 
-    </div>
-  </div>
-</section>
+            </div>
+          </div>
+        </section>
 
 
         <section id="inspiration" className="section page-section full-width-section" data-anchor="inspiration">
