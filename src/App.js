@@ -135,6 +135,13 @@ function App() {
             return;
           }
 
+          // Special handling for about-shell: NEVER auto-transition
+          if (scrollableContent.classList.contains('about-shell')) {
+            // Always allow native scroll, never trigger page transition
+            // User must scroll past the section boundary to move to next section
+            return;
+          }
+
           // For other scrollable containers, use boundary detection
           if (e.deltaY > 0) {
             // Scrolling DOWN

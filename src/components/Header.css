@@ -190,7 +190,6 @@
 .site-nav a.active::after {
   transform: translateX(-50%) scale(1);
 }
-
 .site-nav a.active::after {
   box-shadow: 0 0 10px var(--vga-gold-light);
 }
@@ -199,7 +198,8 @@
 .hamburger-btn {
   display: none;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
   width: 28px;
   height: 22px;
   background: none;
@@ -213,14 +213,30 @@
   transform: translateY(-50%);
 }
 
+/* Force hamburger visibility in mobile view */
+@media (max-width: 600px) {
+  .site-header .hamburger-btn {
+    display: flex !important;
+  }
+}
+
+@media (max-width: 375px) {
+  .site-header .hamburger-btn {
+    display: flex !important;
+  }
+}
+
 .hamburger-btn span {
   display: block;
   width: 100%;
-  height: 2.5px;
-  background: var(--vga-gold);
+  height: 3px;
+  background: #FFD700;
   border-radius: 2px;
   transition: all 0.3s ease;
   transform-origin: center;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  margin: 2px 0;
 }
 
 /* Hamburger animation to X */
@@ -331,11 +347,24 @@
 
 
 
-/* Tablet */
-@media (max-width: 1000px) {
+/* Tablet (601px - 1024px) */
+@media (max-width: 1024px) and (min-width: 601px) {
+  .site-header {
+    height: 90px;
+  }
+
+  .site-header.scrolled {
+    height: 75px;
+  }
+
   .site-nav ul {
-    gap: 16px;
+    gap: 18px;
     font-size: 14px;
+  }
+
+  .site-nav a {
+    font-size: 14px;
+    padding: 6px 10px;
   }
 
   .brand img {
@@ -385,13 +414,14 @@
     height: 80px;
   }
 
-
+  /* Ensure hamburger is visible in mobile */
+  .site-header .hamburger-btn {
+    display: flex !important;
+  }
 
   .brand img {
     height: 40px;
   }
-
-
 
   .mobile-nav {
     width: 250px;
@@ -404,32 +434,16 @@
     height: 70px;
   }
 
-
-
-  .brand img {
-    height: 35px;
-  }
-
-
-
-  .mobile-nav {
-    width: 220px;
-  }
-
   .hamburger-btn {
+    display: flex !important;
     width: 26px;
     height: 20px;
   }
 
-  .hamburger-btn span {
-    height: 2px;
+  .brand img {
+    height: 35px;
   }
-
-  .mobile-menu-open .hamburger-btn span:nth-child(1) {
-    transform: translateY(9px) rotate(45deg);
-  }
-
-  .mobile-menu-open .hamburger-btn span:nth-child(3) {
-    transform: translateY(-9px) rotate(-45deg);
+  .mobile-nav {
+    width: 220px;
   }
 }
