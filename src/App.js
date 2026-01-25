@@ -88,14 +88,15 @@ function App() {
 
 
 
-  // Full page scroll functionality with internal scroll support
+  // Full page scroll functionality with internal scroll support - Enhanced for smooth scrolling
   useEffect(() => {
     let isScrolling = false;
     let scrollTimeout;
+    let wheelTimeout;
 
     const handleWheel = (e) => {
       // Find current section index first
-      const currentScrollY = window.pageYOffset;
+      const currentScrollY = window.pageYOffset || window.scrollY;
       const sections = document.querySelectorAll('.section');
       let targetIndex = -1;
       let minDiff = Infinity;
@@ -117,66 +118,68 @@ function App() {
 
       const activeSection = sections[targetIndex];
 
-
-
       // Check for scrollable internal content
-      // We look for specific scrollable containers we know of, or generic scrollable divs
-      const scrollableContent = activeSection ? activeSection.querySelector('.about-shell, .what-we-do-grid-wrapper, .portfolio-content, .services-grid, .news-carousel-container, .leaders-grid, .clients-scroll-wrapper, .wcu-grid') : null;
+      const scrollableContent = activeSection ? activeSection.querySelector('.about-shell, .what-we-do-grid-wrapper, .portfolio-content, .services-grid, .news-carousel-container, .leaders-grid, .clients-scroll-wrapper, .wcu-grid, .about-card, .leaders-container, .wcu-container') : null;
 
       if (scrollableContent) {
         const { scrollTop, scrollHeight, clientHeight } = scrollableContent;
         const isScrollable = scrollHeight > clientHeight;
+        const isAtTop = scrollTop <= 5;
+        const isAtBottom = Math.ceil(scrollTop + clientHeight) >= scrollHeight - 5;
 
         if (isScrollable) {
-          // Special handling for what-we-do-container: NEVER auto-transition
-          if (scrollableContent.classList.contains('what-we-do-grid-wrapper')) {
-            // Always allow native scroll, never trigger page transition
-            // User must scroll past the section boundary to move to next section
-            return;
-          }
-
-          // For other scrollable containers, use boundary detection
+          // Use boundary detection for all scrollable containers
+          // When at top and scrolling up, or at bottom and scrolling down, allow section transition
           if (e.deltaY > 0) {
             // Scrolling DOWN
-            if (Math.ceil(scrollTop + clientHeight) < scrollHeight - 10) {
-              return; // Allow native scroll
+            if (!isAtBottom) {
+              return; // Allow native scroll within container
             }
+            // At bottom - allow section transition to next section
           } else {
             // Scrolling UP
-            if (scrollTop > 10) {
-              return; // Allow native scroll
+            if (!isAtTop) {
+              return; // Allow native scroll within container
             }
+            // At top - allow section transition to previous section
           }
         }
       }
 
-      // Default Page Transition Logic
+      // Prevent default only when we're going to transition sections
       e.preventDefault();
 
-      if (isScrolling) return;
-      isScrolling = true;
-
-      if (e.deltaY > 0) {
-        // Scroll down
-        if (targetIndex < sections.length - 1) {
-          sections[targetIndex + 1].scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      } else {
-        // Scroll up
-        if (targetIndex > 0) {
-          sections[targetIndex - 1].scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
+      // Debounce rapid wheel events
+      if (wheelTimeout) {
+        clearTimeout(wheelTimeout);
       }
 
-      scrollTimeout = setTimeout(() => {
-        isScrolling = false;
-      }, 1000);
+      wheelTimeout = setTimeout(() => {
+        if (isScrolling) return;
+        isScrolling = true;
+
+        if (e.deltaY > 0) {
+          // Scroll down
+          if (targetIndex < sections.length - 1) {
+            sections[targetIndex + 1].scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        } else {
+          // Scroll up
+          if (targetIndex > 0) {
+            sections[targetIndex - 1].scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        }
+
+        scrollTimeout = setTimeout(() => {
+          isScrolling = false;
+        }, 800);
+      }, 50);
     };
 
     const handleKeyDown = (e) => {
@@ -242,9 +245,33 @@ function App() {
       }
 
       const activeSection = sections[targetIndex];
+      
+      // Check for scrollable internal content (matching wheel handler logic)
+      const scrollableContent = activeSection ? activeSection.querySelector('.about-shell, .what-we-do-grid-wrapper, .portfolio-content, .services-grid, .news-carousel-container, .leaders-grid, .clients-scroll-wrapper, .wcu-grid, .about-card, .leaders-container, .wcu-container') : null;
+
+      if (scrollableContent) {
+        const { scrollTop, scrollHeight, clientHeight } = scrollableContent;
+        const isScrollable = scrollHeight > clientHeight;
+        const isAtTop = scrollTop <= 5;
+        const isAtBottom = Math.ceil(scrollTop + clientHeight) >= scrollHeight - 5;
+
+        if (isScrollable) {
+          // If scrollable and not at boundaries, allow native scroll
+          if (diff > 0 && !isAtBottom) {
+            return; // Allow native scroll down within container
+          }
+          if (diff < 0 && !isAtTop) {
+            return; // Allow native scroll up within container
+          }
+          // At boundaries - allow section transition
+        }
+      }
+
+      // Allow native swipe scroll for sections with internal scroll
       const activeSectionId = activeSection ? activeSection.id : '';
       if (['what-we-do', 'about', 'investment-portfolio', 'services', 'news', 'leaders', 'clients', 'why-choose-us'].includes(activeSectionId)) {
-        return; // Allow native swipe scroll
+        // Only allow native scroll if not at boundaries (handled above)
+        // If at boundaries, continue to section transition logic below
       }
 
       if (Math.abs(diff) > 50) {
@@ -272,6 +299,7 @@ function App() {
       window.removeEventListener('touchstart', handleTouchStart);
       window.removeEventListener('touchend', handleTouchEnd);
       if (scrollTimeout) clearTimeout(scrollTimeout);
+      if (wheelTimeout) clearTimeout(wheelTimeout);
     };
   }, []);
 
@@ -984,57 +1012,65 @@ function App() {
               {/* Item 1: Timeline Recovery */}
               <div className="wcu-item reveal delay-100">
                 <div className="wcu-icon-wrapper">
-                  <svg viewBox="0 0 24 24" width="50" height="50" stroke="currentColor" strokeWidth="1.5" fill="none">
+                  <svg viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5" fill="none">
                     <circle cx="12" cy="12" r="10" />
                     <polyline points="12 6 12 12 16 14" />
                   </svg>
                 </div>
-                <h3 className="wcu-title">PROJECT TIMELINE RECOVERY</h3>
-                <p className="wcu-text">
-                  We have performed countless project recovery missions whereby conventional welding has failed to deliver pipelines to agreed project deadlines. How about 25-km of 12-inch carbon steel with 47 expansion loops and 12 major road crossings? Timeline – 16 days after two days of mobilization.
-                </p>
+                <div className="wcu-content">
+                  <h3 className="wcu-title">PROJECT TIMELINE RECOVERY</h3>
+                  <p className="wcu-text">
+                    We have performed countless project recovery missions whereby conventional welding has failed to deliver pipelines to agreed project deadlines. How about 25-km of 12-inch carbon steel with 47 expansion loops and 12 major road crossings? Timeline – 16 days after two days of mobilization.
+                  </p>
+                </div>
               </div>
 
               {/* Item 2: Oil Production Acceleration */}
               <div className="wcu-item reveal delay-200">
                 <div className="wcu-icon-wrapper">
-                  <svg viewBox="0 0 24 24" width="50" height="50" stroke="currentColor" strokeWidth="1.5" fill="none">
+                  <svg viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5" fill="none">
                     <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
                   </svg>
                 </div>
-                <h3 className="wcu-title">OIL PRODUCTION ACCELERATION</h3>
-                <p className="wcu-text">
-                  Many national economies and global Oil & Gas operators are dependent on accelerated production volumes in order to maintain margin over and above their fixed operating costs. Through its fast pipeline construction, Stealth-Lock is an important partner to increasing volume production ready for export.
-                </p>
+                <div className="wcu-content">
+                  <h3 className="wcu-title">OIL PRODUCTION ACCELERATION</h3>
+                  <p className="wcu-text">
+                    Many national economies and global Oil & Gas operators are dependent on accelerated production volumes in order to maintain margin over and above their fixed operating costs. Through its fast pipeline construction, Stealth-Lock is an important partner to increasing volume production ready for export.
+                  </p>
+                </div>
               </div>
 
               {/* Item 3: Faster Flow-line Development */}
               <div className="wcu-item reveal delay-300">
                 <div className="wcu-icon-wrapper">
-                  <svg viewBox="0 0 24 24" width="50" height="50" stroke="currentColor" strokeWidth="1.5" fill="none">
+                  <svg viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5" fill="none">
                     <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
                   </svg>
                 </div>
-                <h3 className="wcu-title">FASTER FLOW-LINE DEVELOPMENT</h3>
-                <p className="wcu-text">
-                  If you consider that with welding, it might take a four-year contract to complete a gathering network comprising of over 300 hook ups. Then, consider Stealth-Lock that performed its scope in 14 months! Substantial operational cost savings, not to mention the hydrocarbon production brought forward.
-                </p>
+                <div className="wcu-content">
+                  <h3 className="wcu-title">FASTER FLOW-LINE DEVELOPMENT</h3>
+                  <p className="wcu-text">
+                    If you consider that with welding, it might take a four-year contract to complete a gathering network comprising of over 300 hook ups. Then, consider Stealth-Lock that performed its scope in 14 months! Substantial operational cost savings, not to mention the hydrocarbon production brought forward.
+                  </p>
+                </div>
               </div>
 
               {/* Item 4: Project & Programme Management */}
               <div className="wcu-item reveal delay-400">
                 <div className="wcu-icon-wrapper">
-                  <svg viewBox="0 0 24 24" width="50" height="50" stroke="currentColor" strokeWidth="1.5" fill="none">
+                  <svg viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5" fill="none">
                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
                     <circle cx="9" cy="7" r="4" />
                     <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
                     <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                   </svg>
                 </div>
-                <h3 className="wcu-title">PROJECT & PROGRAMME MANAGEMENT</h3>
-                <p className="wcu-text">
-                  We are a group of multi-skilled and diverse business advisors experienced in global markets, specifically the Middle East. Our practitioners have worked in the United States, Europe, and across the Middle East in Finance/Banking, Oil, Gas & Energy, Transaction Advisory, Process Improvement and Project & Programme Management.
-                </p>
+                <div className="wcu-content">
+                  <h3 className="wcu-title">PROJECT & PROGRAMME MANAGEMENT</h3>
+                  <p className="wcu-text">
+                    We are a group of multi-skilled and diverse business advisors experienced in global markets, specifically the Middle East. Our practitioners have worked in the United States, Europe, and across the Middle East in Finance/Banking, Oil, Gas & Energy, Transaction Advisory, Process Improvement and Project & Programme Management.
+                  </p>
+                </div>
               </div>
             </div>
           </div>

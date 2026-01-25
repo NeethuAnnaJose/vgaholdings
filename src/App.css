@@ -10,20 +10,24 @@
 html {
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  /* Firefox */
-  -ms-overflow-style: none;
-  /* IE/Edge */
   overflow-y: auto;
   overflow-x: hidden;
   height: auto;
   min-height: 100%;
   scroll-snap-type: y mandatory;
+  scroll-padding-top: 0;
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
+/* Hide Scrollbar - Main Page */
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
 html::-webkit-scrollbar {
-  display: none;
+  display: none; /* Chrome, Safari, Opera */
+  width: 0;
+  height: 0;
 }
 
 body {
@@ -34,26 +38,27 @@ body {
   width: 100%;
 }
 
-/* Global scrollbar suppression and overflow prevention */
+/* Hide All Scrollbars Globally */
 * {
-  scrollbar-width: none !important;
-  /* Firefox */
-  -ms-overflow-style: none !important;
-  /* IE/Edge */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
 }
 
 *::-webkit-scrollbar {
-  display: none !important;
+  display: none; /* Chrome, Safari, Opera */
+  width: 0;
+  height: 0;
 }
 
 /* Prevent any internal scrolling - only page should scroll */
-*:not(html):not(body) {
+/* Exception: Allow page sections and scrollable containers to work properly */
+*:not(html):not(body):not(.page-section):not(.what-we-do-grid-wrapper):not(.about-text):not(.portfolio-content):not(.news-container):not(.services-grid):not(.leaders-grid):not(.wcu-grid):not(.clients-scroll-wrapper):not(.about-card):not(.services-container):not(.leaders-container):not(.wcu-container):not(.news-carousel-container) {
   overflow: visible !important;
   max-height: none !important;
 }
 
 /* Exception: explicitly hidden overflow for specific elements */
-.page-section,
+/* Note: .page-section overflow is controlled per breakpoint - visible for desktop/tablet, hidden for mobile */
 .what-we-do-container,
 .news-carousel-viewport,
 .marquee-wrapper,
@@ -63,19 +68,78 @@ body {
 .news-thumb,
 .leader-image-wrapper,
 .stealth-detail-img-wrapper,
-.about-card,
 .stealth-card {
   overflow: hidden !important;
+}
+
+/* About card can scroll internally if content is heavy */
+.about-card {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
 }
 
 /* Explicitly allow scrolling for content containers */
 .what-we-do-grid-wrapper,
 .about-text,
 .portfolio-content,
-.news-container {
+.news-container,
+.services-grid,
+.leaders-grid,
+.wcu-grid,
+.clients-scroll-wrapper,
+.about-card,
+.services-container,
+.leaders-container,
+.wcu-container,
+.news-carousel-container {
   overflow-y: auto !important;
   overflow-x: hidden !important;
   max-height: 100% !important;
+  scrollbar-width: none !important; /* Firefox - Hide scrollbar */
+  -ms-overflow-style: none !important; /* IE and Edge - Hide scrollbar */
+  scroll-behavior: smooth !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior: contain !important;
+  scroll-padding: 10px;
+  will-change: scroll-position;
+}
+
+/* Enhanced scrollbar for internal scrollable containers */
+/* Hide scrollbars for all internal scrollable containers */
+.what-we-do-grid-wrapper,
+.about-text,
+.portfolio-content,
+.news-container,
+.services-grid,
+.leaders-grid,
+.wcu-grid,
+.clients-scroll-wrapper,
+.about-card,
+.news-carousel-container,
+.services-container,
+.leaders-container,
+.wcu-container {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.what-we-do-grid-wrapper::-webkit-scrollbar,
+.about-text::-webkit-scrollbar,
+.portfolio-content::-webkit-scrollbar,
+.news-container::-webkit-scrollbar,
+.services-grid::-webkit-scrollbar,
+.leaders-grid::-webkit-scrollbar,
+.wcu-grid::-webkit-scrollbar,
+.wcu-content::-webkit-scrollbar,
+.clients-scroll-wrapper::-webkit-scrollbar,
+.about-card::-webkit-scrollbar,
+.news-carousel-container::-webkit-scrollbar,
+.services-container::-webkit-scrollbar,
+.leaders-container::-webkit-scrollbar,
+.wcu-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+  width: 0;
+  height: 0;
 }
 
 /* Enhanced Global Typography */
@@ -95,6 +159,13 @@ body {
 
 
 /* ========================================
+   HIDE ALL SCROLLBARS - ALL RESOLUTIONS
+   ======================================== */
+
+/* All scrollbars are hidden globally via the * selector above */
+/* This section is kept for reference but scrollbars are hidden */
+
+/* ========================================
    DESKTOP RESPONSIVE (1000px - 2000px)
    ======================================== */
 @media (min-width: 1000px) and (max-width: 2000px) {
@@ -105,11 +176,13 @@ body {
   }
 
   .page-section {
-    padding-top: var(--header-offset) !important;
+    padding-top: 0 !important;
     padding-left: 40px !important;
     padding-right: 40px !important;
     padding-bottom: 0 !important;
     min-height: 100vh !important;
+    height: 100vh !important;
+    overflow: visible !important;
     overflow-x: hidden !important;
     display: flex !important;
     flex-direction: column !important;
@@ -158,6 +231,8 @@ body {
     padding-right: 25px !important;
     padding-bottom: 0 !important;
     min-height: 100vh !important;
+    height: 100vh !important;
+    overflow: visible !important;
     overflow-x: hidden !important;
     display: flex !important;
     flex-direction: column !important;
@@ -190,12 +265,13 @@ body {
 
   /* Desktop About Section - Reference design */
   #about {
-    overflow: hidden !important;
+    overflow: visible !important;
   }
 
   .about-shell {
     padding: 0 40px !important;
-    min-height: calc(100vh - var(--header-offset)) !important;
+    padding-top: 0 !important;
+    min-height: 100vh !important;
     overflow: hidden !important;
   }
 
@@ -204,10 +280,17 @@ body {
     gap: 40px !important;
     padding: 50px !important;
     max-width: 1200px !important;
+    max-height: calc(100vh - var(--header-offset) - 100px) !important;
     min-height: auto !important;
-    overflow: visible !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
     border-radius: 20px !important;
     margin: 0 auto;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
   }
 
   .about-text h2 {
@@ -242,13 +325,18 @@ body {
 
   /* Desktop What We Do - Reference design */
   #what-we-do {
-    overflow: hidden !important;
+    overflow: visible !important;
   }
 
   .what-we-do-container {
-    height: calc(100vh - var(--header-offset) - 20px) !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
     overflow: hidden !important;
     position: relative;
+    display: flex !important;
+    flex-direction: column !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
   }
 
   .what-we-do-heading {
@@ -263,14 +351,21 @@ body {
     z-index: 10;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     font-size: clamp(24px, 3.5vh, 32px);
+    flex-shrink: 0;
   }
 
   .what-we-do-grid-wrapper {
-    padding: 90px 40px 90px !important;
+    padding: 0 40px 20px 40px !important;
+    padding-top: 80px !important;
     overflow-y: auto !important;
-    height: 100% !important;
-    scrollbar-width: thin;
-    scrollbar-color: var(--vga-gold) rgba(212, 175, 55, 0.1);
+    overflow-x: hidden !important;
+    flex: 1 1 0% !important;
+    min-height: 0 !important;
+    scrollbar-width: none !important; /* Firefox - Hide scrollbar */
+    -ms-overflow-style: none !important; /* IE and Edge - Hide scrollbar */
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
   }
 
   .what-we-do-grid {
@@ -279,109 +374,189 @@ body {
     padding: 0 !important;
     max-width: 1200px !important;
     margin: 0 auto;
+    align-items: stretch !important;
   }
 
   .what-we-do-card {
     padding: 35px !important;
     border-radius: 20px !important;
+    height: 100% !important;
     min-height: auto !important;
     overflow: hidden !important;
     margin-bottom: 20px !important;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08) !important;
   }
 
-  /* Custom Scrollbar Styling for Desktop */
-  .what-we-do-grid-wrapper::-webkit-scrollbar,
-  .services-container::-webkit-scrollbar,
-  .leaders-grid::-webkit-scrollbar,
-  .wcu-grid::-webkit-scrollbar,
-  .about-card::-webkit-scrollbar,
-  .portfolio-content::-webkit-scrollbar,
-  .news-carousel-container::-webkit-scrollbar,
-  .clients-scroll-wrapper::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+  /* Hide Scrollbar for Desktop */
+  html::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+    width: 0;
+    height: 0;
   }
 
-  .what-we-do-grid-wrapper::-webkit-scrollbar-track,
-  .services-container::-webkit-scrollbar-track,
-  .leaders-grid::-webkit-scrollbar-track,
-  .wcu-grid::-webkit-scrollbar-track,
-  .about-card::-webkit-scrollbar-track,
-  .portfolio-content::-webkit-scrollbar-track,
-  .news-carousel-container::-webkit-scrollbar-track,
-  .clients-scroll-wrapper::-webkit-scrollbar-track {
-    background: rgba(212, 175, 55, 0.05);
-    border-radius: 5px;
+  html::-webkit-scrollbar-thumb {
+    border: 3px solid transparent;
+    background-clip: padding-box;
   }
 
-  .what-we-do-grid-wrapper::-webkit-scrollbar-thumb,
-  .services-container::-webkit-scrollbar-thumb,
-  .leaders-grid::-webkit-scrollbar-thumb,
-  .wcu-grid::-webkit-scrollbar-thumb,
-  .about-card::-webkit-scrollbar-thumb,
-  .portfolio-content::-webkit-scrollbar-thumb,
-  .news-carousel-container::-webkit-scrollbar-thumb,
-  .clients-scroll-wrapper::-webkit-scrollbar-thumb {
-    background: var(--vga-gold);
-    border-radius: 5px;
-    transition: background 0.3s ease;
-  }
-
-  .what-we-do-grid-wrapper::-webkit-scrollbar-thumb:hover,
-  .services-container::-webkit-scrollbar-thumb:hover,
-  .leaders-grid::-webkit-scrollbar-thumb:hover,
-  .wcu-grid::-webkit-scrollbar-thumb:hover,
-  .about-card::-webkit-scrollbar-thumb:hover,
-  .portfolio-content::-webkit-scrollbar-thumb:hover,
-  .news-carousel-container::-webkit-scrollbar-thumb:hover,
-  .clients-scroll-wrapper::-webkit-scrollbar-thumb:hover {
-    background: #B8941F;
-  }
-
-  /* Ensure sections with many cards have internal scrolling */
+  /* Sections allow page scrolling - internal scroll handled by containers */
   #what-we-do,
   #services,
   #news,
   #leaders,
   #why-choose-us,
   #clients {
-    overflow: hidden !important;
+    overflow: visible !important;
   }
 
   /* Services - Desktop with Internal Scroll if needed */
   .services-container {
-    max-height: calc(100vh - var(--header-offset) - 40px);
+    max-height: 100vh !important;
+    height: 100vh !important;
     overflow-y: auto !important;
-    scrollbar-width: thin;
-    scrollbar-color: var(--vga-gold) rgba(212, 175, 55, 0.1);
+    overflow-x: hidden !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    scrollbar-width: none !important; /* Firefox - Hide scrollbar */
+    -ms-overflow-style: none !important; /* IE and Edge - Hide scrollbar */
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
   }
 
-  /* News - Desktop */
+  /* News - Desktop with Internal Scroll if needed */
   .news-container {
-    max-height: calc(100vh - var(--header-offset) - 40px);
+    max-height: 100vh !important;
+    height: 100vh !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
+  }
+
+  .news-carousel-container {
+    height: 100% !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
   }
 
   /* Leaders - Desktop with Internal Scroll if needed */
   .leaders-container {
-    max-height: calc(100vh - var(--header-offset) - 40px);
+    max-height: 100vh !important;
+    height: 100vh !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
   }
 
   .leaders-grid {
     overflow-y: auto !important;
-    scrollbar-width: thin;
-    scrollbar-color: var(--vga-gold) rgba(212, 175, 55, 0.1);
+    overflow-x: hidden !important;
+    scrollbar-width: none !important; /* Firefox - Hide scrollbar */
+    -ms-overflow-style: none !important; /* IE and Edge - Hide scrollbar */
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
   }
 
-  /* Why Choose Us - Desktop with Internal Scroll */
+  /* Why Choose Us - Desktop - All content in one page */
   .wcu-container {
-    max-height: calc(100vh - var(--header-offset) - 40px);
+    max-height: 100vh !important;
+    height: 100vh !important;
+    overflow: visible !important;
+    padding: 20px 40px !important;
+    margin-top: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    position: relative !important;
+  }
+
+  .wcu-heading {
+    position: relative;
+    padding: 0 !important;
+    margin: 0 0 2vh 0 !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    z-index: 1;
+    border-bottom: none !important;
+    font-size: clamp(28px, 3.5vh, 36px);
+    flex-shrink: 0;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    text-align: center !important;
+    width: 100% !important;
   }
 
   .wcu-grid {
+    padding: 0 !important;
+    overflow: visible !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+    align-content: center !important;
+    justify-items: stretch !important;
+  }
+
+  /* Clients - Desktop with Internal Scroll if needed */
+  .clients-container {
+    max-height: 100vh !important;
+    height: 100vh !important;
     overflow-y: auto !important;
-    scrollbar-width: thin;
-    scrollbar-color: var(--vga-gold) rgba(212, 175, 55, 0.1);
+    overflow-x: hidden !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
+  }
+
+  .clients-scroll-wrapper {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
+  }
+
+  /* Investment Portfolio - Desktop with Internal Scroll if needed */
+  .portfolio-content {
+    max-height: 100vh !important;
+    height: 100vh !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
   }
 }
 
@@ -396,14 +571,17 @@ body {
   }
 
   .page-section {
-    padding-top: var(--header-offset) !important;
+    padding-top: 0 !important;
     padding-left: 25px !important;
     padding-right: 25px !important;
     padding-bottom: 0 !important;
     min-height: 100vh !important;
+    height: 100vh !important;
+    overflow: visible !important;
     overflow-x: hidden !important;
     display: flex !important;
     flex-direction: column !important;
+    box-sizing: border-box !important;
   }
 
   /* Typography - Auto-scaled for tablet */
@@ -438,7 +616,8 @@ body {
 
   .about-shell {
     padding: 0 25px !important;
-    min-height: calc(100vh - var(--header-offset)) !important;
+    padding-top: 0 !important;
+    min-height: 100vh !important;
     overflow: hidden !important;
   }
 
@@ -447,21 +626,33 @@ body {
     gap: 30px !important;
     padding: 35px !important;
     max-width: 85vw !important;
+    max-height: calc(100vh - var(--header-offset) - 100px) !important;
     min-height: auto !important;
-    overflow: visible !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
     border-radius: 15px !important;
     margin: 0 auto;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
   }
 
   /* Services - Tablet with Internal Scroll */
   #services {
-    overflow: hidden !important;
+    overflow: visible !important;
   }
 
   .services-container {
-    height: calc(100vh - var(--header-offset) - 20px) !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
     overflow: hidden !important;
     position: relative;
+    display: flex !important;
+    flex-direction: column !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
   }
 
   .services-heading {
@@ -475,31 +666,71 @@ body {
     backdrop-filter: blur(10px);
     z-index: 10;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    flex-shrink: 0;
   }
 
   .services-grid {
-    padding: 80px 20px 80px !important;
+    padding: 70px 20px 20px 20px !important;
     overflow-y: auto !important;
+    overflow-x: hidden !important;
+    flex: 1 1 0% !important;
+    min-height: 0 !important;
     height: 100% !important;
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 25px !important;
-    scrollbar-width: thin;
-    scrollbar-color: var(--vga-gold) rgba(212, 175, 55, 0.1);
+    scrollbar-width: none !important; /* Firefox - Hide scrollbar */
+    -ms-overflow-style: none !important; /* IE and Edge - Hide scrollbar */
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
   }
 
   .service-item {
     padding: 35px 25px !important;
+    max-height: 300px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+  }
+
+  .service-icon,
+  .service-title {
+    flex-shrink: 0 !important;
+  }
+
+  .service-desc {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    flex: 1 !important;
+    min-height: 0 !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
+    will-change: scroll-position !important;
+  }
+
+  .service-desc::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
   }
 
   /* News - Tablet */
   #news {
-    overflow: hidden !important;
+    overflow: visible !important;
   }
 
   .news-container {
-    height: calc(100vh - var(--header-offset) - 20px) !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
     overflow: hidden !important;
     position: relative;
+    display: flex !important;
+    flex-direction: column !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
   }
 
   .news-heading {
@@ -513,14 +744,20 @@ body {
     backdrop-filter: blur(10px);
     z-index: 50;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    flex-shrink: 0;
   }
 
   .news-carousel-container {
-    padding: 80px 20px 80px !important;
+    padding: 70px 20px 20px 20px !important;
     overflow-y: auto !important;
-    height: 100% !important;
-    scrollbar-width: thin;
-    scrollbar-color: var(--vga-gold) rgba(212, 175, 55, 0.1);
+    overflow-x: hidden !important;
+    flex: 1 1 0% !important;
+    min-height: 0 !important;
+    scrollbar-width: none !important; /* Firefox - Hide scrollbar */
+    -ms-overflow-style: none !important; /* IE and Edge - Hide scrollbar */
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
   }
 
   .news-carousel-viewport {
@@ -545,102 +782,180 @@ body {
 
   /* Leaders - Tablet with Internal Scroll */
   #leaders {
-    overflow: hidden !important;
+    overflow: visible !important;
   }
 
   .leaders-container {
-    height: calc(100vh - var(--header-offset) - 20px) !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
     overflow: hidden !important;
     position: relative;
+    justify-content: flex-start !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
   }
 
   .leaders-heading {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+    position: relative;
     padding: 15px 30px !important;
+    margin-bottom: 20px !important;
     margin: 0 !important;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     z-index: 50;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    flex-shrink: 0;
   }
 
   .leaders-grid {
-    padding: 80px 20px 80px !important;
+    padding: 70px 20px 20px 20px !important;
     overflow-y: auto !important;
-    height: 100% !important;
+    overflow-x: hidden !important;
+    flex: 1 1 0% !important;
+    min-height: 0 !important;
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 25px !important;
-    scrollbar-width: thin;
-    scrollbar-color: var(--vga-gold) rgba(212, 175, 55, 0.1);
+    scrollbar-width: none !important; /* Firefox - Hide scrollbar */
+    -ms-overflow-style: none !important; /* IE and Edge - Hide scrollbar */
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
   }
 
   /* Why Choose Us - Tablet with Internal Scroll */
   #why-choose-us {
-    overflow: hidden !important;
+    overflow: visible !important;
   }
 
   .wcu-container {
-    height: calc(100vh - var(--header-offset) - 20px) !important;
-    overflow: hidden !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    overflow: visible !important;
     position: relative;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 15px 25px !important;
+    margin-top: 0 !important;
   }
 
   .wcu-heading {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    padding: 15px 30px !important;
-    margin: 0 !important;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    z-index: 50;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+    padding: 0 !important;
+    margin: 0 0 1.5vh 0 !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    z-index: 1;
+    border-bottom: none !important;
+    font-size: clamp(24px, 3vh, 32px);
+    flex-shrink: 0;
   }
 
   .wcu-grid {
-    padding: 80px 20px 80px !important;
-    overflow-y: auto !important;
-    height: 100% !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 25px !important;
-    scrollbar-width: thin;
-    scrollbar-color: var(--vga-gold) rgba(212, 175, 55, 0.1);
+    gap: 15px !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+    align-content: center !important;
+    justify-items: stretch !important;
+  }
+  
+  .wcu-item {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 15px !important;
+    padding: 25px 20px !important;
+    overflow: visible !important;
+    display: flex !important;
+    height: auto !important;
+    min-height: auto !important;
+  }
+
+  .wcu-icon-wrapper {
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 50% !important;
+    margin-bottom: 0 !important;
+  }
+
+  .wcu-icon-wrapper svg {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .wcu-content {
+    overflow: visible !important;
+    width: 100% !important;
+  }
+
+  .wcu-title {
+    font-size: clamp(14px, 1.8vh, 18px) !important;
+    margin-bottom: 8px !important;
+  }
+
+  .wcu-text {
+    font-size: clamp(12px, 1.5vh, 14px) !important;
+    line-height: 1.6 !important;
+  }
+  
+  .wcu-icon-wrapper {
+    width: 60px !important;
+    height: 60px !important;
+  }
+  
+  .wcu-icon-wrapper svg {
+    width: 35px !important;
+    height: 35px !important;
   }
 
   /* Clients - Tablet */
   #clients {
-    overflow: hidden !important;
+    overflow: visible !important;
   }
 
   .clients-container {
-    height: calc(100vh - var(--header-offset) - 20px) !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
     overflow: hidden !important;
     position: relative;
+    justify-content: flex-start !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
   }
 
   .clients-heading {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+    position: relative;
     padding: 15px 30px !important;
+    margin-bottom: 20px !important;
     margin: 0 !important;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     z-index: 50;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    flex-shrink: 0;
   }
 
   .clients-scroll-wrapper {
-    padding: 80px 20px 80px !important;
+    padding: 20px 20px 20px 20px !important;
     overflow-y: auto !important;
-    height: 100% !important;
-    scrollbar-width: thin;
-    scrollbar-color: var(--vga-gold) rgba(212, 175, 55, 0.1);
+    overflow-x: hidden !important;
+    flex: 1 1 0% !important;
+    min-height: 0 !important;
+    scrollbar-width: none !important; /* Firefox - Hide scrollbar */
+    -ms-overflow-style: none !important; /* IE and Edge - Hide scrollbar */
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
   }
 
   .marquee-content {
@@ -659,53 +974,14 @@ body {
     max-width: 200px !important;
   }
 
-  /* Custom Scrollbar Styling for Tablet */
-  .what-we-do-grid-wrapper::-webkit-scrollbar,
-  .portfolio-content::-webkit-scrollbar,
-  .services-grid::-webkit-scrollbar,
-  .news-carousel-container::-webkit-scrollbar,
-  .leaders-grid::-webkit-scrollbar,
-  .wcu-grid::-webkit-scrollbar,
-  .clients-scroll-wrapper::-webkit-scrollbar,
-  .about-card::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+  /* Custom Scrollbar Styling for Tablet - Responsive */
+  html::-webkit-scrollbar {
+    width: 10px;
   }
 
-  .what-we-do-grid-wrapper::-webkit-scrollbar-track,
-  .portfolio-content::-webkit-scrollbar-track,
-  .services-grid::-webkit-scrollbar-track,
-  .news-carousel-container::-webkit-scrollbar-track,
-  .leaders-grid::-webkit-scrollbar-track,
-  .wcu-grid::-webkit-scrollbar-track,
-  .clients-scroll-wrapper::-webkit-scrollbar-track,
-  .about-card::-webkit-scrollbar-track {
-    background: rgba(212, 175, 55, 0.05);
-    border-radius: 4px;
-  }
-
-  .what-we-do-grid-wrapper::-webkit-scrollbar-thumb,
-  .portfolio-content::-webkit-scrollbar-thumb,
-  .services-grid::-webkit-scrollbar-thumb,
-  .news-carousel-container::-webkit-scrollbar-thumb,
-  .leaders-grid::-webkit-scrollbar-thumb,
-  .wcu-grid::-webkit-scrollbar-thumb,
-  .clients-scroll-wrapper::-webkit-scrollbar-thumb,
-  .about-card::-webkit-scrollbar-thumb {
-    background: var(--vga-gold);
-    border-radius: 4px;
-    transition: background 0.3s ease;
-  }
-
-  .what-we-do-grid-wrapper::-webkit-scrollbar-thumb:hover,
-  .portfolio-content::-webkit-scrollbar-thumb:hover,
-  .services-grid::-webkit-scrollbar-thumb:hover,
-  .news-carousel-container::-webkit-scrollbar-thumb:hover,
-  .leaders-grid::-webkit-scrollbar-thumb:hover,
-  .wcu-grid::-webkit-scrollbar-thumb:hover,
-  .clients-scroll-wrapper::-webkit-scrollbar-thumb:hover,
-  .about-card::-webkit-scrollbar-thumb:hover {
-    background: #B8941F;
+  html::-webkit-scrollbar-thumb {
+    border: 2px solid transparent;
+    background-clip: padding-box;
   }
 }
 
@@ -717,7 +993,7 @@ body {
   }
 
   .page-section {
-    padding-top: var(--header-offset) !important;
+    padding-top: 0 !important;
     padding-left: 15px !important;
     padding-right: 15px !important;
     padding-bottom: 0 !important;
@@ -790,11 +1066,18 @@ body {
     align-items: center !important;
   }
 
-  .about-text h2 {
+  .about-text h2,
+  .about-heading {
     text-align: center !important;
-    font-size: clamp(18px, 3.5vh, 22px);
-    margin-bottom: 0.8rem;
-    line-height: 1.3;
+    font-size: clamp(22px, 4.5vh, 28px) !important;
+    font-weight: 700 !important;
+    margin-bottom: 1.5rem !important;
+    line-height: 1.3 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #000 !important;
+    width: 100% !important;
   }
 
   .about-text p {
@@ -832,25 +1115,26 @@ body {
   }
 
   .what-we-do-heading {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    padding: 15px 15px !important;
-    margin: 0 !important;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    z-index: 10;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    font-size: clamp(18px, 3.5vh, 22px);
+    position: relative !important;
+    padding: 20px 15px 15px 15px !important;
+    margin: 0 0 20px 0 !important;
+    font-size: clamp(22px, 4.5vh, 28px) !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+    width: 100% !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #000 !important;
+    z-index: 10 !important;
   }
 
   .what-we-do-grid-wrapper {
-    padding: 70px 10px 80px !important;
+    padding: 0 10px 20px !important;
     overflow-y: auto !important;
-    height: 100% !important;
-    scrollbar-width: thin;
-    scrollbar-color: var(--vga-gold) rgba(212, 175, 55, 0.1);
+    height: calc(100% - 80px) !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
   }
 
   .what-we-do-grid {
@@ -859,12 +1143,13 @@ body {
     padding: 0 !important;
     max-width: 100% !important;
     justify-items: center !important;
-    align-items: center !important;
+    align-items: stretch !important;
   }
 
   .what-we-do-card {
     padding: 20px !important;
     border-radius: 12px !important;
+    height: 100% !important;
     min-height: auto !important;
     overflow: hidden !important;
     margin-bottom: 10px !important;
@@ -907,7 +1192,17 @@ body {
     border-radius: 12px !important;
   }
 
-  /* Custom Scrollbar Styling for Mobile */
+  /* Custom Scrollbar Styling for Mobile - Responsive */
+  html::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  html::-webkit-scrollbar-thumb {
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+
+  /* Internal scrollbars for mobile - thinner */
   .what-we-do-grid-wrapper::-webkit-scrollbar,
   .portfolio-content::-webkit-scrollbar,
   .services-grid::-webkit-scrollbar,
@@ -920,74 +1215,74 @@ body {
     height: 6px;
   }
 
-  .what-we-do-grid-wrapper::-webkit-scrollbar-track,
-  .portfolio-content::-webkit-scrollbar-track,
-  .services-grid::-webkit-scrollbar-track,
-  .news-carousel-container::-webkit-scrollbar-track,
-  .leaders-grid::-webkit-scrollbar-track,
-  .wcu-grid::-webkit-scrollbar-track,
-  .clients-scroll-wrapper::-webkit-scrollbar-track,
-  .about-card::-webkit-scrollbar-track {
-    background: rgba(212, 175, 55, 0.05);
-    border-radius: 3px;
-  }
-
-  .what-we-do-grid-wrapper::-webkit-scrollbar-thumb,
-  .portfolio-content::-webkit-scrollbar-thumb,
-  .services-grid::-webkit-scrollbar-thumb,
-  .news-carousel-container::-webkit-scrollbar-thumb,
-  .leaders-grid::-webkit-scrollbar-thumb,
-  .wcu-grid::-webkit-scrollbar-thumb,
-  .clients-scroll-wrapper::-webkit-scrollbar-thumb,
-  .about-card::-webkit-scrollbar-thumb {
-    background: var(--vga-gold);
-    border-radius: 3px;
-    transition: background 0.3s ease;
-  }
-
-  .what-we-do-grid-wrapper::-webkit-scrollbar-thumb:hover,
-  .portfolio-content::-webkit-scrollbar-thumb:hover,
-  .services-grid::-webkit-scrollbar-thumb:hover,
-  .news-carousel-container::-webkit-scrollbar-thumb:hover,
-  .leaders-grid::-webkit-scrollbar-thumb:hover,
-  .wcu-grid::-webkit-scrollbar-thumb:hover,
-  .clients-scroll-wrapper::-webkit-scrollbar-thumb:hover,
-  .about-card::-webkit-scrollbar-thumb:hover {
-    background: #B8941F;
-  }
-
-  /* Mobile Investment Portfolio - Internal Scroll */
+  /* Mobile Investment Portfolio - Sticky heading with internal scroll */
   #investment-portfolio {
     overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    height: calc(100vh - var(--header-offset)) !important;
+    max-height: calc(100vh - var(--header-offset)) !important;
   }
 
   .portfolio-content {
-    padding: 0 15px 100px !important;
+    padding: 0 !important;
     height: 100% !important;
     overflow-y: auto !important;
-    display: block !important;
+    overflow-x: hidden !important;
+    flex: 1 1 0% !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
+    will-change: scroll-position !important;
+  }
+
+  .portfolio-content::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
   }
 
   /* Fix overlap enforcement */
-  .portfolio-content>* {
+  .portfolio-content>*:not(.portfolio-heading) {
     position: relative;
     display: block !important;
     width: 100% !important;
     margin-bottom: 1.5rem !important;
+    padding: 0 15px !important;
+    box-sizing: border-box !important;
   }
 
   .portfolio-heading {
     position: sticky !important;
-    top: 0;
-    left: 0;
-    right: 0;
-    font-size: clamp(20px, 3.5vh, 28px);
-    margin: 0 -15px 2rem -15px !important;
-    padding: 15px 15px !important;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(100px);
-    z-index: 50 !important;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    top: 0 !important;
+    padding: 20px 15px 15px 15px !important;
+    margin: 0 !important;
+    font-size: clamp(22px, 4.5vh, 28px) !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+    width: 100% !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #000 !important;
+    z-index: 10 !important;
+    /* background: rgba(255, 255, 255, 0.95) !important; */
+    backdrop-filter: blur(1000px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+    flex-shrink: 0 !important;
+    box-sizing: border-box !important;
+    transform: none !important;
+  }
+
+  .portfolio-content.reveal .portfolio-heading {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
   }
 
   .portfolio-logos {
@@ -1016,57 +1311,74 @@ body {
   }
 
   .services-container {
-    height: calc(100vh - var(--header-offset) - 20px) !important;
+    height: calc(100vh - var(--header-offset)) !important;
+    max-height: calc(100vh - var(--header-offset)) !important;
     overflow: hidden !important;
     display: flex !important;
-    flex-direction: column;
+    flex-direction: column !important;
     padding: 0 !important;
     position: relative;
+    min-height: 0 !important;
+    box-sizing: border-box !important;
   }
 
   .services-heading {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    font-size: clamp(20px, 3.5vh, 28px);
+    position: sticky !important;
+    top: 0 !important;
+    padding: 20px 15px 15px 15px !important;
     margin: 0 !important;
-    padding: 15px 0 !important;
-    z-index: 10;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  }
-
-  .services-grid {
-    flex: 1;
-    overflow-y: auto !important;
-    padding: 70px 5px 80px !important;
-    /* Top padding for fixed heading */
-    scrollbar-width: thin;
-    scrollbar-color: var(--vga-gold) rgba(212, 175, 55, 0.1);
+    font-size: clamp(22px, 4.5vh, 28px) !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+    width: 100% !important;
     display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #000 !important;
+    z-index: 10 !important;
+    /* background: rgba(255, 255, 255, 0.95) !important; */
+    /* backdrop-filter: blur(10px) !important; */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+    flex-shrink: 0 !important;
+    box-sizing: border-box !important;
+    transform: none !important;
   }
 
-  .services-grid-wrapper::-webkit-scrollbar {
-    width: 6px;
+  .services-container.reveal .services-heading {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
   }
 
-  .services-grid-wrapper::-webkit-scrollbar-track {
-    background: rgba(212, 175, 55, 0.1);
-    border-radius: 3px;
-  }
-
-  .services-grid-wrapper::-webkit-scrollbar-thumb {
-    background: var(--vga-gold);
-    border-radius: 3px;
+  .services-intro {
+    padding: 0 15px 15px 15px !important;
+    margin: 0 !important;
+    flex-shrink: 0 !important;
   }
 
   .services-grid {
+    flex: 1 1 0% !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    padding: 0 5px 20px !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
+    will-change: scroll-position !important;
+    display: grid !important;
     grid-template-columns: 1fr !important;
     gap: 20px !important;
-    padding: 0 !important;
   }
+
+  .services-grid::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+
 
   .service-item {
     padding: 30px 20px !important;
@@ -1079,6 +1391,33 @@ body {
     margin-left: auto !important;
     margin-right: auto !important;
     max-width: 350px !important;
+    max-height: 280px !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .service-icon,
+  .service-title {
+    flex-shrink: 0 !important;
+  }
+
+  .service-desc {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    flex: 1 !important;
+    min-height: 0 !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
+    will-change: scroll-position !important;
+  }
+
+  .service-desc::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
   }
 
   .service-icon {
@@ -1108,43 +1447,77 @@ body {
   }
 
   .news-container {
-    height: calc(100vh - var(--header-offset) - 20px) !important;
+    height: calc(100vh - var(--header-offset)) !important;
+    max-height: calc(100vh - var(--header-offset)) !important;
     overflow: hidden !important;
     padding: 0 15px !important;
     display: flex !important;
-    flex-direction: column;
+    flex-direction: column !important;
     position: relative;
     background: transparent !important;
-    /* Fix background overlap */
+    min-height: 0 !important;
+    box-sizing: border-box !important;
+    align-items: stretch !important;
   }
 
   .news-heading {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    font-size: clamp(20px, 3.5vh, 28px);
+    position: sticky !important;
+    top: 0 !important;
+    padding: 20px 15px 15px 15px !important;
     margin: 0 !important;
-    padding: 15px 0 !important;
-    z-index: 50 !important;
-    background: rgba(255, 255, 255, 0.98);
-    /* Higher opacity */
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    font-size: clamp(22px, 4.5vh, 28px) !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+    width: 100% !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #000 !important;
+    z-index: 10 !important;
+    /* background: rgba(255, 255, 255, 0.95) !important; */
+    /* backdrop-filter: blur(10px) !important; */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+    flex-shrink: 0 !important;
+    height: auto !important;
+    box-sizing: border-box !important;
+    transform: none !important;
+  }
+
+  .news-container.reveal .news-heading {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
   }
 
   .news-carousel-container {
-    flex: 1;
-    height: 100% !important;
-    overflow-y: auto !important;
-    padding: 70px 5px 80px;
-    scrollbar-width: thin;
-    scrollbar-color: var(--vga-gold) rgba(212, 175, 55, 0.1);
+    flex: 1 1 0% !important;
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+    padding: 0 5px 20px !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    min-height: 0 !important;
+    max-height: 100% !important;
+    overscroll-behavior: contain !important;
+    position: relative !important;
+    will-change: scroll-position !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  
+  .news-carousel-container::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
   }
 
   .news-carousel-viewport {
     overflow: visible !important;
     height: auto !important;
+    width: 100% !important;
+    position: relative !important;
+    min-height: 100% !important;
   }
 
   /* Force stack news items vertically on mobile */
@@ -1155,6 +1528,8 @@ body {
     /* Disable carousel sliding */
     gap: 20px !important;
     width: 100% !important;
+    min-height: 100% !important;
+    padding-bottom: 20px !important;
   }
 
   /* Hide carousel controls on mobile */
@@ -1166,13 +1541,15 @@ body {
     padding: 25px !important;
     border-radius: 16px !important;
     min-height: auto !important;
-    margin-bottom: 20px !important;
+    margin-bottom: 0 !important;
     width: 100% !important;
     flex: 0 0 auto !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
     margin-left: auto !important;
     margin-right: auto !important;
     max-width: 350px !important;
+    display: flex !important;
+    flex-direction: column !important;
   }
 
   .news-title {
@@ -1207,24 +1584,27 @@ body {
     height: calc(100vh - var(--header-offset) - 20px) !important;
     overflow: hidden !important;
     padding: 0 15px !important;
+    padding-top: 0 !important;
     position: relative;
     display: flex !important;
     flex-direction: column;
+    justify-content: flex-start !important;
+    align-items: center !important;
   }
 
   .clients-heading {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    font-size: clamp(18px, 3.5vh, 22px);
-    margin: 0 !important;
-    padding: 15px 0 !important;
-    background: rgba(255, 255, 255, 0.98) !important;
-    backdrop-filter: blur(10px);
-    z-index: 50 !important;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative !important;
+    padding: 20px 15px 15px 15px !important;
+    margin: 0 0 20px 0 !important;
+    font-size: clamp(22px, 4.5vh, 28px) !important;
+    font-weight: 700 !important;
     text-align: center !important;
+    width: 100% !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #000 !important;
+    z-index: 10 !important;
   }
 
   .clients-scroll-wrapper {
@@ -1236,8 +1616,8 @@ body {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    scrollbar-width: thin;
-    scrollbar-color: var(--vga-gold) rgba(212, 175, 55, 0.1);
+    scrollbar-width: none; /* Firefox - Hide scrollbar */
+    -ms-overflow-style: none; /* IE and Edge - Hide scrollbar */
     background: rgba(255, 255, 255, 0.98) !important;
     backdrop-filter: blur(10px);
   }
@@ -1253,7 +1633,7 @@ body {
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
-    gap: 20px !important;
+    gap: 80px !important;
     padding: 0 !important;
     margin: 0 !important;
     animation: none !important;
@@ -1294,51 +1674,80 @@ body {
     object-fit: contain !important;
   }
 
-  /* Wrap grid in scrollable container */
+  /* Mobile Leaders - Sticky heading with internal scroll */
+  #leaders {
+    overflow: hidden !important;
+  }
+
+  .leaders-container {
+    height: calc(100vh - var(--header-offset)) !important;
+    max-height: calc(100vh - var(--header-offset)) !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: relative;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .leaders-heading {
+    position: sticky !important;
+    top: 0 !important;
+    padding: 20px 15px 15px 15px !important;
+    margin: 0 !important;
+    font-size: clamp(22px, 4.5vh, 28px) !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+    width: 100% !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #000 !important;
+    z-index: 10 !important;
+    /* background: rgba(255, 255, 255, 0.95) !important; */
+    /* backdrop-filter: blur(10px) !important; */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+    flex-shrink: 0 !important;
+    box-sizing: border-box !important;
+  }
+
   .leaders-grid {
+    flex: 1 1 0% !important;
     overflow-y: auto !important;
-    height: 100% !important;
+    overflow-x: hidden !important;
+    padding: 20px 15px 30px 15px !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
+    will-change: scroll-position !important;
     display: grid !important;
     grid-template-columns: 1fr !important;
     gap: 20px !important;
-    padding: 70px 15px 80px !important;
-    /* Top padding for fixed heading */
-    scrollbar-width: thin;
-    scrollbar-color: var(--vga-gold) rgba(212, 175, 55, 0.1);
+    box-sizing: border-box !important;
   }
 
-  /* leaders-grid-wrapper removed */
-
-  .leaders-grid-wrapper::-webkit-scrollbar {
-    width: 6px;
+  .leaders-grid::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
   }
 
-  .leaders-grid-wrapper::-webkit-scrollbar-track {
-    background: rgba(212, 175, 55, 0.1);
-    border-radius: 3px;
-  }
-
-  .leaders-grid-wrapper::-webkit-scrollbar-thumb {
-    background: var(--vga-gold);
-    border-radius: 3px;
-  }
-
-  .leaders-grid {
-    display: grid;
-    grid-template-columns: 1fr !important;
-    gap: 20px !important;
-    padding: 0 !important;
-  }
 
   .leader-card {
     background: var(--vga-white);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08) !important;
     border-radius: 16px !important;
-    padding: 30px 20px !important;
+    padding: 25px 20px !important;
     text-align: center;
     min-height: auto !important;
     overflow: hidden !important;
-    margin-bottom: 20px !important;
+    margin: 0 auto !important;
+    max-width: 350px !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
   }
 
   .leader-image-wrapper {
@@ -1346,14 +1755,22 @@ body {
   }
 
   .leader-image {
-    width: 140px !important;
-    height: 140px !important;
+    width: 120px !important;
+    height: 120px !important;
     border-radius: 50% !important;
     object-fit: cover !important;
+    object-position: center center !important;
     border: 3px solid var(--vga-gold) !important;
     box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2) !important;
     display: block !important;
     margin: 0 auto !important;
+    transform: scale(1.0) !important;
+  }
+  
+  .leader-image-wrapper {
+    width: 140px !important;
+    height: 140px !important;
+    overflow: visible !important;
   }
 
   .leader-role {
@@ -1421,68 +1838,143 @@ body {
     word-break: break-word !important;
   }
 
-  /* Mobile WCU - Sticky heading with scroll */
+  /* Mobile WCU - Sticky heading with internal scroll for heavy content */
   #why-choose-us {
     overflow: hidden !important;
   }
 
   .wcu-container {
     height: calc(100vh - var(--header-offset)) !important;
+    max-height: calc(100vh - var(--header-offset)) !important;
     overflow: hidden !important;
     position: relative;
     display: flex !important;
-    flex-direction: column;
+    flex-direction: column !important;
     padding: 0 !important;
+    width: 100% !important;
   }
 
   .wcu-heading {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+    position: sticky !important;
+    top: 0 !important;
+    padding: 20px 15px 15px 15px !important;
     margin: 0 !important;
-    padding: 20px 0 !important;
-    z-index: 50 !important;
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    font-size: clamp(20px, 4vh, 26px) !important;
+    font-size: clamp(22px, 4.5vh, 28px) !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+    width: 100% !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #000 !important;
+    z-index: 10 !important;
+    /* background: rgba(255, 255, 255, 0.95) !important; */
+    /* backdrop-filter: blur(10px) !important; */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+    flex-shrink: 0 !important;
+    box-sizing: border-box !important;
   }
 
   .wcu-grid {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 25px !important;
-    width: 100% !important;
-    padding: 80px 20px 100px !important;
-    flex: 1;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
     overflow-y: auto !important;
-    height: 100% !important;
-    scrollbar-width: thin;
-    scrollbar-color: var(--vga-gold) rgba(212, 175, 55, 0.1);
+    overflow-x: hidden !important;
+    flex: 1 1 0% !important;
+    min-height: 0 !important;
+    padding: 20px 15px 30px 15px !important;
+    gap: 18px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
+    will-change: scroll-position !important;
+    box-sizing: border-box !important;
+  }
+
+  .wcu-grid::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
   }
 
   .wcu-item {
     width: 100% !important;
-    margin: 0 !important;
-    padding: 30px 20px !important;
-    background: #fff !important;
-    border-radius: 16px !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+    margin: 0 auto !important;
+    padding: 24px 18px !important;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1) !important;
     text-align: center !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 14px !important;
+    overflow: visible !important;
+    height: auto !important;
+    max-width: 450px !important;
+    transition: all 0.3s ease !important;
   }
 
-  .wcu-text {
-    font-size: 14px !important;
-    line-height: 1.6 !important;
-    color: #666 !important;
+  .wcu-item:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.2) !important;
+  }
+
+  .wcu-icon-wrapper {
+    width: 65px !important;
+    height: 65px !important;
+    border-radius: 50% !important;
+    margin-bottom: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(212, 175, 55, 0.1) !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .wcu-item:hover .wcu-icon-wrapper {
+    background: var(--vga-gold) !important;
+    color: #fff !important;
+    transform: scale(1.05) !important;
+  }
+
+  .wcu-icon-wrapper svg {
+    width: 32px !important;
+    height: 32px !important;
+    color: var(--vga-gold) !important;
+    transition: color 0.3s ease !important;
+  }
+
+  .wcu-item:hover .wcu-icon-wrapper svg {
+    color: #fff !important;
+  }
+
+  .wcu-content {
+    overflow: visible !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
   }
 
   .wcu-title {
-    font-size: 16px !important;
-    font-weight: 700 !important;
-    margin-bottom: 0.8rem !important;
+    font-size: clamp(15px, 2vh, 18px) !important;
+    margin-bottom: 8px !important;
+    font-weight: 800 !important;
     color: #000 !important;
+    line-height: 1.3 !important;
+    letter-spacing: 0.3px !important;
+  }
+
+  .wcu-text {
+    font-size: clamp(13px, 1.7vh, 15px) !important;
+    line-height: 1.6 !important;
+    color: #555 !important;
+    margin: 0 !important;
   }
 
   /* Fix viewport issues */
@@ -1522,24 +2014,29 @@ body {
   scroll-margin-top: var(--header-offset);
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  overflow: visible;
 }
 
 .page-section {
   padding: 0;
-  padding-top: calc(var(--header-offset) - 40px);
+  padding-top: 0 !important;
   box-sizing: border-box;
   position: relative;
+  min-height: 100vh;
   height: 100vh;
   width: 100%;
   margin: 0;
-  overflow: hidden !important;
+  overflow: visible;
   z-index: 1;
   background-color: var(--vga-white);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 /* Beautiful alternating section backgrounds */
@@ -1590,6 +2087,8 @@ body {
 
 #clients {
   justify-content: center;
+  align-items: center;
+  display: flex !important;
 }
 
 #leaders {
@@ -1985,6 +2484,30 @@ button:hover::before,
   transform: translateY(0);
 }
 
+/* Ensure portfolio heading is always visible even if parent has reveal class */
+.portfolio-content.reveal .portfolio-heading,
+.portfolio-content .portfolio-heading {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+
+/* Ensure services heading is always visible even if parent has reveal class */
+.services-container.reveal .services-heading,
+.services-container .services-heading {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+
+/* Ensure news heading is always visible even if parent has reveal class */
+.news-container.reveal .news-heading,
+.news-container .news-heading {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+
 /* Delay classes for staggered animations */
 .delay-100 {
   animation-delay: 0.1s;
@@ -2240,9 +2763,13 @@ h3,
   flex: 1;
   overflow-y: auto;
   padding: 60px 20px 100px;
-  scrollbar-width: thin;
+  scrollbar-width: none; /* Firefox - Hide scrollbar */
+  -ms-overflow-style: none; /* IE and Edge - Hide scrollbar */
   width: 100%;
   max-width: 95vw;
+  scroll-behavior: smooth !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior: contain !important;
 }
 
 /* Removed carousel container styles */
@@ -2258,6 +2785,7 @@ h3,
   overflow-y: auto;
   max-height: none;
   padding-right: 10px;
+  align-items: stretch;
 }
 
 .what-we-do-card {
@@ -2269,8 +2797,8 @@ h3,
   border: 1px solid #eee;
   display: flex;
   flex-direction: column;
-  height: auto;
-  /* Ensure card is tall enough but not arbitrarily huge */
+  height: 100%;
+  /* Ensure all cards have same height */
   min-height: 480px;
   flex-shrink: 0;
   /* Prevent squishing */
@@ -2281,6 +2809,7 @@ h3,
   .what-we-do-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 2vw;
+    align-items: stretch;
   }
 }
 
@@ -2297,6 +2826,10 @@ h3,
 .wd-card-content-top {
   padding: 30px 25px 20px;
   order: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
 .wd-title {
@@ -2314,6 +2847,7 @@ h3,
   color: #666;
   margin: 0;
   margin-bottom: 20px;
+  flex: 1;
 }
 
 .wd-card-image-box {
@@ -2383,6 +2917,8 @@ h3,
   border-top: none;
   margin-bottom: 0;
   order: 3;
+  flex-shrink: 0;
+  margin-top: auto;
 }
 
 .wd-footer-top {
@@ -2612,7 +3148,7 @@ h3,
   justify-content: flex-start;
   /* ✅ Top aligned */
   align-items: center;
-  padding-top: 4vh;
+  padding-top: 0;
   /* Minimal buffer */
 
   gap: clamp(12px, 2vh, 24px);
@@ -2654,6 +3190,10 @@ h3,
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  max-height: 320px;
+  overflow: hidden;
 }
 
 .service-item:hover {
@@ -2667,6 +3207,27 @@ h3,
   line-height: 1.6;
   color: #666;
   margin: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+  min-height: 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  will-change: scroll-position;
+}
+
+.service-desc::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.service-icon,
+.service-title {
+  flex-shrink: 0;
 }
 
 
@@ -2916,7 +3477,11 @@ h3,
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
+  padding-top: 25vh;
   gap: 10px;
+  height: 100%;
+  min-height: calc(100vh - var(--header-offset));
 }
 
 .clients-heading {
@@ -3043,8 +3608,8 @@ h3,
 #leaders {
   display: flex !important;
   flex-direction: column;
-  justify-content: center !important;
-  /* ✅ Center vertically */
+  justify-content: flex-start !important;
+  align-items: center !important;
   padding-top: var(--header-offset) !important;
 }
 
@@ -3055,14 +3620,12 @@ h3,
   max-height: 90vh;
   margin: 0 auto;
   text-align: center;
-
   display: flex;
   flex-direction: column;
-  justify-content: center !important;
-  /* ✅ Center aligned */
+  justify-content: flex-start;
   align-items: center;
+  padding-top: 5vh;
   gap: 1.5vh;
-  /* ✅ reduce spacing */
   flex: 1;
   min-height: 0;
 }
@@ -3099,21 +3662,21 @@ h3,
   width: 180px !important;
   height: 180px !important;
   border-radius: 50% !important;
-  overflow: hidden !important;
+  overflow: visible !important;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: transparent;
 }
 
 .leader-image {
-  width: 100% !important;
-  height: 100% !important;
-
+  width: 85% !important;
+  height: 85% !important;
   object-fit: cover !important;
+  object-position: center center !important;
   border-radius: 50% !important;
-
-  /* ✅ reduce zoom so head won't cut */
-  transform: scale(1.08);
+  transform: scale(1.0);
+  margin: auto;
 }
 
 
@@ -3674,29 +4237,56 @@ h3,
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: calc(100vh - var(--header-offset));
-  justify-content: center;
-  height: 100%;
-  gap: 40px;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  min-height: 100vh !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+  overflow: visible !important;
+  position: relative !important;
 }
 
 .wcu-heading {
-  font-size: clamp(24px, 4vh, 42px);
-  font-weight: 700;
+  font-size: clamp(24px, 3.5vh, 36px);
+  font-weight: 900;
   text-align: center;
   color: #000;
-  margin: 0;
+  margin: 0 0 2vh 0;
   text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  padding-bottom: 15px;
+  flex-shrink: 0;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+}
+
+.wcu-heading::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: var(--vga-gold);
+  border-radius: 2px;
 }
 
 .wcu-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
   width: 100%;
+  max-width: 1200px;
+  padding: 0;
+  overflow: visible !important;
+  align-content: center;
+  justify-items: stretch;
 }
 
 .wcu-item {
@@ -3705,47 +4295,96 @@ h3,
   align-items: center;
   text-align: center;
   gap: 15px;
-  padding: 20px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid #f9f9f9;
+  padding: 25px 20px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid transparent;
+  position: relative;
+  overflow: visible !important;
+  min-height: auto !important;
+  height: auto !important;
+}
+
+.wcu-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--vga-gold);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: left;
+  border-radius: 16px 16px 0 0;
 }
 
 .wcu-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.2);
   border-color: var(--vga-gold);
 }
 
-.wcu-text {
-  font-size: 13px;
-  color: #666;
-  line-height: 1.6;
-  margin: 0;
+.wcu-item:hover::before {
+  transform: scaleX(1);
 }
 
 .wcu-icon-wrapper {
   color: var(--vga-gold);
-  margin-bottom: 10px;
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(212, 175, 55, 0.1);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  margin-bottom: 5px;
+}
+
+.wcu-item:hover .wcu-icon-wrapper {
+  background: var(--vga-gold);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.wcu-icon-wrapper svg {
+  width: 32px;
+  height: 32px;
+}
+
+.wcu-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: visible !important;
+  width: 100%;
 }
 
 .wcu-title {
-  font-size: 13px;
+  font-size: clamp(14px, 1.8vh, 18px);
   font-weight: 800;
   text-transform: uppercase;
   color: #000;
   margin: 0;
-  line-height: 1.4;
-  margin-bottom: 8px;
+  line-height: 1.3;
+  letter-spacing: 0.5px;
+  flex-shrink: 0 !important;
 }
 
 .wcu-text {
-  font-size: 12px;
-  color: #666;
+  font-size: clamp(12px, 1.5vh, 14px);
+  color: #555;
   line-height: 1.6;
   margin: 0;
+  overflow: visible !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  flex-shrink: 0 !important;
 }
 
 /* --- RESPONSIVENESS --- */
@@ -3760,11 +4399,15 @@ h3,
     /* Horizontal padding only */
     padding-top: var(--header-offset) !important;
     /* Strict top padding */
+    min-height: 100vh !important;
     height: 100vh !important;
-    justify-content: center !important;
-    /* Align vertical center */
+    justify-content: flex-start !important;
+    /* Align from top for better content visibility */
     display: flex !important;
+    flex-direction: column !important;
     gap: 1vh;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
   }
 
   h2,
@@ -3850,10 +4493,14 @@ h3,
     --header-offset: 70px;
   }
 
-  /* Ensure consistent center alignment on mobile */
+  /* Ensure consistent alignment on mobile */
   .page-section {
-    justify-content: center !important;
+    justify-content: flex-start !important;
     align-items: center !important;
+    padding-top: var(--header-offset) !important;
+    min-height: 100vh !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
   }
 
   h2,
