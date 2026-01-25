@@ -314,6 +314,92 @@ function App() {
 
 
 
+  // Reset portfolio and services scroll on mount and when section becomes active
+  useEffect(() => {
+    const resetPortfolioScroll = () => {
+      const portfolioContent = document.querySelector('.portfolio-content');
+      if (portfolioContent) {
+        portfolioContent.scrollTop = 0;
+      }
+    };
+
+    const resetServicesScroll = () => {
+      const servicesGrid = document.querySelector('.services-grid');
+      if (servicesGrid) {
+        servicesGrid.scrollTop = 0;
+      }
+    };
+
+    const resetAboutScroll = () => {
+      const aboutCard = document.querySelector('.about-card');
+      if (aboutCard) {
+        aboutCard.scrollTop = 0;
+      }
+    };
+
+    // Reset immediately on mount
+    resetPortfolioScroll();
+    resetServicesScroll();
+    resetAboutScroll();
+
+    // Reset when sections become visible
+    const portfolioSection = document.getElementById('investment-portfolio');
+    const servicesSection = document.getElementById('services');
+    const aboutSection = document.getElementById('about');
+    
+    let portfolioObserver = null;
+    let servicesObserver = null;
+    let aboutObserver = null;
+    
+    if (portfolioSection) {
+      portfolioObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setTimeout(resetPortfolioScroll, 50);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+      portfolioObserver.observe(portfolioSection);
+    }
+
+    if (servicesSection) {
+      servicesObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setTimeout(resetServicesScroll, 50);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+      servicesObserver.observe(servicesSection);
+    }
+
+    if (aboutSection) {
+      aboutObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setTimeout(resetAboutScroll, 50);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+      aboutObserver.observe(aboutSection);
+    }
+
+    return () => {
+      if (portfolioObserver) portfolioObserver.disconnect();
+      if (servicesObserver) servicesObserver.disconnect();
+      if (aboutObserver) aboutObserver.disconnect();
+    };
+  }, []);
+
   // When the About section comes into view, gently fade out the home video underneath
   useEffect(() => {
     const home = document.getElementById('home');
@@ -868,37 +954,16 @@ function App() {
             </h2>
 
             <div className="clients-scroll-wrapper">
-              {/* First Row - Left to Right */}
-              <div className="marquee-row marquee-left">
+              {/* Single Row - All Clients */}
+              <div className="marquee-row">
                 <div className="marquee-content">
-                  {[...Array(2)].map((_, i) => (
-                    <React.Fragment key={i}>
-                      <div className="client-logo-item"><img src="/ADNOC.png" alt="ADNOC" /></div>
-                      <div className="client-logo-item"><img src="/Bapco.jpg" alt="Bapco" /></div>
-                      <div className="client-logo-item"><img src="/GALFAR.png" alt="GALFAR" /></div>
-                      <div className="client-logo-item"><img src="/PDO.png" alt="PDO" /></div>
-                      <div className="client-logo-item"><img src="/TENARIS.png" alt="TENARIS" /></div>
-                      <div className="client-logo-item"><img src="/RAFCO.png" alt="RAFCO" /></div>
-                      <div className="client-logo-item"><img src="/OXY.png" alt="OXY" /></div>
-                    </React.Fragment>
-                  ))}
-                </div>
-              </div>
-
-              {/* Second Row - Right to Left */}
-              <div className="marquee-row marquee-right">
-                <div className="marquee-content">
-                  {[...Array(2)].map((_, i) => (
-                    <React.Fragment key={i}>
-                      <div className="client-logo-item"><img src="/ADNOC.png" alt="ADNOC" /></div>
-                      <div className="client-logo-item"><img src="/Bapco.jpg" alt="Bapco" /></div>
-                      <div className="client-logo-item"><img src="/GALFAR.png" alt="GALFAR" /></div>
-                      <div className="client-logo-item"><img src="/PDO.png" alt="PDO" /></div>
-                      <div className="client-logo-item"><img src="/TENARIS.png" alt="TENARIS" /></div>
-                      <div className="client-logo-item"><img src="/RAFCO.png" alt="RAFCO" /></div>
-                      <div className="client-logo-item"><img src="/OXY.png" alt="OXY" /></div>
-                    </React.Fragment>
-                  ))}
+                  <div className="client-logo-item"><img src="/ADNOC.png" alt="ADNOC" /></div>
+                  <div className="client-logo-item"><img src="/Bapco.jpg" alt="Bapco" /></div>
+                  <div className="client-logo-item"><img src="/GALFAR.png" alt="GALFAR" /></div>
+                  <div className="client-logo-item"><img src="/PDO.png" alt="PDO" /></div>
+                  <div className="client-logo-item"><img src="/TENARIS.png" alt="TENARIS" /></div>
+                  <div className="client-logo-item"><img src="/RAFCO.png" alt="RAFCO" /></div>
+                  <div className="client-logo-item"><img src="/OXY.png" alt="OXY" /></div>
                 </div>
               </div>
             </div>
@@ -917,10 +982,11 @@ function App() {
                 <div className="leader-image-wrapper">
                   <img src="/ceo.jpg" alt="Terry Antoniadis" className="leader-image" />
                 </div>
-                <h3 className="leader-role">CEO</h3>
-                <p className="leader-name">Terry Antoniadis</p>
-
-                <div className="leader-social">
+                <div className="leader-info-box">
+                  <p className="leader-name">Terry Antoniadis</p>
+                  <div className="leader-role">
+                    <span>CEO</span>
+                    <div className="leader-social">
                   <a
                     href="https://www.linkedin.com/in/eleftherios-antoniadis-64675820?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
                     target="_blank"
@@ -932,6 +998,8 @@ function App() {
                       <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                     </svg>
                   </a>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -940,10 +1008,11 @@ function App() {
                 <div className="leader-image-wrapper">
                   <img src="/managingdirector.png" alt="Yana Antoniadis" className="leader-image" />
                 </div>
-                <h3 className="leader-role">Managing Director</h3>
-                <p className="leader-name">Yana Antoniadis</p>
-
-                <div className="leader-social">
+                <div className="leader-info-box">
+                  <p className="leader-name">Yana Antoniadis</p>
+                  <div className="leader-role">
+                    <span>Managing Director</span>
+                    <div className="leader-social">
                   <a
                     href="https://www.linkedin.com/in/yana-antoniadis-a66817148/"
                     target="_blank"
@@ -955,6 +1024,8 @@ function App() {
                       <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                     </svg>
                   </a>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -963,10 +1034,11 @@ function App() {
                 <div className="leader-image-wrapper">
                   <img src="/compliancedirector.png" alt="Brett Paul Maclagan" className="leader-image" />
                 </div>
-                <h3 className="leader-role">Compliance Director</h3>
-                <p className="leader-name">Brett Paul Maclagan</p>
-
-                <div className="leader-social">
+                <div className="leader-info-box">
+                  <p className="leader-name">Brett Paul Maclagan</p>
+                  <div className="leader-role">
+                    <span>Compliance Director</span>
+                    <div className="leader-social">
                   <a
                     href="https://www.linkedin.com/in/brett-maclagan-b250975/"
                     target="_blank"
@@ -978,6 +1050,8 @@ function App() {
                       <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                     </svg>
                   </a>
+                    </div>
+                  </div>
                 </div>
               </div>
 
