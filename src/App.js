@@ -5,6 +5,21 @@ import Header from './components/Header';
 
 function App() {
   const [videoModalOpen, setVideoModalOpen] = useState(false);
+  const [trustedSitePopupOpen, setTrustedSitePopupOpen] = useState(false);
+  const [certifiedSecureOpen, setCertifiedSecureOpen] = useState(false);
+  const [dataProtectionOpen, setDataProtectionOpen] = useState(true);
+
+  // Prevent body scroll when popup is open
+  useEffect(() => {
+    if (trustedSitePopupOpen) {
+      document.body.classList.add('trustedsite-popup-open');
+    } else {
+      document.body.classList.remove('trustedsite-popup-open');
+    }
+    return () => {
+      document.body.classList.remove('trustedsite-popup-open');
+    };
+  }, [trustedSitePopupOpen]);
 
   const [newsIndex, setNewsIndex] = useState(0);
 
@@ -982,11 +997,9 @@ function App() {
                 <div className="leader-image-wrapper">
                   <img src="/ceo.jpg" alt="Terry Antoniadis" className="leader-image" />
                 </div>
-                <div className="leader-info-box">
-                  <p className="leader-name">Terry Antoniadis</p>
-                  <div className="leader-role">
-                    <span>CEO</span>
-                    <div className="leader-social">
+                <p className="leader-name">Terry Antoniadis</p>
+                <div className="leader-role-wrapper">
+                  <h3 className="leader-role">CEO</h3>
                   <a
                     href="https://www.linkedin.com/in/eleftherios-antoniadis-64675820?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
                     target="_blank"
@@ -994,12 +1007,11 @@ function App() {
                     aria-label="Terry Antoniadis LinkedIn"
                     className="leader-linkedin-link"
                   >
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="12" r="12" fill="#D4AF37"/>
+                      <path d="M8.5 9.5h-2v7h2v-7zm-1-2.5c.7 0 1.3-.6 1.3-1.3s-.6-1.3-1.3-1.3-1.3.6-1.3 1.3.6 1.3 1.3 1.3zm8.5 2.5h-2.5v3.5c0 .8-.1 2-1.2 2s-1.4-.5-1.4-1.2v-4.3h-2.5v7h2.5v-3.8c0-.2 0-.4.1-.5.2-.4.6-.8 1.3-.8.9 0 1.3.7 1.3 1.7v3.4h2.5v-4.5z" fill="#ffffff"/>
                     </svg>
                   </a>
-                    </div>
-                  </div>
                 </div>
               </div>
 
@@ -1008,11 +1020,9 @@ function App() {
                 <div className="leader-image-wrapper">
                   <img src="/managingdirector.png" alt="Yana Antoniadis" className="leader-image" />
                 </div>
-                <div className="leader-info-box">
-                  <p className="leader-name">Yana Antoniadis</p>
-                  <div className="leader-role">
-                    <span>Managing Director</span>
-                    <div className="leader-social">
+                <p className="leader-name">Yana Antoniadis</p>
+                <div className="leader-role-wrapper">
+                  <h3 className="leader-role">MANAGING DIRECTOR</h3>
                   <a
                     href="https://www.linkedin.com/in/yana-antoniadis-a66817148/"
                     target="_blank"
@@ -1020,12 +1030,11 @@ function App() {
                     aria-label="Yana Antoniadis LinkedIn"
                     className="leader-linkedin-link"
                   >
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="12" r="12" fill="#D4AF37"/>
+                      <path d="M8.5 9.5h-2v7h2v-7zm-1-2.5c.7 0 1.3-.6 1.3-1.3s-.6-1.3-1.3-1.3-1.3.6-1.3 1.3.6 1.3 1.3 1.3zm8.5 2.5h-2.5v3.5c0 .8-.1 2-1.2 2s-1.4-.5-1.4-1.2v-4.3h-2.5v7h2.5v-3.8c0-.2 0-.4.1-.5.2-.4.6-.8 1.3-.8.9 0 1.3.7 1.3 1.7v3.4h2.5v-4.5z" fill="#ffffff"/>
                     </svg>
                   </a>
-                    </div>
-                  </div>
                 </div>
               </div>
 
@@ -1034,11 +1043,9 @@ function App() {
                 <div className="leader-image-wrapper">
                   <img src="/compliancedirector.png" alt="Brett Paul Maclagan" className="leader-image" />
                 </div>
-                <div className="leader-info-box">
-                  <p className="leader-name">Brett Paul Maclagan</p>
-                  <div className="leader-role">
-                    <span>Compliance Director</span>
-                    <div className="leader-social">
+                <p className="leader-name">Brett Paul Maclagan</p>
+                <div className="leader-role-wrapper">
+                  <h3 className="leader-role">COMPLIANCE DIRECTOR</h3>
                   <a
                     href="https://www.linkedin.com/in/brett-maclagan-b250975/"
                     target="_blank"
@@ -1046,12 +1053,11 @@ function App() {
                     aria-label="Brett Paul Maclagan LinkedIn"
                     className="leader-linkedin-link"
                   >
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="12" r="12" fill="#D4AF37"/>
+                      <path d="M8.5 9.5h-2v7h2v-7zm-1-2.5c.7 0 1.3-.6 1.3-1.3s-.6-1.3-1.3-1.3-1.3.6-1.3 1.3.6 1.3 1.3 1.3zm8.5 2.5h-2.5v3.5c0 .8-.1 2-1.2 2s-1.4-.5-1.4-1.2v-4.3h-2.5v7h2.5v-3.8c0-.2 0-.4.1-.5.2-.4.6-.8 1.3-.8.9 0 1.3.7 1.3 1.7v3.4h2.5v-4.5z" fill="#ffffff"/>
                     </svg>
                   </a>
-                    </div>
-                  </div>
                 </div>
               </div>
 
@@ -1259,6 +1265,160 @@ function App() {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               ></iframe>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* TrustedSite Badge */}
+      <div className="trustedsite-badge" onClick={() => setTrustedSitePopupOpen(true)}>
+        <div className="trustedsite-badge-content">
+          <svg className="trustedsite-checkmark" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13.5 4L6 11.5L2.5 8" stroke="#4CAF50" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+          <span className="trustedsite-text">TrustedSite</span>
+          <svg className="trustedsite-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 4.5L6 7.5L9 4.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </div>
+      </div>
+
+      {/* TrustedSite Popup */}
+      {trustedSitePopupOpen && (
+        <div className="trustedsite-popup-overlay" onClick={() => setTrustedSitePopupOpen(false)}>
+          <div className="trustedsite-popup" onClick={(e) => e.stopPropagation()}>
+            <button className="trustedsite-popup-close" onClick={() => setTrustedSitePopupOpen(false)}>×</button>
+            
+            {/* Green Header Bar */}
+            <div className="trustedsite-popup-topbar">
+              <div className="trustedsite-popup-logo">
+                <svg className="trustedsite-popup-checkmark-small" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13.5 4L6 11.5L2.5 8" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                <span className="trustedsite-popup-logo-text">TrustedSite</span>
+              </div>
+              <a 
+                href="https://www.trustedsite.com/verify?js=1&host=vgaholdings.com&lang=EN" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="trustedsite-popup-verify-link"
+              >
+                Verify »
+              </a>
+            </div>
+
+            <div className="trustedsite-popup-content">
+              {/* Domain Name */}
+              <div className="trustedsite-popup-domain">vgaholdings.com</div>
+              <p className="trustedsite-popup-cert-text">This site has earned the following certifications.</p>
+
+              {/* Certified Secure Section */}
+              <div className="trustedsite-cert-section">
+                <div 
+                  className="trustedsite-cert-header" 
+                  onClick={() => setCertifiedSecureOpen(!certifiedSecureOpen)}
+                >
+                  <div className="trustedsite-cert-header-left">
+                    <span className="trustedsite-cert-title">Certified Secure</span>
+                    <span className="trustedsite-cert-status">Certified</span>
+                  </div>
+                  <svg 
+                    className={`trustedsite-cert-arrow ${certifiedSecureOpen ? 'open' : ''}`} 
+                    width="12" 
+                    height="12" 
+                    viewBox="0 0 12 12" 
+                    fill="none"
+                  >
+                    <path d="M3 4.5L6 7.5L9 4.5" stroke="#4CAF50" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                {certifiedSecureOpen && (
+                  <div className="trustedsite-cert-content">
+                    <p>TrustedSite actively monitors this site for security issues such as malware, malicious links, and phishing. No issues were detected on its most recent security check.</p>
+                    <div className="trustedsite-security-checks">
+                      <div className="trustedsite-check-item">
+                        <div className="trustedsite-check-icon">G</div>
+                        <span>No issues detected in Google Safe Browsing.</span>
+                      </div>
+                      <div className="trustedsite-check-item">
+                        <div className="trustedsite-check-icon">P</div>
+                        <span>No issues reported in PhishTank.</span>
+                      </div>
+                      <div className="trustedsite-check-item">
+                        <div className="trustedsite-check-icon">🔐</div>
+                        <span>Valid SSL Certificate.</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Data Protection Section */}
+              <div className="trustedsite-cert-section">
+                <div 
+                  className="trustedsite-cert-header" 
+                  onClick={() => setDataProtectionOpen(!dataProtectionOpen)}
+                >
+                  <div className="trustedsite-cert-header-left">
+                    <span className="trustedsite-cert-title">Data Protection</span>
+                    <span className="trustedsite-cert-status">Certified</span>
+                  </div>
+                  <svg 
+                    className={`trustedsite-cert-arrow ${dataProtectionOpen ? 'open' : ''}`} 
+                    width="12" 
+                    height="12" 
+                    viewBox="0 0 12 12" 
+                    fill="none"
+                  >
+                    <path d="M3 4.5L6 7.5L9 4.5" stroke="#4CAF50" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                {dataProtectionOpen && (
+                  <div className="trustedsite-cert-content">
+                    <p>TrustedSite has verified that this site uses SSL to encrypt communications with industry-standard security protocols.</p>
+                    <div className="trustedsite-ssl-details">
+                      <div className="trustedsite-ssl-item">
+                        <span className="trustedsite-ssl-label">SSL VALID UNTIL:</span>
+                        <span className="trustedsite-ssl-value">2026-03-15</span>
+                      </div>
+                      <div className="trustedsite-ssl-item">
+                        <span className="trustedsite-ssl-label">SSL ISSUED BY:</span>
+                        <span className="trustedsite-ssl-value">WE1</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* About the Business / Feedback Section */}
+              <div className="trustedsite-feedback-section">
+                <p className="trustedsite-feedback-question">Does knowing this site is TrustedSite certified increase your trust in this site?</p>
+                <div className="trustedsite-feedback-options">
+                  <button className="trustedsite-feedback-btn">Not At All</button>
+                  <button className="trustedsite-feedback-btn">Somewhat</button>
+                  <button className="trustedsite-feedback-btn">Definitely</button>
+                </div>
+              </div>
+
+              {/* Footer Links */}
+              <div className="trustedsite-popup-footer-links">
+                <a 
+                  href="https://chromewebstore.google.com/detail/trustedsite/meaanhhbdanomagjkjleigjfiamjhomi" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="trustedsite-footer-link"
+                >
+                  Browse smarter with TrustedSite
+                </a>
+                <a 
+                  href="https://www.trustedsite.com/login/?type=link&utm_source=verify-manage&host=vgaholdings.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="trustedsite-footer-link"
+                >
+                  Is this your website?
+                </a>
+              </div>
             </div>
           </div>
         </div>
