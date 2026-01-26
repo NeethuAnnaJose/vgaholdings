@@ -565,8 +565,8 @@ img, video, canvas {
   }
 
   .leader-image-wrapper {
-    width: clamp(300px, 23vw, 430px) !important;
-    height: clamp(300px, 23vw, 430px) !important;
+    width: clamp(360px, 28vw, 520px) !important;
+    height: clamp(360px, 28vw, 520px) !important;
     margin-bottom: clamp(16px, 2vh, 24px) !important;
   }
 
@@ -1490,7 +1490,7 @@ img, video, canvas {
     opacity: 1 !important;
     color: #000 !important;
     z-index: 10 !important;
-    background: rgba(255, 255, 255, 0.95) !important;
+    /* background: rgba(255, 255, 255, 0.95) !important; */
     backdrop-filter: blur(10px) !important;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
     box-sizing: border-box !important;
@@ -2794,8 +2794,8 @@ img, video, canvas {
   }
 
   .leader-image-wrapper {
-    width: clamp(220px, 32vw, 280px) !important;
-    height: clamp(220px, 32vw, 280px) !important;
+    width: clamp(260px, 38vw, 340px) !important;
+    height: clamp(260px, 38vw, 340px) !important;
     margin-bottom: clamp(14px, 2vh, 22px) !important;
   }
 
@@ -2842,14 +2842,16 @@ img, video, canvas {
 
 
   .leader-card {
-    background: transparent !important;
-    box-shadow: none !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px) !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.05) !important;
+    border-radius: 16px !important;
     border: none !important;
-    padding: clamp(8px, 1.2vh, 16px) 0 !important;
+    padding: clamp(25px, 3vh, 40px) clamp(20px, 4vw, 30px) !important;
     text-align: center !important;
     min-height: clamp(400px, 50vh, 600px) !important;
     height: auto !important;
-    overflow: visible !important;
+    overflow: hidden !important;
     margin: 0 !important;
     max-width: 100% !important;
     width: 100% !important;
@@ -2859,9 +2861,19 @@ img, video, canvas {
     justify-content: flex-start !important;
     box-sizing: border-box !important;
     position: relative !important;
-    transition: none !important;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease !important;
     flex-shrink: 0 !important;
     flex-grow: 0 !important;
+  }
+
+  .leader-card::before,
+  .leader-card::after {
+    display: block !important;
+  }
+
+  .leader-card:hover {
+    transform: translateY(-6px) scale(1.01) !important;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(212, 175, 55, 0.2) !important;
   }
 
   .leader-card::before {
@@ -2874,19 +2886,26 @@ img, video, canvas {
   }
 
   .leader-image-wrapper {
-    width: 150px !important;
-    height: 150px !important;
-    margin-bottom: 16px !important;
-    overflow: visible !important;
+    width: clamp(220px, 45vw, 280px) !important;
+    height: clamp(220px, 45vw, 280px) !important;
+    margin-bottom: clamp(20px, 2.5vh, 28px) !important;
+    overflow: hidden !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     position: relative !important;
+    z-index: 1 !important;
     border-radius: 50% !important;
-    background: transparent !important;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%) !important;
     padding: 0 !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12), 0 0 0 3px rgba(255, 255, 255, 0.8) !important;
     flex-shrink: 0 !important;
+    transition: box-shadow 0.3s ease, transform 0.3s ease !important;
+  }
+
+  .leader-card:hover .leader-image-wrapper {
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.18), 0 0 0 3px rgba(212, 175, 55, 0.3) !important;
+    transform: translateY(-3px) scale(1.05) !important;
   }
 
   .leader-image {
@@ -4966,22 +4985,24 @@ h3,
 /* --- 8. LEADERS --- */
 
 .leader-image-wrapper {
-  width: clamp(320px, 25vw, 450px) !important;
-  height: clamp(320px, 25vw, 450px) !important;
+  width: clamp(340px, 26vw, 480px) !important;
+  height: clamp(340px, 26vw, 480px) !important;
   border-radius: 50% !important;
   overflow: hidden !important;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: transparent;
-  margin-bottom: clamp(18px, 2.2vh, 28px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
-  transition: box-shadow 0.2s ease, transform 0.2s ease !important;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+  margin-bottom: clamp(24px, 3vh, 36px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12), 0 0 0 4px rgba(255, 255, 255, 0.8) !important;
+  transition: box-shadow 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  position: relative !important;
+  z-index: 1 !important;
 }
 
 .leader-card:hover .leader-image-wrapper {
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
-  transform: translateY(-2px) !important;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18), 0 0 0 4px rgba(212, 175, 55, 0.3) !important;
+  transform: translateY(-4px) scale(1.05) !important;
 }
 
 .leader-image {
@@ -5016,23 +5037,102 @@ h3,
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: clamp(10px, 1.2vw, 16px) !important;
+  gap: clamp(12px, 1.5vw, 20px) !important;
   flex-wrap: nowrap !important;
   flex-direction: row !important;
-  margin-top: clamp(4px, 0.5vh, 8px) !important;
-  padding-bottom: clamp(4px, 0.5vh, 8px) !important;
+  margin-top: clamp(8px, 1vh, 16px) !important;
+  margin-bottom: clamp(20px, 2.5vh, 32px) !important;
+  padding-bottom: 0 !important;
+  position: relative !important;
+  z-index: 1 !important;
 }
 
 .leader-role {
   font-size: clamp(16px, 1.8vw, 24px) !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.12em !important;
-  text-transform: uppercase !important;
+  font-weight: 400 !important;
+  color: #666 !important;
   margin: 0 !important;
-  color: #D4AF37 !important;
-  line-height: 1.4 !important;
+  line-height: 1.5 !important;
+  letter-spacing: 0.01em !important;
+  font-style: italic !important;
+}
+
+.leader-role {
+  font-size: clamp(16px, 1.8vw, 24px) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.01em !important;
+  text-transform: none !important;
+  margin: 0 !important;
+  color: #666 !important;
+  line-height: 1.5 !important;
   display: inline-block !important;
   vertical-align: middle !important;
+  font-style: italic !important;
+}
+
+/* Social links section (similar to CodePen) */
+.leader-social {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: clamp(12px, 1.5vw, 20px) !important;
+  margin-top: clamp(20px, 2.5vh, 32px) !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.leader-linkedin-link {
+  width: clamp(40px, 4vw, 56px) !important;
+  height: clamp(40px, 4vw, 56px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  background: rgba(212, 175, 55, 0.1) !important;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  cursor: pointer !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.leader-linkedin-link::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.leader-linkedin-link:hover {
+  transform: translateY(-4px) scale(1.1) !important;
+  background: rgba(212, 175, 55, 0.2) !important;
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3) !important;
+}
+
+.leader-linkedin-link:hover::before {
+  width: 100%;
+  height: 100%;
+}
+
+.leader-linkedin-link:active {
+  transform: translateY(-2px) scale(1.05) !important;
+}
+
+.leader-linkedin-link svg {
+  width: 60% !important;
+  height: 60% !important;
+  position: relative !important;
+  z-index: 1 !important;
+  transition: transform 0.3s ease !important;
+}
+
+.leader-linkedin-link:hover svg {
+  transform: scale(1.1) !important;
 }
 
 .leader-linkedin-link {
@@ -6471,14 +6571,15 @@ h3,
 /* TrustedSite Badge - Fixed position, bottom right */
 .trustedsite-badge {
   position: fixed !important;
-  bottom: 20px !important;
-  right: 20px !important;
+  bottom: 0 !important;
+  right: 0 !important;
   z-index: 9999 !important;
   cursor: pointer !important;
   user-select: none !important;
   pointer-events: auto !important;
   touch-action: manipulation !important;
-  transition: transform 0.2s ease, opacity 0.2s ease !important;
+  transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease !important;
+  margin: 0 !important;
 }
 
 .trustedsite-badge:hover {
@@ -6491,29 +6592,130 @@ h3,
 
 .trustedsite-badge-content {
   display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  background: #ffffff !important;
+  backdrop-filter: blur(10px) !important;
+  border-radius: 6px 0 0 0 !important;
+  padding: 10px 12px !important;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.15) !important;
+  width: auto !important;
+  min-width: 120px !important;
+  max-width: 150px !important;
+  border-bottom: none !important;
+  border-right: none !important;
+  transition: background 0.2s ease, box-shadow 0.2s ease, gap 0.3s ease !important;
+}
+
+.trustedsite-badge:hover .trustedsite-badge-content {
+  background: #ffffff !important;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.4) !important;
+  gap: 6px !important;
+}
+
+.trustedsite-badge-top {
+  display: flex !important;
   align-items: center !important;
   gap: 8px !important;
-  background: rgba(30, 30, 30, 0.95) !important;
-  backdrop-filter: blur(10px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  border-radius: 6px !important;
-  padding: 10px 14px !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
-  min-width: 140px !important;
+}
+
+.trustedsite-checkmark-wrapper {
+  flex-shrink: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .trustedsite-checkmark {
   flex-shrink: 0 !important;
   width: 16px !important;
   height: 16px !important;
+  display: block !important;
+}
+
+.trustedsite-checkmark rect {
+  fill: #4CAF50 !important;
+}
+
+.trustedsite-checkmark path {
+  stroke: #ffffff !important;
+  transition: stroke 0.2s ease !important;
+}
+
+.trustedsite-badge:hover .trustedsite-checkmark path {
+  stroke: #ffffff !important;
 }
 
 .trustedsite-text {
-  color: #ffffff !important;
   font-size: 13px !important;
   font-weight: 700 !important;
   letter-spacing: 0.3px !important;
   white-space: nowrap !important;
+  line-height: 1.2 !important;
+  transition: color 0.2s ease !important;
+}
+
+.trustedsite-trusted {
+  color: #000000 !important;
+  transition: color 0.2s ease !important;
+}
+
+.trustedsite-site {
+  color: #4CAF50 !important;
+  transition: color 0.2s ease !important;
+}
+
+.trustedsite-badge:hover .trustedsite-trusted {
+  color: #000000 !important;
+}
+
+.trustedsite-badge:hover .trustedsite-site {
+  color: #4CAF50 !important;
+}
+
+.trustedsite-text sup {
+  font-size: 8px !important;
+  vertical-align: super !important;
+  font-weight: 400 !important;
+  color: inherit !important;
+}
+
+.trustedsite-badge-bottom {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 8px !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(-10px) !important;
+  transition: max-height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease, visibility 0.3s ease, transform 0.3s ease !important;
+  margin-top: 0 !important;
+  padding: 0 !important;
+  height: 0 !important;
+  pointer-events: none !important;
+}
+
+.trustedsite-badge:hover .trustedsite-badge-bottom {
+  max-height: 50px !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  margin-top: 6px !important;
+  height: auto !important;
+  transform: translateY(0) !important;
+  pointer-events: auto !important;
+}
+
+.trustedsite-certified {
+  color: #000000 !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+  line-height: 1.2 !important;
+  transition: color 0.2s ease !important;
 }
 
 .trustedsite-arrow {
@@ -6521,6 +6723,16 @@ h3,
   width: 12px !important;
   height: 12px !important;
   margin-left: auto !important;
+  transition: opacity 0.2s ease !important;
+}
+
+.trustedsite-arrow path {
+  stroke: #000000 !important;
+  transition: stroke 0.2s ease !important;
+}
+
+.trustedsite-badge:hover .trustedsite-arrow path {
+  stroke: #000000 !important;
 }
 
 /* TrustedSite Popup Overlay */
@@ -6874,23 +7086,35 @@ h3,
 /* Responsive adjustments for TrustedSite Badge */
 @media (max-width: 600px) {
   .trustedsite-badge {
-    bottom: 15px !important;
-    right: 15px !important;
+    bottom: 0 !important;
+    right: 0 !important;
   }
 
   .trustedsite-badge-content {
-    padding: 8px 12px !important;
-    min-width: 120px !important;
-    gap: 6px !important;
+    padding: 8px 10px !important;
+    min-width: 100px !important;
+    max-width: 130px !important;
+    gap: 5px !important;
+    border-radius: 6px 0 0 0 !important;
+    border-bottom: none !important;
+    border-right: none !important;
   }
 
-  .trustedsite-text {
-    font-size: 12px !important;
+  .trustedsite-badge-top {
+    gap: 6px !important;
   }
 
   .trustedsite-checkmark {
     width: 14px !important;
     height: 14px !important;
+  }
+
+  .trustedsite-text {
+    font-size: 11px !important;
+  }
+
+  .trustedsite-certified {
+    font-size: 9px !important;
   }
 
   .trustedsite-arrow {
@@ -6980,8 +7204,25 @@ h3,
 
 @media (min-width: 601px) and (max-width: 999px) {
   .trustedsite-badge {
-    bottom: 18px !important;
-    right: 18px !important;
+    bottom: 0 !important;
+    right: 0 !important;
+  }
+
+  .trustedsite-badge-content {
+    padding: 9px 11px !important;
+    min-width: 110px !important;
+    max-width: 140px !important;
+    border-radius: 6px 0 0 0 !important;
+    border-bottom: none !important;
+    border-right: none !important;
+  }
+
+  .trustedsite-text {
+    font-size: 12px !important;
+  }
+
+  .trustedsite-certified {
+    font-size: 9px !important;
   }
 
   .trustedsite-popup {

@@ -1009,9 +1009,9 @@ function App() {
                 <div className="leader-image-wrapper">
                   <img src="/ceo.jpg" alt="Terry Antoniadis" className="leader-image" />
                 </div>
-                <p className="leader-name">Terry Antoniadis</p>
-                <div className="leader-role-wrapper">
-                  <h3 className="leader-role">CEO</h3>
+                <h1 className="leader-name">Terry Antoniadis</h1>
+                <h2 className="leader-role">CEO</h2>
+                <div className="leader-social">
                   <a
                     href="https://www.linkedin.com/in/eleftherios-antoniadis-64675820?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
                     target="_blank"
@@ -1020,8 +1020,7 @@ function App() {
                     className="leader-linkedin-link"
                   >
                     <svg viewBox="0 0 24 24" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="12" cy="12" r="11.5" fill="#D4AF37"/>
-                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" fill="#ffffff"/>
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" fill="#D4AF37"/>
                     </svg>
                   </a>
                 </div>
@@ -1032,9 +1031,9 @@ function App() {
                 <div className="leader-image-wrapper">
                   <img src="/managingdirector.png" alt="Yana Antoniadis" className="leader-image" />
                 </div>
-                <p className="leader-name">Yana Antoniadis</p>
-                <div className="leader-role-wrapper">
-                  <h3 className="leader-role">MANAGING DIRECTOR</h3>
+                <h1 className="leader-name">Yana Antoniadis</h1>
+                <h2 className="leader-role">Managing Director</h2>
+                <div className="leader-social">
                   <a
                     href="https://www.linkedin.com/in/yana-antoniadis-a66817148/"
                     target="_blank"
@@ -1043,8 +1042,7 @@ function App() {
                     className="leader-linkedin-link"
                   >
                     <svg viewBox="0 0 24 24" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="12" cy="12" r="11.5" fill="#D4AF37"/>
-                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" fill="#ffffff"/>
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" fill="#D4AF37"/>
                     </svg>
                   </a>
                 </div>
@@ -1055,9 +1053,9 @@ function App() {
                 <div className="leader-image-wrapper">
                   <img src="/compliancedirector.png" alt="Brett Paul Maclagan" className="leader-image" />
                 </div>
-                <p className="leader-name">Brett Paul Maclagan</p>
-                <div className="leader-role-wrapper">
-                  <h3 className="leader-role">COMPLIANCE DIRECTOR</h3>
+                <h1 className="leader-name">Brett Paul Maclagan</h1>
+                <h2 className="leader-role">Compliance Director</h2>
+                <div className="leader-social">
                   <a
                     href="https://www.linkedin.com/in/brett-maclagan-b250975/"
                     target="_blank"
@@ -1066,8 +1064,7 @@ function App() {
                     className="leader-linkedin-link"
                   >
                     <svg viewBox="0 0 24 24" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="12" cy="12" r="11.5" fill="#D4AF37"/>
-                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" fill="#ffffff"/>
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" fill="#D4AF37"/>
                     </svg>
                   </a>
                 </div>
@@ -1288,13 +1285,23 @@ function App() {
       {/* TrustedSite Badge */}
       <div className="trustedsite-badge" onClick={() => setTrustedSitePopupOpen(true)}>
         <div className="trustedsite-badge-content">
-          <svg className="trustedsite-checkmark" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M13.5 4L6 11.5L2.5 8" stroke="#4CAF50" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-          <span className="trustedsite-text">TrustedSite</span>
-          <svg className="trustedsite-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 4.5L6 7.5L9 4.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+          <div className="trustedsite-badge-top">
+            <div className="trustedsite-checkmark-wrapper">
+              <svg className="trustedsite-checkmark" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="16" height="16" rx="2" fill="#4CAF50"/>
+                <path d="M12 5L6.5 10.5L4 8" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <span className="trustedsite-text">
+              <span className="trustedsite-trusted">Trusted</span><span className="trustedsite-site">Site</span><sup>®</sup>
+            </span>
+          </div>
+          <div className="trustedsite-badge-bottom">
+            <span className="trustedsite-certified">CERTIFIED SECURE</span>
+            <svg className="trustedsite-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 4.5L6 7.5L9 4.5" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
         </div>
       </div>
 
