@@ -21,6 +21,18 @@ function App() {
     };
   }, [trustedSitePopupOpen]);
 
+  // Prevent body scroll when video modal is open
+  useEffect(() => {
+    if (videoModalOpen) {
+      document.body.classList.add('video-modal-open');
+    } else {
+      document.body.classList.remove('video-modal-open');
+    }
+    return () => {
+      document.body.classList.remove('video-modal-open');
+    };
+  }, [videoModalOpen]);
+
   const [newsIndex, setNewsIndex] = useState(0);
 
   const [scrolled, setScrolled] = useState(false);
@@ -1007,9 +1019,9 @@ function App() {
                     aria-label="Terry Antoniadis LinkedIn"
                     className="leader-linkedin-link"
                   >
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="12" cy="12" r="12" fill="#D4AF37"/>
-                      <path d="M8.5 9.5h-2v7h2v-7zm-1-2.5c.7 0 1.3-.6 1.3-1.3s-.6-1.3-1.3-1.3-1.3.6-1.3 1.3.6 1.3 1.3 1.3zm8.5 2.5h-2.5v3.5c0 .8-.1 2-1.2 2s-1.4-.5-1.4-1.2v-4.3h-2.5v7h2.5v-3.8c0-.2 0-.4.1-.5.2-.4.6-.8 1.3-.8.9 0 1.3.7 1.3 1.7v3.4h2.5v-4.5z" fill="#ffffff"/>
+                    <svg viewBox="0 0 24 24" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="12" r="11.5" fill="#D4AF37"/>
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" fill="#ffffff"/>
                     </svg>
                   </a>
                 </div>
@@ -1030,9 +1042,9 @@ function App() {
                     aria-label="Yana Antoniadis LinkedIn"
                     className="leader-linkedin-link"
                   >
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="12" cy="12" r="12" fill="#D4AF37"/>
-                      <path d="M8.5 9.5h-2v7h2v-7zm-1-2.5c.7 0 1.3-.6 1.3-1.3s-.6-1.3-1.3-1.3-1.3.6-1.3 1.3.6 1.3 1.3 1.3zm8.5 2.5h-2.5v3.5c0 .8-.1 2-1.2 2s-1.4-.5-1.4-1.2v-4.3h-2.5v7h2.5v-3.8c0-.2 0-.4.1-.5.2-.4.6-.8 1.3-.8.9 0 1.3.7 1.3 1.7v3.4h2.5v-4.5z" fill="#ffffff"/>
+                    <svg viewBox="0 0 24 24" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="12" r="11.5" fill="#D4AF37"/>
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" fill="#ffffff"/>
                     </svg>
                   </a>
                 </div>
@@ -1053,9 +1065,9 @@ function App() {
                     aria-label="Brett Paul Maclagan LinkedIn"
                     className="leader-linkedin-link"
                   >
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="12" cy="12" r="12" fill="#D4AF37"/>
-                      <path d="M8.5 9.5h-2v7h2v-7zm-1-2.5c.7 0 1.3-.6 1.3-1.3s-.6-1.3-1.3-1.3-1.3.6-1.3 1.3.6 1.3 1.3 1.3zm8.5 2.5h-2.5v3.5c0 .8-.1 2-1.2 2s-1.4-.5-1.4-1.2v-4.3h-2.5v7h2.5v-3.8c0-.2 0-.4.1-.5.2-.4.6-.8 1.3-.8.9 0 1.3.7 1.3 1.7v3.4h2.5v-4.5z" fill="#ffffff"/>
+                    <svg viewBox="0 0 24 24" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="12" r="11.5" fill="#D4AF37"/>
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" fill="#ffffff"/>
                     </svg>
                   </a>
                 </div>
@@ -1253,7 +1265,10 @@ function App() {
               onClick={() => setVideoModalOpen(false)}
               aria-label="Close Video"
             >
-              ×
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
             </button>
             <div className="video-wrapper">
               <iframe
