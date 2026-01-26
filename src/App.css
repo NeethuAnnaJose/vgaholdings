@@ -565,8 +565,8 @@ img, video, canvas {
   }
 
   .leader-image-wrapper {
-    width: clamp(360px, 28vw, 520px) !important;
-    height: clamp(360px, 28vw, 520px) !important;
+    width: clamp(180px, 18vw, 220px) !important;
+    height: clamp(180px, 18vw, 220px) !important;
     margin-bottom: clamp(16px, 2vh, 24px) !important;
   }
 
@@ -587,8 +587,8 @@ img, video, canvas {
   }
 
   .leader-linkedin-link {
-    width: clamp(26px, 2.6vw, 34px) !important;
-    height: clamp(26px, 2.6vw, 34px) !important;
+    width: clamp(14px, 1.5vw, 18px) !important;
+    height: clamp(14px, 1.5vw, 18px) !important;
   }
 
   .leader-linkedin-link:hover {
@@ -1014,8 +1014,8 @@ img, video, canvas {
   }
 
   .leader-linkedin-link {
-    width: clamp(24px, 2.4vw, 30px) !important;
-    height: clamp(24px, 2.4vw, 30px) !important;
+    width: clamp(13px, 1.3vw, 17px) !important;
+    height: clamp(13px, 1.3vw, 17px) !important;
   }
 
   .leader-linkedin-link:hover {
@@ -2772,7 +2772,7 @@ img, video, canvas {
     max-height: calc(100vh - 80px) !important;
     overflow-y: scroll !important;
     overflow-x: hidden !important;
-    padding: 20px 15px 50px 15px !important;
+    padding: 20px 15px 30px 15px !important;
     scrollbar-width: thin !important;
     scrollbar-color: rgba(212, 175, 55, 0.3) transparent !important;
     -ms-overflow-style: -ms-autohiding-scrollbar !important;
@@ -2783,7 +2783,8 @@ img, video, canvas {
     will-change: scroll-position !important;
     display: grid !important;
     grid-template-columns: 1fr !important;
-    gap: clamp(20px, 3vh, 28px) !important;
+    gap: clamp(12px, 1.5vh, 18px) !important;
+    row-gap: clamp(12px, 1.5vh, 18px) !important;
     box-sizing: border-box !important;
     width: 100% !important;
     max-width: 100% !important;
@@ -2794,15 +2795,17 @@ img, video, canvas {
   }
 
   .leader-image-wrapper {
-    width: clamp(260px, 38vw, 340px) !important;
-    height: clamp(260px, 38vw, 340px) !important;
+    width: clamp(170px, 30vw, 200px) !important;
+    height: clamp(170px, 30vw, 200px) !important;
     margin-bottom: clamp(14px, 2vh, 22px) !important;
   }
 
   .leader-name {
     font-size: clamp(22px, 2.8vh, 32px) !important;
-    margin-bottom: clamp(10px, 1.4vh, 16px) !important;
-    padding-top: clamp(4px, 0.5vh, 8px) !important;
+    margin-top: clamp(8px, 1vh, 12px) !important;
+    margin-bottom: clamp(6px, 0.8vh, 10px) !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
   }
 
   .leader-role {
@@ -2810,8 +2813,8 @@ img, video, canvas {
   }
 
   .leader-linkedin-link {
-    width: clamp(24px, 3.5vw, 32px) !important;
-    height: clamp(24px, 3.5vw, 32px) !important;
+    width: clamp(12px, 2vw, 16px) !important;
+    height: clamp(12px, 2vw, 16px) !important;
   }
 
   .leader-linkedin-link:hover {
@@ -2847,12 +2850,13 @@ img, video, canvas {
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.05) !important;
     border-radius: 16px !important;
     border: none !important;
-    padding: clamp(25px, 3vh, 40px) clamp(20px, 4vw, 30px) !important;
+    padding: clamp(20px, 2.5vh, 30px) clamp(20px, 4vw, 30px) !important;
     text-align: center !important;
-    min-height: clamp(400px, 50vh, 600px) !important;
+    min-height: auto !important;
     height: auto !important;
     overflow: hidden !important;
     margin: 0 !important;
+    margin-bottom: 0 !important;
     max-width: 100% !important;
     width: 100% !important;
     display: flex !important;
@@ -2886,9 +2890,10 @@ img, video, canvas {
   }
 
   .leader-image-wrapper {
-    width: clamp(220px, 45vw, 280px) !important;
-    height: clamp(220px, 45vw, 280px) !important;
-    margin-bottom: clamp(20px, 2.5vh, 28px) !important;
+    width: clamp(160px, 35vw, 180px) !important;
+    height: clamp(160px, 35vw, 180px) !important;
+    margin-top: 0 !important;
+    margin-bottom: clamp(12px, 1.5vh, 18px) !important;
     overflow: hidden !important;
     display: flex !important;
     align-items: center !important;
@@ -4984,9 +4989,15 @@ h3,
 
 /* --- 8. LEADERS --- */
 
-.leader-image-wrapper {
-  width: clamp(340px, 26vw, 480px) !important;
-  height: clamp(340px, 26vw, 480px) !important;
+.leader-image-wrapper,
+.leader-card .leader-image-wrapper,
+#leaders .leader-image-wrapper,
+.leaders-container .leader-image-wrapper,
+.leaders-grid .leader-image-wrapper {
+  width: clamp(170px, 16vw, 200px) !important;
+  height: clamp(170px, 16vw, 200px) !important;
+  max-width: 200px !important;
+  max-height: 200px !important;
   border-radius: 50% !important;
   overflow: hidden !important;
   display: flex;
@@ -5081,37 +5092,35 @@ h3,
   z-index: 1 !important;
 }
 
-.leader-linkedin-link {
-  width: clamp(40px, 4vw, 56px) !important;
-  height: clamp(40px, 4vw, 56px) !important;
+.leader-linkedin-link,
+.leader-card .leader-linkedin-link,
+#leaders .leader-linkedin-link,
+.leaders-container .leader-linkedin-link,
+.leaders-grid .leader-linkedin-link,
+.leader-social .leader-linkedin-link {
+  width: clamp(14px, 1.2vw, 18px) !important;
+  height: clamp(14px, 1.2vw, 18px) !important;
+  max-width: 18px !important;
+  max-height: 18px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   border-radius: 50% !important;
-  background: rgba(212, 175, 55, 0.1) !important;
+  background: transparent !important;
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
   cursor: pointer !important;
   position: relative !important;
-  overflow: hidden !important;
+  overflow: visible !important;
 }
 
 .leader-linkedin-link::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(212, 175, 55, 0.2);
-  transform: translate(-50%, -50%);
-  transition: width 0.3s ease, height 0.3s ease;
+  display: none !important;
 }
 
 .leader-linkedin-link:hover {
-  transform: translateY(-4px) scale(1.1) !important;
-  background: rgba(212, 175, 55, 0.2) !important;
-  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3) !important;
+  transform: translateY(-2px) scale(1.15) !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 .leader-linkedin-link:hover::before {
@@ -5124,8 +5133,8 @@ h3,
 }
 
 .leader-linkedin-link svg {
-  width: 60% !important;
-  height: 60% !important;
+  width: 100% !important;
+  height: 100% !important;
   position: relative !important;
   z-index: 1 !important;
   transition: transform 0.3s ease !important;
@@ -5139,8 +5148,8 @@ h3,
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  width: clamp(28px, 2.8vw, 36px) !important;
-  height: clamp(28px, 2.8vw, 36px) !important;
+  width: clamp(14px, 1.2vw, 18px) !important;
+  height: clamp(14px, 1.2vw, 18px) !important;
   border-radius: 50% !important;
   transition: all 0.2s ease !important;
   flex-shrink: 0 !important;
@@ -6541,13 +6550,15 @@ h3,
   }
 
   .leader-social {
-    margin-top: 8px !important;
-    padding-top: 6px !important;
+    margin-top: clamp(8px, 1vh, 12px) !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
   }
 
   .leader-linkedin-link {
-    width: clamp(24px, 3.5vw, 32px) !important;
-    height: clamp(24px, 3.5vw, 32px) !important;
+    width: clamp(12px, 2vw, 16px) !important;
+    height: clamp(12px, 2vw, 16px) !important;
   }
 
   .leader-linkedin-link:hover {
