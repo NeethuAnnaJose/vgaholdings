@@ -79,11 +79,11 @@ export function animateScrollTo(
 }
 
 // Read header offset from CSS variable (set by Header ResizeObserver) so scroll accounts for actual header height on all breakpoints (desktop, tablet, mobile).
-function getHeaderOffset() {
-  const px = getComputedStyle(document.documentElement).getPropertyValue('--header-offset').trim();
-  const num = parseInt(px, 10);
-  return Number.isFinite(num) ? num : 80;
-}
+// function getHeaderOffset() {
+//   const px = getComputedStyle(document.documentElement).getPropertyValue('--header-offset').trim();
+//   const num = parseInt(px, 10);
+//   return Number.isFinite(num) ? num : 80;
+// }
 
 export function scrollToId(id, opts = {}) {
   const el = document.getElementById(id);

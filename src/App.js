@@ -33,7 +33,7 @@ function App() {
     };
   }, [videoModalOpen]);
 
-  const [newsIndex, setNewsIndex] = useState(0);
+  // const [newsIndex, setNewsIndex] = useState(0);
 
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -102,17 +102,17 @@ function App() {
     },
   ];
 
-  const handleNewsNext = () => {
-    if (newsIndex < newsItems.length - 3) {
-      setNewsIndex(newsIndex + 1);
-    }
-  };
+  // const handleNewsNext = () => {
+  //   if (newsIndex < newsItems.length - 3) {
+  //     setNewsIndex(newsIndex + 1);
+  //   }
+  // };
 
-  const handleNewsPrev = () => {
-    if (newsIndex > 0) {
-      setNewsIndex(newsIndex - 1);
-    }
-  };
+  // const handleNewsPrev = () => {
+  //   if (newsIndex > 0) {
+  //     setNewsIndex(newsIndex - 1);
+  //   }
+  // };
 
 
 
