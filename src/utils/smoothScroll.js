@@ -78,26 +78,27 @@ export function animateScrollTo(
   });
 }
 
+// Read header offset from CSS variable (set by Header ResizeObserver) so scroll accounts for actual header height on all breakpoints (desktop, tablet, mobile).
+function getHeaderOffset() {
+  const px = getComputedStyle(document.documentElement).getPropertyValue('--header-offset').trim();
+  const num = parseInt(px, 10);
+  return Number.isFinite(num) ? num : 80;
+}
+
 export function scrollToId(id, opts = {}) {
   const el = document.getElementById(id);
   if (!el) return Promise.reject(new Error('element not found'));
 
-  // Home section always scrolls to the very top (fixed 0)
+  const useSmooth = !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const behavior = useSmooth ? 'smooth' : 'auto';
+
+  // Home section: scroll to top with smooth behavior
   if (id === 'home') {
-    return animateScrollTo(0, opts);
-  }
-
-  // For interior sections, use the "shrunk" header height (80px) as the consistent offset.
-  // This prevents the gap caused by the header shrinking from 120px during scroll.
-  const SHRUNK_HEADER_HEIGHT = 80;
-
-  const target = Math.round(el.getBoundingClientRect().top + window.scrollY - SHRUNK_HEADER_HEIGHT);
-
-  const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReduced) {
-    window.scrollTo(0, target);
+    window.scrollTo({ top: 0, behavior });
     return Promise.resolve();
   }
 
-  return animateScrollTo(target, opts);
+  // Sections use scroll-margin-top (CSS) for header offset; native smooth scroll
+  el.scrollIntoView({ behavior, block: 'start' });
+  return Promise.resolve();
 }

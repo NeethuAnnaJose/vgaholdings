@@ -1,0 +1,473 @@
+(function ($) {
+    "use strict";
+    $(window).load(function () {
+        $('.alx-site-preloader').delay(1000).fadeOut('slow');
+    })
+
+    $(document).ready(function () {
+
+
+        // $('ul.nav').smartmenus({
+        //     showTimeout: 50,
+        //     hideTimeout: 50,
+        //     hideFunction: function($ul, complete) { $ul.fadeOut(10, complete); },
+        //     showFunction: function($ul, complete) { $ul.fadeIn(10, complete); }
+        // });
+
+        ALX_HEADER_PADDING();
+    })
+
+    /***********************************************
+    * jQuery to collapse the navbar on scroll
+    ***********************************************/
+
+    $(window).scroll(function () {
+        var nav = $('.navbar-Concept');
+        if (nav.length) {
+
+            if ($(".navbar-Concept").offset().top > 50) {
+                $(".navbar-fixed-top").addClass("top-nav-collapse");
+            } else {
+                $(".navbar-fixed-top").removeClass("top-nav-collapse");
+            }
+        }
+    });
+
+    /***********************************************
+    * Highlight the top nav as scrolling occurs
+    ***********************************************/
+
+    $('body').scrollspy({
+        target: '.navbar-fixed-top',
+        offset: 65
+    });
+
+    /***********************************************
+     * Closes the Responsive Menu on Menu Item Click in One Page Nav
+     ***********************************************/
+
+    $('.navbar-onepage .navbar-collapse ul li a').on('click', function () { $('.navbar-onepage .navbar-toggle:visible').click(); });
+
+
+
+    /***********************************************
+     * HTML5 Placeholder
+     ***********************************************/
+
+    // Hamburger menu
+
+    $('nav li a').on('click', function () {
+        $('#toggle').trigger('click');
+    });
+
+    /***********************************************
+    * jQuery to fix the header
+    ***********************************************/
+
+    const ALX_HEADER_PADDING = () => {
+        const header = $('.alx-header');
+        //navbar-fixed-top
+
+        if ((!header && header.hasClass('alx-header-builds')) || (header.hasClass('navbar-fixed-top'))) return
+
+        let top_spacing = header[0].offsetHeight;
+
+        const wpadminbar = $('#wpadminbar')[0];
+
+        if (wpadminbar) {
+            // top_spacing = top_spacing + wpadminbar.offsetHeight;
+            $(header).css('top', wpadminbar.offsetHeight + 'px');
+        }
+
+        $('body').css('padding-top', top_spacing + 'px');
+
+    }
+
+
+    /***********************************************
+     * jQuery to collapse the navbar on scroll
+     ***********************************************/
+
+    $(window).scroll(function () {
+
+        var nav = $('.navbar-Concept');
+        if (nav.length) {
+
+            if ($(".navbar-Concept").offset().top > 50) {
+                $(".navbar-fixed-top").addClass("top-nav-collapse");
+            } else {
+                $(".navbar-fixed-top").removeClass("top-nav-collapse");
+            }
+        }
+    });
+    /***********************************************
+     * jQuery to collapse the navbar on scroll
+     ***********************************************/
+    $(function () {
+        var header = $('.alx-header'),
+            toggle = header.find('.alx-toggle-nav'),
+            navigation = header.find('.alx-header-collapse');
+
+        toggle.on('click', function (e) {
+            e.preventDefault()
+            $(this).toggleClass('is-active');
+            header.toggleClass('is-active');
+            navigation.toggleClass('is-active');
+        })
+
+        header.find('a.has-submenu').each(function () {
+            $(this).on('click', function (e) {
+                e.preventDefault()
+            })
+        })
+    })
+
+
+    $(document).ready(function () {
+
+        /*-------------------------------------
+           Back to top link
+         -------------------------------------*/
+        $(function () {
+
+            let backToTop = {
+                element: $('.alx-scroll-top'),
+                offset: 650,
+                duration: 350
+            };
+
+            $(window).on('scroll', function () {
+                if ($(this).scrollTop() > backToTop.offset) {
+                    backToTop.element.fadeIn('slow');
+                } else {
+                    backToTop.element.fadeOut('slow');
+                }
+            });
+            backToTop.element.on('click', function () {
+                $('html, body').animate({
+                    scrollTop: 0
+                }, backToTop.duration);
+                return false;
+            });
+        });
+
+        /*-------------------------------------
+           Fixed header by scroll
+         -------------------------------------*/
+        $(function () {
+
+            let header = {
+                element: $('.alx-header'),
+                offset: 600,
+                duration: 350
+            };
+
+            $(window).on('scroll', function () {
+                if ($(this).scrollTop() > header.offset) {
+                    header.element.addClass('alx-header__fixed');
+                } else {
+                    header.element.removeClass('alx-header__fixed');
+                }
+            });
+        });
+
+        /*-------------------------------------
+           Make opacity by scroll
+         -------------------------------------*/
+        $(function () {
+            let introHeader = $('body').find('.alx-intro');
+
+            $(window).scroll(function () {
+                effectsModuleHeader(introHeader, this);
+            });
+
+
+            function effectsModuleHeader(introHeader, scrollTopp) {
+                if (introHeader.length > 0) {
+                    var homeSHeight = introHeader.height();
+                    var topScroll = $(document).scrollTop();
+                    if ((introHeader.hasClass('alx-intro')) && ($(scrollTopp).scrollTop() <= homeSHeight)) {
+                        introHeader.css('top', (topScroll * .3));
+                    }
+                    if (introHeader.hasClass('alx-intro') && ($(scrollTopp).scrollTop() <= homeSHeight)) {
+                        introHeader.css('opacity', (1 - topScroll / introHeader.height() * 1));
+                    }
+                }
+            }
+        })
+    });
+
+
+
+
+    /***********************************************
+     * Add icon by reg to child item
+     ***********************************************/
+    $(function () {
+
+        let icon = $('body').find('.alx-child-icon');
+
+        icon.each(function () {
+
+            let ths = $(this),
+                child = ths.find('a'),
+                class_icons = [],
+                filter_class = ['menu-item', 'type', 'alx-child-icon'];
+
+            class_icons = this.className.split('_')
+
+            class_icons.forEach(function (value, index) {
+                filter_class.forEach(function (filterValue) {
+                    if (value.includes(filterValue)) {
+                        class_icons.splice(index, 1);
+                    }
+                });
+            });
+
+            let create_icon = $("<i class='" + class_icons.join(' ') + "' >");
+            child.prepend(create_icon)
+
+        })
+
+    })
+
+
+    $.fn.alx_circle_progress = function () {
+
+        let size = $(this).attr('data-size'),
+            color_fill = $(this).attr('data-fill-circle'),
+            color_gradient = $(this).attr('data-fill-circle-gradient'),
+            lineCapStyle = $(this).attr('data-fill-line-cap'),
+            animationDuration = $(this).attr('data-animation-duration');
+
+        //Fill colors
+        function fillCircle() {
+            if (color_fill !== '') {
+
+                return {
+                    color: color_fill
+                }
+
+            } else if (color_gradient !== '') {
+
+                let colors_array = [];
+
+                colors_array = color_gradient.split(",");
+
+                return {
+                    gradient: colors_array
+                }
+            } else {
+                return {
+                    color: color_fill
+                }
+            }
+        }
+
+        let fillStyle = fillCircle();
+
+        //Fill colors end
+
+
+        $(this).circleProgress({
+            size: 200,
+            fill: fillStyle,
+            lineCap: lineCapStyle,
+            startAngle: 300,
+            animation: { duration: parseInt(animationDuration) }
+        }).on('circle-animation-progress', function (event, progress, stepValue) {
+            $(this).find('span').text((stepValue * 100).toFixed(0));
+        });
+    }
+
+
+    /*-------------------------------------
+     Images Background
+     -------------------------------------*/
+    $.fn.alx_images_load = function () {
+        var url = $(this).attr('data-image');
+        if (url) {
+            $(this).css('background-image', 'url(' + url + ')');
+        } else {
+            $(this).css('transform', '0.4');
+        }
+    };
+
+    $('.alx-bg-img').alx_images_load();
+
+    /**
+     * Masonry grid
+     */
+    $.fn.alx_masonry_grid = function () {
+
+        var $ = jQuery,
+            $el = $(this);
+
+        $el.imagesLoaded(function () {
+            $el.masonry({
+                columnWidth: '.grid-sizer',
+                itemSelector: '.grid-item',
+                gutter: '.gutter-sizer',
+            });
+        });
+
+        return this;
+    };
+
+    $('.masonry').alx_masonry_grid();
+
+
+
+
+    /*-------------------------------------
+     Smooth Scroll to link
+
+     , .al-no-click, .image-modal
+     -------------------------------------*/
+
+    $(document).on('click', 'a[href^="#"]', function (e) {
+
+        let id = $(this).attr('href');
+        // target element
+        let $id = $(id);
+        if ($id.length === 0) {
+            return;
+        }
+        if ($(this).is('.alx-header-hamburger, .image-modal, .ult_a')) {
+            e.preventDefault();
+        } else {
+            if ($('.single-product').length === 0) {
+                e.preventDefault();
+                let pos = $id.offset().top;
+                $('html, body').stop().animate({
+                    scrollTop: pos
+                }, {
+                    duration: 1000,
+                    specialEasing: {
+                        width: "linear",
+                        height: "easeInOutCubic"
+                    }
+                });
+            }
+        }
+    });
+
+    $.fn.alx_slider = function () {
+        $(this).each(function () {
+            var $dots = $(this).find('.alx-slider-control__dots');
+            var $arrows = $(this).find('.alx-control-portfolio-slider');
+            var $next = $arrows.children(".wrap-next");
+            var $prev = $arrows.children(".wrap-prev");
+
+            var $slick_slider = $(this).children(".alx-slider__wrap");
+
+            // $arrows.css('display', 'none');
+            $slick_slider.not('.slick-initialized').slick({
+                dots: true,
+                fade: true,
+                appendDots: $dots,
+                dotsClass: 'dots',
+                autoplay: true,
+                autoplaySpeed: 3000,
+                autoHeight: false,
+                infinite: true,
+                cssEase: 'linear',
+                prevArrow: $prev,
+                nextArrow: $next
+            });
+
+        });
+    };
+
+    $(function () {
+        let header = $('.alx-header-builds'),
+            wrapper = $('body');
+
+        if (!wrapper.hasClass('elementor-editor-active')) {
+            wrapper.prepend(header)
+
+        }
+
+
+    })
+
+    /*-------------------------------------
+         Particles
+    -------------------------------------*/
+    $('#al-particles-js').each(function () {
+        $(this).particleground({
+            dotColor: 'rgba(255, 255, 255, 0.40)',
+            lineColor: 'rgba(255, 255, 255, 0.21)',
+            parallaxMultiplier: 5,
+            particleRadius: 5,
+            proximity: 130,
+            density: 12000
+        });
+    });
+})(jQuery);
+
+
+
+
+/***********************************************
+ * Gtranslate
+ ***********************************************/
+(function ($) {
+    'use script';
+
+    /***********************************************
+  * Gtranslate Rubuild Masonry Grid After Translated Page
+  ***********************************************/
+
+    // function alx_gtranslate_rubuild_masonry_after_translate() {
+    //     const selector = 'translated-ltr',
+    //         masonry = $('.masonry'),
+    //         gtranslate = $('.alx-is--gtranslate-plugin');
+
+    //     let by_click = 0;
+
+    //     if (masonry.length === 0 && gtranslate.length === 0) {
+    //         return false;
+    //     }
+
+    //     setInterval(() => {
+    //         if ($('html').hasClass(selector)) {
+    //             masonry.alx_masonry_grid();
+    //             by_click = 1;
+
+    //         } else {
+    //             by_click = -1;
+    //         }
+
+    //         if (by_click === -1) {
+    //             masonry.alx_masonry_grid();
+    //             by_click = 1;
+    //         }
+    //     }, 1000);
+    // }
+
+    var AlxHeaderLocalesIcon = function () {
+        const ul_wrap = $('.alx-gtranslate');
+        ul_wrap.children('li.menu-item-has-children').find('a').prepend('<i class="fa fa-globe fa-lg"></i>');
+    }
+
+    $(window).on('elementor/frontend/init', function () {
+        elementorFrontend.hooks.addAction(
+            'frontend/element_ready/alx-header-builder.default', AlxHeaderLocalesIcon
+        );
+    });
+
+    if ($('.alx-header-builds').length) {
+        return;
+    }
+
+    AlxHeaderLocalesIcon();
+    // alx_gtranslate_rubuild_masonry_after_translate();
+
+})(jQuery)
+
+
+
+
+
+

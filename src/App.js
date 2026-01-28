@@ -37,6 +37,7 @@ function App() {
 
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [activeClientTab, setActiveClientTab] = useState('all');
   // const [isScrolling, setIsScrolling] = useState(false);
 
   // const sections = [
@@ -933,10 +934,7 @@ function App() {
             </h2>
             <div className="news-carousel-container">
               <div className="news-carousel-viewport">
-                <div
-                  className="news-carousel-track"
-                  style={{ transform: `translateX(-${newsIndex * (100 / 3)}%)` }}
-                >
+                <div className="news-carousel-track">
                   {newsItems.map((item) => (
                     <article key={item.id} className="news-card">
                       <div className="news-thumb">
@@ -960,16 +958,6 @@ function App() {
                   ))}
                 </div>
               </div>
-              {newsIndex > 0 && (
-                <button className="carousel-nav-btn prev-btn" onClick={handleNewsPrev} aria-label="Previous News">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="15 18 9 12 15 6" /></svg>
-                </button>
-              )}
-              {newsIndex < newsItems.length - 3 && (
-                <button className="carousel-nav-btn next-btn" onClick={handleNewsNext} aria-label="Next News">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6" /></svg>
-                </button>
-              )}
             </div>
           </div>
         </section>
@@ -980,17 +968,84 @@ function App() {
               Meet Our Clients
             </h2>
 
+            {/* Tab Navigation */}
+            <div className="clients-tabs">
+              <button 
+                className={`client-tab ${activeClientTab === 'all' ? 'active' : ''}`}
+                onClick={() => setActiveClientTab('all')}
+              >
+                All
+              </button>
+              <button 
+                className={`client-tab ${activeClientTab === 'chemicals' ? 'active' : ''}`}
+                onClick={() => setActiveClientTab('chemicals')}
+              >
+                Chemicals
+              </button>
+              <button 
+                className={`client-tab ${activeClientTab === 'consultancy' ? 'active' : ''}`}
+                onClick={() => setActiveClientTab('consultancy')}
+              >
+                Consultancy
+              </button>
+              <button 
+                className={`client-tab ${activeClientTab === 'oil-gas' ? 'active' : ''}`}
+                onClick={() => setActiveClientTab('oil-gas')}
+              >
+                Oil and Gas
+              </button>
+            </div>
+
             <div className="clients-scroll-wrapper">
-              {/* Single Row - All Clients */}
               <div className="marquee-row">
                 <div className="marquee-content">
-                  <div className="client-logo-item"><img src="/ADNOC.png" alt="ADNOC" /></div>
-                  <div className="client-logo-item"><img src="/Bapco.jpg" alt="Bapco" /></div>
-                  <div className="client-logo-item"><img src="/GALFAR.png" alt="GALFAR" /></div>
-                  <div className="client-logo-item"><img src="/PDO.png" alt="PDO" /></div>
-                  <div className="client-logo-item"><img src="/TENARIS.png" alt="TENARIS" /></div>
-                  <div className="client-logo-item"><img src="/RAFCO.png" alt="RAFCO" /></div>
-                  <div className="client-logo-item"><img src="/OXY.png" alt="OXY" /></div>
+                  {/* All Tab - Show all logos */}
+                  {activeClientTab === 'all' && (
+                    <>
+                      <div className="client-logo-item"><img src="/Bapco.jpg" alt="Bapco" /></div>
+                      <div className="client-logo-item"><img src="/RAFCO.png" alt="RAFCO" /></div>
+                      <div className="client-logo-item"><img src="/OXY.png" alt="OXY" /></div>
+                      <div className="client-logo-item"><img src="/GALFAR.png" alt="GALFAR" /></div>
+                      <div className="client-logo-item"><img src="/TENARIS.png" alt="TENARIS" /></div>
+                      <div className="client-logo-item"><img src="/PDO.png" alt="PDO" /></div>
+                      <div className="client-logo-item"><img src="/ADNOC.png" alt="ADNOC" /></div>
+                    </>
+                  )}
+
+                  {/* Chemicals Tab */}
+                  {activeClientTab === 'chemicals' && (
+                    <>
+                      <div className="client-logo-item"><img src="/Bapco.jpg" alt="Bapco" /></div>
+                      <div className="client-logo-item"><img src="/RAFCO.png" alt="RAFCO" /></div>
+                      <div className="client-logo-item"><img src="/BAPCO-Upstream.jpg" alt="BAPCO Upstream" onError={(e) => { e.target.style.display = 'none'; }} /></div>
+                      <div className="client-logo-item"><img src="/BASTS.png" alt="BASTS" onError={(e) => { e.target.style.display = 'none'; }} /></div>
+                      <div className="client-logo-item"><img src="/AMA.jpeg" alt="AMA" onError={(e) => { e.target.style.display = 'none'; }} /></div>
+                    </>
+                  )}
+
+                  {/* Consultancy Tab */}
+                  {activeClientTab === 'consultancy' && (
+                    <>
+                      <div className="client-logo-item"><img src="/EBDbahrain.png" alt="EBD Bahrain" onError={(e) => { e.target.style.display = 'none'; }} /></div>
+                      <div className="client-logo-item"><img src="/roladberger.png" alt="Roland Berger" onError={(e) => { e.target.style.display = 'none'; }} /></div>
+                      <div className="client-logo-item"><img src="/syinterprices.png" alt="Syinterprices" onError={(e) => { e.target.style.display = 'none'; }} /></div>
+                      <div className="client-logo-item"><img src="/arthurlittle.jpg" alt="Arthur D. Little" /></div>
+                      <div className="client-logo-item"><img src="/agodco.png" alt="AGODCO" onError={(e) => { e.target.style.display = 'none'; }} /></div>
+                      <div className="client-logo-item"><img src="/eztaxi.png" alt="EZ Taxi" onError={(e) => { e.target.style.display = 'none'; }} /></div>
+                      <div className="client-logo-item"><img src="/Greekstreet.jpg" alt="Greek Street" /></div>
+                    </>
+                  )}
+
+                  {/* Oil and Gas Tab */}
+                  {activeClientTab === 'oil-gas' && (
+                    <>
+                      <div className="client-logo-item"><img src="/Tenaris_Logo.png" alt="Tenaris" /></div>
+                      <div className="client-logo-item"><img src="/PDO.png" alt="PDO" /></div>
+                      <div className="client-logo-item"><img src="/ADNOC.png" alt="ADNOC" /></div>
+                      <div className="client-logo-item"><img src="/OXY.png" alt="OXY" /></div>
+                      <div className="client-logo-item"><img src="/GALFAR.png" alt="GALFAR" /></div>
+                    </>
+                  )}
                 </div>
               </div>
             </div>

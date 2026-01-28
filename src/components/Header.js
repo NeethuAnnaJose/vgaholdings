@@ -114,7 +114,7 @@ export default function Header({ scrolled, activeSection }) {
             src="/vgalogo.png"
             alt="VGA Holdings Logo"
             style={{
-              height: "85px",
+              height: "50px",
               width: "auto",
               objectFit: "contain",
               display: "block",

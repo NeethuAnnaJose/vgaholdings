@@ -1,0 +1,96 @@
+
+(function ($){
+    'use script';
+
+
+    /***********************************************
+     * Mini cart
+     ***********************************************/
+    var AlxWoocommerceMiniCart = function (){
+
+        var mini_cart = $('.alx-mini-cart'),
+            is_active = false;
+
+        if(!Modernizr.mq('(max-width: 992px)')){
+            mini_cart.hover(
+                function() {
+                    $( this ).addClass( "is-active" );
+                }, function() {
+                    $( this ).removeClass( "is-active" );
+                }
+            );
+        }else {
+
+            mini_cart.children('a').on('click', function (e){
+                e.preventDefault()
+
+                is_active = !is_active
+
+                if(is_active) {
+                    $(this).parent().addClass('is-active');
+                }else {
+                    $(this).parent().removeClass('is-active');
+                }
+
+            })
+        }
+    }
+
+    $(window).on('elementor/frontend/init', function () {
+        elementorFrontend.hooks.addAction(
+            'frontend/element_ready/global', AlxWoocommerceMiniCart
+        );
+    });
+
+    if ($('.alx-header-builds').length) {
+        return;
+    }
+
+    $(document).ready(function () {
+        AlxWoocommerceMiniCart();
+    })
+
+    /***********************************************
+     * Add review show form
+     ***********************************************/
+    var AlxWoocommerceAddReview = function(element) {
+        let status = false
+        $(element).find('#alx-product-addReview-button').on('click', function (){
+            $(element).find('#alx-product-addReview-wrap').slideToggle(500);
+        })
+    }
+    $(document).ready(function () {
+        AlxWoocommerceAddReview('#alx-product-addReview');
+    })
+
+
+    /***********************************************
+     * Quantity Plus / Minus
+     ***********************************************/
+    $(document).on('click', '.alx-quantity .plus, .alx-quantity .minus', function(){
+        var $this = $(this),
+            $qty = $this.siblings('.qty'),
+            current = parseInt($qty.val(), 10),
+            min = parseInt($qty.attr('min'), 10),
+            max = parseInt($qty.attr('max'), 10),
+            step = parseInt($qty.attr('step'), 10);
+
+        min = min ? min : 1;
+        max = max ? max : current + step;
+
+        if ($this.hasClass('minus') && current > min) {
+            $qty.val(current - step);
+            $qty.trigger('change');
+        }
+
+        if ($this.hasClass('plus') && current < max) {
+            $qty.val(current + step);
+            $qty.trigger('change');
+        }
+
+        return false;
+    });
+
+
+
+})(jQuery)

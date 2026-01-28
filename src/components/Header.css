@@ -3,13 +3,14 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 120px;
+  height: 80px;
   width: 100%;
   overflow: hidden;
   z-index: 1000;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(10px);
+  background: rgba(12, 12, 12, 0.95);
+  backdrop-filter: blur(20px) saturate(180%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   transition: all 400ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -50,7 +51,7 @@
   align-items: center;
   justify-content: center;
   /* Center the whole group */
-  padding: 0 24px;
+  padding: 0 20px;
 }
 
 .site-nav {
@@ -62,14 +63,14 @@
 .nav-left {
   justify-content: flex-end;
   /* Push items towards center */
-  padding-right: 40px;
+  padding-right: 30px;
   /* Space from logo */
 }
 
 .nav-right {
   justify-content: flex-start;
   /* Push items towards center */
-  padding-left: 40px;
+  padding-left: 30px;
   /* Space from logo */
 }
 
@@ -87,7 +88,7 @@
 }
 
 .site-header.scrolled .brand {
-  transform: scale(0.85);
+  transform: scale(1);
 }
 
 .brand-sub {
@@ -350,7 +351,7 @@
 /* Tablet (601px - 1024px) */
 @media (max-width: 1024px) and (min-width: 601px) {
   .site-header {
-    height: 90px;
+    height: 75px;
   }
 
   .site-header.scrolled {
@@ -368,7 +369,7 @@
   }
 
   .brand img {
-    height: 50px;
+    height: 45px;
   }
 }
 
@@ -396,13 +397,11 @@
   }
 
   .site-header {
-    height: 90px;
+    height: 75px;
   }
 
-
-
   .brand img {
-    height: 45px;
+    height: 40px;
   }
 
 
@@ -411,7 +410,7 @@
 /* Mobile portrait */
 @media (max-width: 600px) {
   .site-header {
-    height: 80px;
+    height: 70px;
   }
 
   /* Ensure hamburger is visible in mobile */
@@ -420,7 +419,7 @@
   }
 
   .brand img {
-    height: 40px;
+    height: 35px;
   }
 
   .mobile-nav {
@@ -431,7 +430,7 @@
 /* Extra small mobile */
 @media (max-width: 375px) {
   .site-header {
-    height: 70px;
+    height: 65px;
   }
 
   .hamburger-btn {
@@ -441,7 +440,7 @@
   }
 
   .brand img {
-    height: 35px;
+    height: 30px;
   }
   .mobile-nav {
     width: 220px;
