@@ -284,9 +284,9 @@ h2.wcu-heading {
   margin-top: -92px !important;
 }
 
-/* Ensure all section containers start at the same top position (EXCEPT ABOUT US) */
+/* Ensure content never collides with fixed header – all sections (except About) use header offset */
 .page-section:not(#about) {
-  padding-top: 0 !important;
+  padding-top: var(--header-offset) !important;
   margin-top: 0 !important;
 }
 
@@ -304,17 +304,17 @@ h2.wcu-heading {
   justify-content: flex-start !important;
 }
 
-/* Force What We Do and Investment Portfolio sections to top */
+/* What We Do and Investment Portfolio – clear header, content below */
 #what-we-do,
 #what-we-do.page-section {
-  padding-top: 0 !important;
+  padding-top: var(--header-offset) !important;
   margin-top: 0 !important;
   justify-content: flex-start !important;
 }
 
 #investment-portfolio,
 #investment-portfolio.page-section {
-  padding-top: 0 !important;
+  padding-top: var(--header-offset) !important;
   margin-top: 0 !important;
   justify-content: flex-start !important;
 }
@@ -4054,7 +4054,7 @@ h2.wcu-heading {
     width: 100% !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
-    margin: 0 !important;
+    margin: 28px !important;
   }
 
   #why-choose-us .wcu-heading {
@@ -6666,7 +6666,7 @@ h3,
 .stealth-content {
   flex: 1 !important;
   width: 50% !important;
-  padding: 4vw !important;
+  /* padding: 4vw !important; */
   display: flex !important;
   flex-direction: column !important;
   justify-content: center !important;
@@ -7444,7 +7444,7 @@ margin-bottom: clamp(60px, 8vw, 115px);
   #stealth-video .stealth-content {
     width: 100% !important;
     flex: 1 1 auto !important;
-    padding: 6vw !important;
+    /* padding: 6vw !important; */
     min-height: 0 !important;
   }
 
@@ -7520,10 +7520,10 @@ margin-bottom: clamp(60px, 8vw, 115px);
   }
 }
 
-/* Small Mobile (iPhone SE etc) */
+/* Small Mobile (iPhone SE etc) – match Header.css .site-header height so content never collides */
 @media (max-width: 375px) {
   :root {
-    --header-offset: 60px;
+    --header-offset: 65px;
   }
 
   /* Ensure consistent center alignment on small mobile */
@@ -8093,7 +8093,7 @@ section#clients h2.clients-heading,
 #clients h2.clients-heading,
 .clients-container .clients-heading,
 h2.clients-heading {
-  font-size: clamp(28px, 4.5vh, 42px) !important;
+  /* font-size: clamp(28px, 4.5vh, 42px) !important; */
   font-weight: 700 !important;
   color: #8B6914 !important;
   margin: 0 auto 30px auto !important;
@@ -9533,6 +9533,48 @@ section#leaders.section {
     overscroll-behavior: contain !important;
     overscroll-behavior-y: contain !important;
     touch-action: pan-y !important;
+  }
+}
+
+/* ========================================
+   MOBILE – UNIFIED HEADING FONT SIZE
+   All section headings same size on mobile (max-width: 768px)
+   ======================================== */
+@media (max-width: 768px) {
+  h2,
+  .page-section h2,
+  .what-we-do-heading,
+  .portfolio-heading,
+  .services-heading,
+  .news-heading,
+  .clients-heading,
+  .leaders-heading,
+  .wcu-heading,
+  .contact-heading-hello,
+  h2.what-we-do-heading,
+  h2.portfolio-heading,
+  h2.services-heading,
+  h2.news-heading,
+  h2.clients-heading,
+  h2.leaders-heading,
+  h2.wcu-heading,
+  h2.contact-heading-hello,
+  #what-we-do .what-we-do-heading,
+  #investment-portfolio .portfolio-heading,
+  #services .services-heading,
+  #news .news-heading,
+  #clients .clients-heading,
+  #clients h2.clients-heading,
+  #leaders .leaders-heading,
+  #leaders h2.leaders-heading,
+  #wcu .wcu-heading,
+  #contact .contact-heading-hello,
+  #about .about-heading,
+  section#clients .clients-heading,
+  section#clients h2.clients-heading,
+  section#leaders .leaders-heading,
+  section#leaders h2.leaders-heading {
+    font-size: 24px !important;
   }
 }
 
