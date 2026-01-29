@@ -98,7 +98,37 @@ export function scrollToId(id, opts = {}) {
     return Promise.resolve();
   }
 
-  // Sections use scroll-margin-top (CSS) for header offset; native smooth scroll
+  // About Us: center the section in the viewport (disable scroll-snap during scroll so it doesn't snap back to top)
+  if (id === 'about') {
+    const scrollRoot = document.documentElement;
+    const viewportH = window.innerHeight;
+    const rect = el.getBoundingClientRect();
+    const sectionTop = window.scrollY + rect.top;
+    const sectionH = rect.height;
+    const maxScroll = document.documentElement.scrollHeight - viewportH;
+    const targetY = Math.max(0, Math.min(maxScroll, Math.round(sectionTop - viewportH / 2 + sectionH / 2)));
+
+    const restoreSnap = () => {
+      scrollRoot.style.scrollSnapType = '';
+    };
+
+    scrollRoot.style.scrollSnapType = 'none';
+
+    if (useSmooth) {
+      return animateScrollTo(targetY, { duration: opts.duration || 1400 })
+        .then(() => {
+          setTimeout(restoreSnap, 150);
+        })
+        .catch(() => {
+          restoreSnap();
+        });
+    }
+    window.scrollTo(0, targetY);
+    setTimeout(restoreSnap, 50);
+    return Promise.resolve();
+  }
+
+  // Other sections: align to top
   el.scrollIntoView({ behavior, block: 'start' });
   return Promise.resolve();
 }

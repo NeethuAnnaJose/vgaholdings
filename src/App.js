@@ -146,32 +146,19 @@ function App() {
 
       const activeSection = sections[targetIndex];
 
-      // Check for scrollable internal content
-      const scrollableContent = activeSection ? activeSection.querySelector('.about-shell, .what-we-do-grid-wrapper, .portfolio-content, .services-grid, .news-carousel-container, .leaders-grid, .clients-scroll-wrapper, .wcu-grid, .about-card, .leaders-container, .wcu-container') : null;
+      // Check ALL candidate scroll containers; only consider elements that actually scroll (overflow-y auto/scroll)
+      const scrollSelector = '.what-we-do-grid-wrapper, .about-card, .portfolio-content, .services-grid, .news-carousel-container, .news-container, .leaders-grid, .clients-scroll-wrapper, .wcu-grid';
+      const scrollCandidates = activeSection ? activeSection.querySelectorAll(scrollSelector) : [];
 
-      if (scrollableContent) {
-        const { scrollTop, scrollHeight, clientHeight } = scrollableContent;
-        const isScrollable = scrollHeight > clientHeight;
+      for (const el of scrollCandidates) {
+        const oy = getComputedStyle(el).overflowY;
+        if (oy !== 'auto' && oy !== 'scroll' && oy !== 'overlay') continue;
+        const { scrollTop, scrollHeight, clientHeight } = el;
+        if (scrollHeight <= clientHeight) continue;
         const isAtTop = scrollTop <= 5;
         const isAtBottom = Math.ceil(scrollTop + clientHeight) >= scrollHeight - 5;
-
-        if (isScrollable) {
-          // Use boundary detection for all scrollable containers
-          // When at top and scrolling up, or at bottom and scrolling down, allow section transition
-          if (e.deltaY > 0) {
-            // Scrolling DOWN
-            if (!isAtBottom) {
-              return; // Allow native scroll within container
-            }
-            // At bottom - allow section transition to next section
-          } else {
-            // Scrolling UP
-            if (!isAtTop) {
-              return; // Allow native scroll within container
-            }
-            // At top - allow section transition to previous section
-          }
-        }
+        if (e.deltaY > 0 && !isAtBottom) return; // Allow native scroll down within this container
+        if (e.deltaY < 0 && !isAtTop) return;     // Allow native scroll up within this container
       }
 
       // Prevent default only when we're going to transition sections
@@ -274,25 +261,19 @@ function App() {
 
       const activeSection = sections[targetIndex];
       
-      // Check for scrollable internal content (matching wheel handler logic)
-      const scrollableContent = activeSection ? activeSection.querySelector('.about-shell, .what-we-do-grid-wrapper, .portfolio-content, .services-grid, .news-carousel-container, .leaders-grid, .clients-scroll-wrapper, .wcu-grid, .about-card, .leaders-container, .wcu-container') : null;
+      // Check ALL candidate scroll containers; only consider elements that actually scroll (overflow-y auto/scroll)
+      const scrollSelector = '.what-we-do-grid-wrapper, .about-card, .portfolio-content, .services-grid, .news-carousel-container, .news-container, .leaders-grid, .clients-scroll-wrapper, .wcu-grid';
+      const scrollCandidates = activeSection ? activeSection.querySelectorAll(scrollSelector) : [];
 
-      if (scrollableContent) {
-        const { scrollTop, scrollHeight, clientHeight } = scrollableContent;
-        const isScrollable = scrollHeight > clientHeight;
+      for (const el of scrollCandidates) {
+        const oy = getComputedStyle(el).overflowY;
+        if (oy !== 'auto' && oy !== 'scroll' && oy !== 'overlay') continue;
+        const { scrollTop, scrollHeight, clientHeight } = el;
+        if (scrollHeight <= clientHeight) continue;
         const isAtTop = scrollTop <= 5;
         const isAtBottom = Math.ceil(scrollTop + clientHeight) >= scrollHeight - 5;
-
-        if (isScrollable) {
-          // If scrollable and not at boundaries, allow native scroll
-          if (diff > 0 && !isAtBottom) {
-            return; // Allow native scroll down within container
-          }
-          if (diff < 0 && !isAtTop) {
-            return; // Allow native scroll up within container
-          }
-          // At boundaries - allow section transition
-        }
+        if (diff > 0 && !isAtBottom) return; // Allow native scroll down within this container
+        if (diff < 0 && !isAtTop) return;     // Allow native scroll up within this container
       }
 
       // Allow native swipe scroll for sections with internal scroll

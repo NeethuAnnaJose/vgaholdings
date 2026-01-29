@@ -5,7 +5,7 @@ section#clients .clients-heading,
 #clients h2.clients-heading,
 #clients .clients-heading,
 h2.clients-heading {
-  /* font-size: clamp(20px, 4.5vw, 42px) !important; */
+  font-size: clamp(20px, 4.5vw, 42px) !important;
   font-weight: 700 !important;
   color: #8B6914 !important;
   margin: 0 auto clamp(15px, 3vh, 30px) auto !important;
@@ -44,7 +44,7 @@ section#leaders .leaders-heading,
 #leaders h2.leaders-heading,
 #leaders .leaders-heading,
 h2.leaders-heading {
-  /* font-size: clamp(28px, 4.5vh, 42px) !important; */
+  font-size: clamp(28px, 4.5vh, 42px) !important;
   font-weight: 700 !important;
   color: #8B6914 !important;
   margin: 0 auto 30px auto !important;
@@ -83,46 +83,6 @@ section#clients,
 section#leaders,
 #leaders {
   background: linear-gradient(to bottom, #ffffff 0%, #f8f8f8 100%) !important;
-}
-
-/* CRITICAL: Force News Heading Styles - Match Clients and Leaders */
-section#news h2.news-heading,
-section#news .news-heading,
-#news h2.news-heading,
-#news .news-heading,
-h2.news-heading {
-  /* font-size: clamp(20px, 4.5vw, 42px) !important; */
-  font-weight: 700 !important;
-  color: #8B6914 !important;
-  margin: 0 auto clamp(15px, 3vh, 30px) auto !important;
-  text-transform: uppercase !important;
-  letter-spacing: clamp(0.04em, 0.1vw, 0.08em) !important;
-  text-align: center !important;
-  position: relative !important;
-  padding: 0 0 clamp(12px, 2vh, 15px) 0 !important;
-  display: inline-block !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-  word-wrap: break-word !important;
-  overflow-wrap: break-word !important;
-}
-
-section#news h2.news-heading::after,
-section#news .news-heading::after,
-#news h2.news-heading::after,
-#news .news-heading::after,
-h2.news-heading::after {
-  content: '' !important;
-  position: absolute !important;
-  bottom: 0 !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  width: clamp(40px, 12vw, 120px) !important;
-  height: clamp(2px, 0.5vh, 5px) !important;
-  background: #D4AF37 !important;
-  border-radius: 2px !important;
-  z-index: 1 !important;
-  box-shadow: 0 2px 4px rgba(212, 175, 55, 0.3) !important;
 }
 
 .App main {
@@ -235,7 +195,6 @@ img, video, canvas {
   -webkit-overflow-scrolling: touch !important;
   overscroll-behavior: contain !important;
   scroll-padding: 10px;
-  will-change: scroll-position;
 }
 
 /* Enhanced scrollbar for internal scrollable containers */
@@ -303,7 +262,6 @@ img, video, canvas {
 .news-heading,
 .clients-heading,
 .leaders-heading,
-.wcu-heading,
 .contact-heading-hello,
 h2.what-we-do-heading,
 h2.portfolio-heading,
@@ -311,7 +269,6 @@ h2.services-heading,
 h2.news-heading,
 h2.clients-heading,
 h2.leaders-heading,
-h2.wcu-heading,
 h2.contact-heading-hello {
   margin-top: 0 !important;
   padding-top: var(--heading-top-padding) !important;
@@ -322,44 +279,9 @@ h2.contact-heading-hello {
   width: 100% !important;
   box-sizing: border-box !important;
 }
-
-/* News heading - Match Clients and Leaders style */
-.news-heading,
-#news .news-heading,
-#news.page-section .news-heading,
-h2.news-heading {
-  /* font-size: clamp(20px, 4.5vw, 42px) !important; */
-  font-weight: 700 !important;
-  color: #8B6914 !important;
-  margin: 0 auto clamp(15px, 3vh, 30px) auto !important;
-  text-transform: uppercase !important;
-  letter-spacing: clamp(0.04em, 0.1vw, 0.08em) !important;
-  text-align: center !important;
-  position: relative !important;
-  padding: 0 0 clamp(12px, 2vh, 15px) 0 !important;
-  display: inline-block !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-  word-wrap: break-word !important;
-  overflow-wrap: break-word !important;
-  line-height: 1.2 !important;
-}
-
-.news-heading::after,
-#news .news-heading::after,
-#news.page-section .news-heading::after,
-h2.news-heading::after {
-  content: '' !important;
-  position: absolute !important;
-  bottom: 0 !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  width: clamp(40px, 12vw, 120px) !important;
-  height: clamp(2px, 0.5vh, 5px) !important;
-  background: #D4AF37 !important;
-  border-radius: 2px !important;
-  z-index: 1 !important;
-  box-shadow: 0 2px 4px rgba(212, 175, 55, 0.3) !important;
+.wcu-heading,
+h2.wcu-heading {
+  margin-top: -92px !important;
 }
 
 /* Ensure all section containers start at the same top position (EXCEPT ABOUT US) */
@@ -437,9 +359,9 @@ h2.news-heading::after {
     --heading-top-padding: clamp(15px, 2vh, 25px); /* Desktop heading top padding */
   }
 
-  .page-section:not(#about):not(#stealth-video):not(#inspiration) {
+  .page-section:not(#about) {
     padding-top: 0 !important;
-    padding-left: 40px !important;
+    /* padding-left: 40px !important; */
     padding-right: 40px !important;
     padding-bottom: 0 !important;
     min-height: 100vh !important;
@@ -448,21 +370,6 @@ h2.news-heading::after {
     overflow-x: hidden !important;
     display: flex !important;
     flex-direction: column !important;
-  }
-
-  /* Stealth and Inspiration sections - Full width, NO LEFT GAP */
-  #stealth-video,
-  #stealth-video.page-section,
-  #inspiration,
-  #inspiration.page-section {
-    padding: 0 !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    margin: 0 !important;
-    min-height: 100vh !important;
-    height: 100vh !important;
-    overflow: hidden !important;
-    display: flex !important;
   }
 
   /* About section - centered, not top-aligned */
@@ -619,7 +526,7 @@ h2.news-heading::after {
     min-height: auto !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
-    border-radius: 20px !important;
+    border-radius: 0 !important;
     margin: 0 auto !important;
     scrollbar-width: none !important;
     -ms-overflow-style: none !important;
@@ -789,7 +696,7 @@ h2.news-heading::after {
     min-height: auto !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
-    border-radius: 20px !important;
+    border-radius: 0 !important;
     margin: 0 auto !important;
     scrollbar-width: none !important;
     -ms-overflow-style: none !important;
@@ -838,6 +745,7 @@ h2.news-heading::after {
     width: 100%;
     overflow: hidden;
     margin: 0 auto;
+    margin-top: 15px;
   }
 
   /* Desktop What We Do - Reference design */
@@ -1018,7 +926,7 @@ h2.news-heading::after {
     width: 100% !important;
   }
 
-  /* News carousel container - Changed to Grid Layout for Desktop - Shows ALL 6 cards - Reduced gaps - Scrollable */
+  /* News carousel container - Grid with equal-height rows */
   .news-carousel-container {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
@@ -1034,6 +942,7 @@ h2.news-heading::after {
     flex: 1 1 auto !important;
     min-height: 0 !important;
     align-content: start !important;
+    align-items: stretch !important;
   }
 
   /* Hide carousel viewport - use grid instead */
@@ -1053,7 +962,7 @@ h2.news-heading::after {
     gap: 0 !important;
   }
 
-  /* News cards - Grid layout styling - Reduced spacing */
+  /* News cards - Equal height in row, flex column so body + CTA align */
   .news-card {
     display: flex !important;
     flex-direction: column !important;
@@ -1064,9 +973,10 @@ h2.news-heading::after {
     transition: transform 0.3s ease, box-shadow 0.3s ease !important;
     width: 100% !important;
     max-width: 100% !important;
-    flex: 0 0 auto !important;
     margin: 0 !important;
     min-width: 0 !important;
+    min-height: 100% !important;
+    align-self: stretch !important;
   }
 
   .news-card:hover {
@@ -1091,12 +1001,13 @@ h2.news-heading::after {
     display: block !important;
   }
 
-  /* News body */
+  /* News body - flexes to fill card so all cards same height */
   .news-body {
     padding: clamp(20px, 2.5vh, 30px) !important;
     display: flex !important;
     flex-direction: column !important;
     flex: 1 1 auto !important;
+    min-height: 0 !important;
     gap: clamp(12px, 1.5vh, 18px) !important;
   }
 
@@ -1356,42 +1267,6 @@ h2.news-heading::after {
     -webkit-overflow-scrolling: touch !important;
     overscroll-behavior: contain !important;
   }
-
-  /* Stealth and Inspiration sections - Full width, NO LEFT GAP - Desktop */
-  #stealth-video,
-  #stealth-video.page-section,
-  #inspiration,
-  #inspiration.page-section {
-    padding: 0 !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    margin: 0 !important;
-    min-height: 100vh !important;
-    height: 100vh !important;
-    overflow: hidden !important;
-    display: flex !important;
-  }
-
-  .stealth-video-container,
-  .inspiration-container {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-
-  .stealth-card {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  .stealth-image,
-  .inspiration-image-panel {
-    margin-left: 0 !important;
-    padding-left: 0 !important;
-  }
 }
 
 /* ========================================
@@ -1479,7 +1354,7 @@ h2.news-heading::after {
     min-height: auto !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
-    border-radius: 15px !important;
+    border-radius: 0 !important;
     margin: 0 auto !important;
     scrollbar-width: none !important;
     -ms-overflow-style: none !important;
@@ -1810,15 +1685,22 @@ h2.news-heading::after {
   }
 
   .wcu-heading {
-    position: relative;
+    position: relative !important;
     padding: 0 !important;
     margin: 0 0 1.5vh 0 !important;
-    /* background: transparent !important; */
+    background: transparent !important;
     backdrop-filter: none !important;
-    z-index: 1;
+    z-index: 1 !important;
     border-bottom: none !important;
-    font-size: clamp(24px, 3vh, 32px);
-    flex-shrink: 0;
+    flex-shrink: 0 !important;
+    font-size: clamp(24px, 4vh, 36px) !important;
+    font-weight: 700 !important;
+    color: #8B6914 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.08em !important;
+    text-align: center !important;
+    display: inline-block !important;
+    width: 100% !important;
   }
 
   .wcu-grid {
@@ -1826,14 +1708,14 @@ h2.news-heading::after {
     overflow: visible !important;
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 15px !important;
-    max-width: 1200px !important;
-    margin: 0 auto !important;
+    gap: 20px !important;
     width: 100% !important;
-    align-content: center !important;
+    max-width: 1000px !important;
+    margin: 0 auto !important;
     justify-items: stretch !important;
+    align-items: start !important;
   }
-  
+
   .wcu-item {
     flex-direction: column !important;
     align-items: center !important;
@@ -2207,7 +2089,7 @@ h2.news-heading::after {
     min-height: 0 !important;
   }
 
-  .page-section:not(#about):not(#stealth-video):not(#inspiration) {
+  .page-section:not(#about) {
     padding-top: 0 !important;
     padding-left: 10px !important;
     padding-right: 10px !important;
@@ -2224,22 +2106,7 @@ h2.news-heading::after {
     scroll-snap-stop: always !important;
   }
 
-  /* Stealth and Inspiration sections - Full width, NO LEFT GAP */
-  #stealth-video,
-  #stealth-video.page-section,
-  #inspiration,
-  #inspiration.page-section {
-    padding: 0 !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    margin: 0 !important;
-    min-height: 100vh !important;
-    height: 100vh !important;
-    overflow: hidden !important;
-    display: flex !important;
-  }
-
-  /* About section - centered, not top-aligned */
+  /* About section - centered, not top-aligned; snap to center so card is in middle */
   #about.page-section {
     padding-top: 0 !important;
     padding-left: 10px !important;
@@ -2252,7 +2119,7 @@ h2.news-heading::after {
     align-items: center !important;
     justify-content: center !important;
     box-sizing: border-box !important;
-    scroll-snap-align: start !important;
+    scroll-snap-align: center !important;
     scroll-snap-stop: always !important;
   }
 
@@ -2329,17 +2196,8 @@ h2.news-heading::after {
   .page-section#about .about-card {
     min-height: auto !important;
     max-height: calc(100vh - var(--header-offset) - 20px) !important;
-    overflow-y: scroll !important;
+    overflow-y: auto !important;
     overflow-x: hidden !important;
-    grid-template-columns: 1fr !important;
-    gap: 20px !important;
-    padding: 20px !important;
-    padding-bottom: 40px !important;
-    max-width: 90vw !important;
-    width: 100% !important;
-    border-radius: 12px !important;
-    margin: 0 auto !important;
-    text-align: center !important;
     scrollbar-width: thin !important;
     scrollbar-color: rgba(212, 175, 55, 0.3) transparent !important;
     -ms-overflow-style: -ms-autohiding-scrollbar !important;
@@ -2359,7 +2217,7 @@ h2.news-heading::after {
   #about .about-card::-webkit-scrollbar,
   #about.page-section .about-card::-webkit-scrollbar,
   .page-section#about .about-card::-webkit-scrollbar {
-    width: 4px !important;
+    width: 6px !important;
     display: block !important;
     height: auto !important;
   }
@@ -2367,20 +2225,23 @@ h2.news-heading::after {
   #about .about-card::-webkit-scrollbar-track,
   #about.page-section .about-card::-webkit-scrollbar-track,
   .page-section#about .about-card::-webkit-scrollbar-track {
-    background: transparent !important;
+    background: rgba(212, 175, 55, 0.1) !important;
+    border-radius: 3px !important;
   }
 
   #about .about-card::-webkit-scrollbar-thumb,
   #about.page-section .about-card::-webkit-scrollbar-thumb,
   .page-section#about .about-card::-webkit-scrollbar-thumb {
     background: rgba(212, 175, 55, 0.4) !important;
-    border-radius: 2px !important;
+    border-radius: 3px !important;
+    border: 1px solid rgba(212, 175, 55, 0.2) !important;
   }
 
   #about .about-card::-webkit-scrollbar-thumb:hover,
   #about.page-section .about-card::-webkit-scrollbar-thumb:hover,
   .page-section#about .about-card::-webkit-scrollbar-thumb:hover {
     background: rgba(212, 175, 55, 0.6) !important;
+    border: 1px solid rgba(212, 175, 55, 0.3) !important;
   }
 
   .about-heading {
@@ -2535,7 +2396,7 @@ h2.news-heading::after {
   .wd-text {
     font-size: 15px !important;
     line-height: 1.7 !important;
-    margin-bottom: 1.2rem !important;
+    margin-bottom: -3.8rem !important;
     overflow: visible !important;
     color: #555 !important;
   }
@@ -3379,8 +3240,8 @@ h2.news-heading::after {
     max-height: 100% !important;
     overscroll-behavior: contain !important;
     overscroll-behavior-y: contain !important;
+    touch-action: pan-y !important;
     position: relative !important;
-    will-change: scroll-position !important;
     display: flex !important;
     align-items: flex-start !important;
     justify-content: center !important;
@@ -3775,9 +3636,11 @@ h2.news-heading::after {
     max-height: 100vh !important;
     overflow: hidden !important;
     padding: 0 !important;
+    margin-top: 0 !important;
     position: relative !important;
     display: flex !important;
     flex-direction: column !important;
+    justify-content: flex-start !important;
     min-height: 0 !important;
     width: 100% !important;
     box-sizing: border-box !important;
@@ -3808,13 +3671,13 @@ h2.news-heading::after {
   }
 
   .leaders-grid {
-    flex: 1 1 auto !important;
+    flex: 1 1 0% !important;
     min-height: 0 !important;
-    height: auto !important;
-    max-height: calc(100vh - 80px) !important;
-    overflow-y: scroll !important;
+    height: calc(100% - 80px) !important;
+    overflow-y: auto !important;
     overflow-x: hidden !important;
-    padding: 20px 15px 30px 15px !important;
+    padding: 0 10px 20px 10px !important;
+    padding-top: clamp(12px, 2vh, 20px) !important;
     scrollbar-width: thin !important;
     scrollbar-color: rgba(212, 175, 55, 0.3) transparent !important;
     -ms-overflow-style: -ms-autohiding-scrollbar !important;
@@ -3822,11 +3685,9 @@ h2.news-heading::after {
     -webkit-overflow-scrolling: touch !important;
     overscroll-behavior: contain !important;
     overscroll-behavior-y: contain !important;
-    will-change: scroll-position !important;
     display: grid !important;
     grid-template-columns: 1fr !important;
-    gap: clamp(12px, 1.5vh, 18px) !important;
-    row-gap: clamp(12px, 1.5vh, 18px) !important;
+    gap: 15px !important;
     box-sizing: border-box !important;
     width: 100% !important;
     max-width: 100% !important;
@@ -3834,6 +3695,27 @@ h2.news-heading::after {
     justify-items: center !important;
     touch-action: pan-y !important;
     position: relative !important;
+  }
+
+  .leaders-grid::-webkit-scrollbar {
+    width: 6px !important;
+    display: block !important;
+  }
+
+  .leaders-grid::-webkit-scrollbar-track {
+    background: rgba(212, 175, 55, 0.1) !important;
+    border-radius: 3px !important;
+  }
+
+  .leaders-grid::-webkit-scrollbar-thumb {
+    background: rgba(212, 175, 55, 0.4) !important;
+    border-radius: 3px !important;
+    border: 1px solid rgba(212, 175, 55, 0.2) !important;
+  }
+
+  .leaders-grid::-webkit-scrollbar-thumb:hover {
+    background: rgba(212, 175, 55, 0.6) !important;
+    border: 1px solid rgba(212, 175, 55, 0.3) !important;
   }
 
   .leader-image-wrapper {
@@ -4144,20 +4026,30 @@ h2.news-heading::after {
     word-break: break-word !important;
   }
 
-  /* Mobile WCU - Sticky heading with internal scroll for heavy content */
-  #why-choose-us {
+  /* Mobile WCU - Fixed height, internal scroll only (match What We Do) */
+  #why-choose-us,
+  #why-choose-us.page-section {
+    height: 100vh !important;
+    max-height: 100vh !important;
+    min-height: 100vh !important;
     overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
 
-  .wcu-container {
-    height: calc(100vh - var(--header-offset)) !important;
-    max-height: calc(100vh - var(--header-offset)) !important;
+  #why-choose-us .wcu-container {
+    height: 100vh !important;
+    max-height: 100vh !important;
+    min-height: 0 !important;
+    flex: 1 1 0% !important;
     overflow: hidden !important;
-    position: relative;
+    position: relative !important;
     display: flex !important;
     flex-direction: column !important;
+    justify-content: flex-start !important;
     padding: 0 !important;
     width: 100% !important;
     max-width: 100% !important;
@@ -4165,36 +4057,53 @@ h2.news-heading::after {
     margin: 0 !important;
   }
 
-  .wcu-heading {
-    position: relative !important;
+  #why-choose-us .wcu-heading {
+    position: sticky !important;
     top: 0 !important;
     padding: var(--heading-top-padding) 0 clamp(10px, 1.5vh, 12px) 0 !important;
     margin: 0 !important;
-    /* font-size: clamp(18px, 4vh, 24px) !important; */
+    font-size: clamp(24px, 4vh, 32px) !important;
     font-weight: 700 !important;
     text-align: center !important;
     width: 100% !important;
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
-    color: #000 !important;
+    color: #1a1a1a !important;
     z-index: 10 !important;
-    /* background: rgba(255, 255, 255, 0.98) !important; */
+    /* background: rgba(255, 255, 255, 0.95) !important; */
     backdrop-filter: blur(10px) !important;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
     flex-shrink: 0 !important;
     box-sizing: border-box !important;
     line-height: 1.2 !important;
+    text-transform: uppercase !important;
+    /* letter-spacing: 0.12em !important; */
+    padding-bottom: 15px !important;
   }
 
-  .wcu-grid {
+  #why-choose-us .wcu-heading::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: clamp(60px, 15vw, 100px) !important;
+    height: 3px !important;
+    background: #D4AF37 !important;
+    border-radius: 2px !important;
+    z-index: 1 !important;
+    box-shadow: 0 2px 4px rgba(212, 175, 55, 0.3) !important;
+  }
+
+  #why-choose-us .wcu-grid {
     display: grid !important;
     grid-template-columns: 1fr !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
     flex: 1 1 0% !important;
     min-height: 0 !important;
-    padding: 10px 10px 20px 10px !important;
+    padding: 20px 10px 28px 10px !important; /* gap top and bottom */
     gap: 12px !important;
     width: 100% !important;
     max-width: 100% !important;
@@ -4204,11 +4113,13 @@ h2.news-heading::after {
     scroll-behavior: smooth !important;
     -webkit-overflow-scrolling: touch !important;
     overscroll-behavior: contain !important;
-    will-change: scroll-position !important;
+    overscroll-behavior-y: contain !important;
+    touch-action: pan-y !important;
     box-sizing: border-box !important;
+    align-content: start !important;
   }
 
-  .wcu-grid::-webkit-scrollbar {
+  #why-choose-us .wcu-grid::-webkit-scrollbar {
     display: none !important;
     width: 0 !important;
     height: 0 !important;
@@ -4358,6 +4269,14 @@ body {
   scroll-snap-stop: always;
 }
 
+/* About section: snap to center so WHO WE ARE card appears in the middle when navigating from header */
+section#about,
+#about.page-section,
+#about.section {
+  scroll-snap-align: center !important;
+  scroll-snap-stop: always !important;
+}
+
 /* Beautiful alternating section backgrounds */
 .section-odd {
   background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
@@ -4416,14 +4335,8 @@ body {
   justify-content: center;
 }
 
-#inspiration,
-#inspiration.page-section {
-  justify-content: flex-start !important;
-  padding: 0 !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  margin: 0 !important;
-  overflow: hidden !important;
+#inspiration {
+  justify-content: center;
 }
 
 #why-choose-us {
@@ -4456,12 +4369,12 @@ body {
   width: 100%;
   max-width: 1200px;
   align-items: center;
-  background: rgba(255, 255, 255, 0.95);
+  background: transparent;
   padding: 60px;
-  border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(212, 175, 55, 0.1);
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  border: none;
 }
 
 .about-text {
@@ -5004,7 +4917,7 @@ h3,
   height: 100vh !important;
   overflow: hidden !important;
   z-index: 1 !important;
-  background: white !important;
+  background: #f5f5f5 !important;
   scroll-margin-top: 0 !important;
   position: relative !important;
 }
@@ -5029,8 +4942,8 @@ h3,
 }
 
 .about-card {
-  background: rgba(255, 255, 255, 0.95) !important;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1) !important;
+  background: transparent !important;
+  box-shadow: none !important;
   display: grid !important;
   grid-template-columns: 1fr 1fr !important;
   gap: 60px !important;
@@ -5038,9 +4951,9 @@ h3,
   max-width: 1200px !important;
   align-items: center !important;
   padding: 30px !important;
-  border-radius: 20px !important;
-  backdrop-filter: blur(20px) !important;
-  border: 1px solid rgba(212, 175, 55, 0.1) !important;
+  border-radius: 0 !important;
+  backdrop-filter: none !important;
+  border: none !important;
   max-height: calc(100vh - var(--header-offset) - 40px) !important;
   overflow-y: auto !important;
   margin: 0 auto !important;
@@ -5682,38 +5595,26 @@ h3,
   margin-top: 0 !important;
 }
 
-/* News heading - Match Clients and Leaders style */
-.news-heading,
-#news .news-heading,
-#news h2.news-heading {
-  /* font-size: clamp(20px, 4.5vw, 42px) !important; */
-  font-weight: 700 !important;
-  color: #8B6914 !important;
-  margin: 0 auto clamp(15px, 3vh, 30px) auto !important;
-  text-transform: uppercase !important;
-  letter-spacing: clamp(0.04em, 0.1vw, 0.08em) !important;
-  text-align: center !important;
+/* News heading - Top aligned */
+.news-heading {
+  margin: 0 !important;
+  margin-bottom: clamp(15px, 2vh, 25px) !important;
+  padding-top: var(--heading-top-padding) !important;
   position: relative !important;
-  padding-bottom: 20px !important;
-  display: inline-block !important;
-  width: 100% !important;
-  line-height: 1.2 !important;
+  top: 0 !important;
 }
 
-.news-heading::after,
-#news .news-heading::after,
-#news h2.news-heading::after {
+.news-heading::after {
   content: '' !important;
   position: absolute !important;
   bottom: 0 !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
-  width: clamp(40px, 12vw, 120px) !important;
-  height: clamp(2px, 0.5vh, 5px) !important;
-  background: #D4AF37 !important;
-  border-radius: 2px !important;
-  z-index: 1 !important;
-  box-shadow: 0 2px 4px rgba(212, 175, 55, 0.3) !important;
+  width: clamp(100px, 15vw, 180px) !important;
+  /* height: 6px !important;
+  background: linear-gradient(90deg, #D4AF37 0%, #F4E4C1 50%, #D4AF37 100%) !important; */
+  border-radius: 3px !important;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3) !important;
 }
 
 /* News carousel container - Base styles (will be overridden for desktop grid) */
@@ -5748,7 +5649,7 @@ h3,
   flex-direction: column;
   justify-content: flex-start !important;
   align-items: center !important;
-  padding: 30px 20px !important;
+  /* padding: 30px 20px !important; */
   gap: 20px !important;
   flex: 1;
   min-height: 0;
@@ -5766,6 +5667,28 @@ h3,
   background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #ffffff 100%) !important;
 }
 
+.news-heading {
+  margin-top: 0 !important;
+  margin-bottom: 10px !important;
+  flex-shrink: 0;
+  text-align: center !important;
+  width: 100% !important;
+  padding-top: 0 !important;
+  position: relative !important;
+  top: 0 !important;
+  /* font-size: clamp(32px, 5vw, 48px) !important; */
+  font-weight: 800 !important;
+  color: #1a1a1a !important;
+  text-transform: uppercase !important;
+  /* letter-spacing: 0.12em !important; */
+  padding-bottom: 20px !important;
+  line-height: 1.2 !important;
+  display: flex;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 0;
+}
+
 .news-carousel-viewport {
   overflow: visible !important;
   max-height: 100%;
@@ -5778,8 +5701,8 @@ h3,
   padding: 0 10px;
   width: 100%;
   box-sizing: border-box;
-  justify-items: center;
-  align-items: start;
+  justify-items: stretch;
+  align-items: stretch;
 }
 
 .news-card::before {
@@ -5950,7 +5873,7 @@ h3,
   flex-direction: column !important;
   align-items: center !important;
   justify-content: flex-start !important;
-  padding: 40px 20px !important;
+  padding: 25px 20px !important;
   gap: 40px !important;
   height: 100% !important;
   min-height: calc(100vh - var(--header-offset)) !important;
@@ -5966,7 +5889,7 @@ h3,
 .clients-heading,
 #clients .clients-heading,
 #clients h2.clients-heading {
-  /* font-size: clamp(32px, 5vw, 48px) !important; */
+  font-size: clamp(32px, 5vw, 48px) !important;
   font-weight: 800 !important;
   color: #1a1a1a !important;
   margin-bottom: 20px !important;
@@ -6189,24 +6112,9 @@ h3,
     padding-bottom: 15px !important;
   }
 
-  .news-heading,
-  #news .news-heading,
-  #news.page-section .news-heading,
-  h2.news-heading {
-    font-size: clamp(20px, 4vh, 28px) !important;
-    font-weight: 700 !important;
-    color: #8B6914 !important;
-    text-transform: uppercase !important;
-    letter-spacing: clamp(0.04em, 0.1vw, 0.08em) !important;
-  }
-
-  .news-heading::after,
-  #news .news-heading::after,
-  #news.page-section .news-heading::after,
-  h2.news-heading::after {
-    width: clamp(50px, 15vw, 70px) !important;
-    height: 3px !important;
-    background: #D4AF37 !important;
+  .news-heading::after {
+    width: clamp(80px, 20vw, 120px) !important;
+    height: 4px !important;
   }
 
   .news-carousel-container {
@@ -6229,30 +6137,15 @@ h3,
     gap: 20px !important;
   }
 
-  .news-heading,
-  #news .news-heading,
-  #news.page-section .news-heading,
-  h2.news-heading {
-    font-size: clamp(18px, 3.5vh, 24px) !important;
-    font-weight: 700 !important;
-    color: #8B6914 !important;
-    text-transform: uppercase !important;
-    letter-spacing: clamp(0.04em, 0.1vw, 0.08em) !important;
-    margin: 0 auto clamp(15px, 3vh, 30px) auto !important;
-    padding-bottom: clamp(10px, 1.5vh, 12px) !important;
-    font-weight: 700 !important;
-    color: #8B6914 !important;
-    text-transform: uppercase !important;
-    letter-spacing: clamp(0.04em, 0.1vw, 0.08em) !important;
+  .news-heading {
+    font-size: clamp(20px, 5.5vw, 28px) !important;
+    margin-bottom: 12px !important;
+    padding-bottom: 12px !important;
   }
 
-  .news-heading::after,
-  #news .news-heading::after,
-  #news.page-section .news-heading::after,
-  h2.news-heading::after {
-    width: clamp(45px, 18vw, 60px) !important;
-    height: 2.5px !important;
-    background: #D4AF37 !important;
+  .news-heading::after {
+    width: clamp(60px, 18vw, 100px) !important;
+    height: 3px !important;
   }
 
   .news-carousel-container {
@@ -6601,53 +6494,35 @@ h3,
 /* --- 9. INSPIRATION --- */
 .full-width-section {
   padding: 0 !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  margin: 0 !important;
   /* Ensure it fills 100vh via global rule, padding 0 overrides */
 }
 
-/* Inspiration section - NO LEFT GAP */
-#inspiration,
-#inspiration.page-section {
-  padding: 0 !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  margin: 0 !important;
-  overflow: hidden !important;
-}
-
 .inspiration-container {
-  display: flex !important;
-  height: 100vh !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  padding: 0 !important;
-  margin: 0 !important;
+  display: flex;
+  height: 100%;
+  /* Fill the section */
+  width: 100%;
 }
 
 .inspiration-image-panel {
-  flex: 1 !important;
-  width: 50% !important;
-  background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80') !important;
-  background-size: cover !important;
-  background-position: center !important;
-  margin: 0 !important;
-  padding: 0 !important;
+  flex: 1;
+  background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80');
+  background-size: cover;
+  background-position: center;
 }
 
 .inspiration-content {
-  flex: 1 !important;
-  width: 50% !important;
-  background: var(--vga-off-white) !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  align-items: center !important;
-  padding: 4vw !important;
-  text-align: center !important;
-  gap: 3vh !important;
-  margin: 0 !important;
+  flex: 1;
+  background: var(--vga-off-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* Center horizontally */
+  padding: 4vw;
+  text-align: center;
+  /* Ensure text alignment */
+  gap: 3vh;
 }
 
 .inspiration-inner {
@@ -6748,30 +6623,17 @@ h3,
 }
 
 /* --- 11. STEALTH VIDEO CARD --- */
-/* Make Stealth section full-width like Inspiration - NO LEFT GAP - MATCH DESIGN */
-#stealth-video,
-#stealth-video.page-section {
-  padding: 0 !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  margin: 0 !important;
-  background-color: var(--vga-off-white) !important;
-  overflow: hidden !important;
-  width: 100% !important;
-  max-width: 100% !important;
+#stealth-video {
+  /* Inherits global rules */
+  background-color: var(--vga-off-white);
 }
 
 .stealth-video-container {
-  width: 100% !important;
-  height: 100vh !important;
-  max-width: 100% !important;
-  display: flex !important;
-  align-items: stretch !important;
-  justify-content: flex-start !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .stealth-card {
@@ -7059,7 +6921,7 @@ h3,
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
   /* Reduced gap */
-  margin-bottom: 40px;
+margin-bottom: clamp(60px, 8vw, 115px);
   /* Reduced margin */
 }
 
@@ -7308,32 +7170,34 @@ h3,
 }
 
 .wcu-heading {
-  font-size: clamp(24px, 3.5vh, 36px);
-  font-weight: 900;
-  text-align: center;
-  color: #000;
-  margin: 0 0 2vh 0;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  position: relative;
-  padding-bottom: 15px;
-  flex-shrink: 0;
-  display: block !important;
+  /* font-size: clamp(32px, 5vw, 48px) !important; */
+  font-weight: 800 !important;
+  color: #1a1a1a !important;
+  margin-bottom: 20px !important;
+  text-transform: uppercase !important;
+  /* letter-spacing: 0.12em !important; */
+  text-align: center !important;
+  position: relative !important;
+  padding-bottom: 20px !important;
+  display: inline-block !important;
+  width: 100% !important;
+  line-height: 1.2 !important;
+  flex-shrink: 0 !important;
   visibility: visible !important;
   opacity: 1 !important;
-  width: 100% !important;
 }
 
 .wcu-heading::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 4px;
-  background: var(--vga-gold);
-  border-radius: 2px;
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: clamp(100px, 15vw, 180px) !important;
+  /* height: 6px !important;
+  background: linear-gradient(90deg, #D4AF37 0%, #F4E4C1 50%, #D4AF37 100%) !important; */
+  border-radius: 3px !important;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3) !important;
 }
 
 .wcu-grid {
@@ -7342,7 +7206,7 @@ h3,
   gap: 20px;
   width: 100%;
   max-width: 1200px;
-  padding: 0;
+  padding: 24px 0 28px 0; /* gap top and bottom so content is clearly seen */
   overflow: visible !important;
   align-content: center;
   justify-items: stretch;
@@ -7354,7 +7218,7 @@ h3,
     grid-template-columns: 1fr !important;
     gap: 12px !important;
     max-width: 100% !important;
-    padding: 0 !important;
+    padding: 20px 10px 28px 10px !important; /* gap top and bottom */
   }
 }
 
@@ -7546,59 +7410,42 @@ h3,
     /* Scroll text if really needed */
   }
 
-  /* Inspiration: Column layout - image on top full width, content below full width (remove empty right space) */
+  /* Inspiration: Column layout */
   .inspiration-container {
     flex-direction: column !important;
-    height: auto !important;
-    min-height: 0 !important;
   }
 
   .inspiration-content,
   .inspiration-image-panel {
-    flex: none !important;
-    width: 100% !important;
-    max-width: 100% !important;
+    flex: 1;
+    width: 100%;
   }
 
-  .inspiration-image-panel {
-    min-height: 45vh !important;
+  /* Stealth section: image on top, text below (mobile/tablet) */
+  #stealth-video .stealth-video-container {
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: 100vh !important;
+  }
+
+  #stealth-video .stealth-card {
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: 100vh !important;
+  }
+
+  #stealth-video .stealth-image {
+    width: 100% !important;
+    flex: none !important;
+    min-height: 40vh !important;
     height: 45vh !important;
   }
 
-  /* Stealth-Lock: Column layout - image on top, content below */
-  #stealth-video.page-section,
-  #inspiration.page-section {
-    height: auto !important;
-    min-height: 100vh !important;
-    overflow: auto !important;
-  }
-
-  .stealth-video-container {
-    flex-direction: column !important;
-    height: auto !important;
-    min-height: 100vh !important;
-  }
-
-  .stealth-card {
-    flex-direction: column !important;
-    height: auto !important;
-    min-height: 100vh !important;
-  }
-
-  .stealth-image,
-  .stealth-content {
+  #stealth-video .stealth-content {
     width: 100% !important;
-    flex: none !important;
-  }
-
-  .stealth-image {
-    min-height: 40vh !important;
-    order: 0;
-  }
-
-  .stealth-content {
-    order: 1;
-    flex: 1 !important;
+    flex: 1 1 auto !important;
+    padding: 6vw !important;
+    min-height: 0 !important;
   }
 
   /* Main content flow margins */
@@ -7753,7 +7600,7 @@ h3,
   }
 
   .wcu-grid {
-    padding: 8px 8px 15px 8px !important;
+    padding: 30px 8px 28px 8px !important; /* gap top and bottom */
     gap: 10px !important;
   }
 
@@ -7910,7 +7757,7 @@ h3,
   }
 
   .wcu-grid {
-    padding: 10px 6px 15px 6px !important;
+    padding: 20px 6px 28px 6px !important; /* gap top and bottom */
     gap: 10px !important;
     width: 100% !important;
   }
@@ -8246,7 +8093,7 @@ section#clients h2.clients-heading,
 #clients h2.clients-heading,
 .clients-container .clients-heading,
 h2.clients-heading {
-  /* font-size: clamp(28px, 4.5vh, 42px) !important; */
+  font-size: clamp(28px, 4.5vh, 42px) !important;
   font-weight: 700 !important;
   color: #8B6914 !important;
   margin: 0 auto 30px auto !important;
@@ -8284,7 +8131,7 @@ section#leaders h2.leaders-heading,
 #leaders h2.leaders-heading,
 .leaders-container .leaders-heading,
 h2.leaders-heading {
-  /* font-size: clamp(28px, 4.5vh, 42px) !important; */
+  font-size: clamp(28px, 4.5vh, 42px) !important;
   font-weight: 700 !important;
   color: #8B6914 !important;
   margin: 0 auto 30px auto !important;
@@ -9014,7 +8861,7 @@ body.video-modal-open {
 }
 
 /* ========================================
-   FINAL FINAL OVERRIDE - CLIENTS, LEADERS & NEWS - ABSOLUTE LAST
+   FINAL FINAL OVERRIDE - CLIENTS & LEADERS - ABSOLUTE LAST
    Fluid responsive - works on ALL screen sizes
    ======================================== */
 section#clients h2.clients-heading,
@@ -9022,29 +8869,6 @@ section#clients .clients-heading,
 #clients h2.clients-heading,
 #clients .clients-heading,
 h2.clients-heading {
-  /* font-size: clamp(32px, 5vw, 48px) !important; */
-  font-weight: 800 !important;
-  color: #1a1a1a !important;
-  margin-bottom: 20px !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.12em !important;
-  text-align: center !important;
-  position: relative !important;
-  padding-bottom: 20px !important;
-  display: inline-block !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-  word-wrap: break-word !important;
-  overflow-wrap: break-word !important;
-  line-height: 1.2 !important;
-}
-
-/* News heading - Match Clients and Leaders style */
-section#news h2.news-heading,
-section#news .news-heading,
-#news h2.news-heading,
-#news .news-heading,
-h2.news-heading {
   /* font-size: clamp(18px, 4.5vw, 42px) !important; */
   font-weight: 700 !important;
   color: #8B6914 !important;
@@ -9062,11 +8886,11 @@ h2.news-heading {
   line-height: 1.2 !important;
 }
 
-section#news h2.news-heading::after,
-section#news .news-heading::after,
-#news h2.news-heading::after,
-#news .news-heading::after,
-h2.news-heading::after {
+section#clients h2.clients-heading::after,
+section#clients .clients-heading::after,
+#clients h2.clients-heading::after,
+#clients .clients-heading::after,
+h2.clients-heading::after {
   content: '' !important;
   position: absolute !important;
   bottom: 0 !important;
@@ -9080,37 +8904,20 @@ h2.news-heading::after {
   box-shadow: 0 2px 4px rgba(212, 175, 55, 0.3) !important;
 }
 
-section#clients h2.clients-heading::after,
-section#clients .clients-heading::after,
-#clients h2.clients-heading::after,
-#clients .clients-heading::after,
-h2.clients-heading::after {
-  content: '' !important;
-  position: absolute !important;
-  bottom: 0 !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  width: clamp(100px, 15vw, 180px) !important;
-  height: 6px !important;
-  background: linear-gradient(90deg, #D4AF37 0%, #F4E4C1 50%, #D4AF37 100%) !important;
-  border-radius: 3px !important;
-  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3) !important;
-}
-
 section#leaders h2.leaders-heading,
 section#leaders .leaders-heading,
 #leaders h2.leaders-heading,
 #leaders .leaders-heading,
 h2.leaders-heading {
-  /* font-size: clamp(32px, 5vw, 48px) !important; */
-  font-weight: 800 !important;
-  color: #1a1a1a !important;
-  margin-bottom: 20px !important;
+  /* font-size: clamp(18px, 4.5vw, 42px) !important; */
+  font-weight: 700 !important;
+  color: #8B6914 !important;
+  margin: 0 auto clamp(15px, 3vh, 30px) auto !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.12em !important;
+  letter-spacing: clamp(0.04em, 0.1vw, 0.08em) !important;
   text-align: center !important;
   position: relative !important;
-  padding-bottom: 20px !important;
+  padding: 0 clamp(10px, 2vw, 30px) clamp(12px, 2vh, 15px) clamp(10px, 2vw, 30px) !important;
   display: inline-block !important;
   width: 100% !important;
   box-sizing: border-box !important;
@@ -9129,11 +8936,12 @@ h2.leaders-heading::after {
   bottom: 0 !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
-  width: clamp(100px, 15vw, 180px) !important;
-  height: 6px !important;
-  background: linear-gradient(90deg, #D4AF37 0%, #F4E4C1 50%, #D4AF37 100%) !important;
-  border-radius: 3px !important;
-  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3) !important;
+  width: clamp(40px, 12vw, 120px) !important;
+  height: clamp(2px, 0.5vh, 5px) !important;
+  background: #D4AF37 !important;
+  border-radius: 2px !important;
+  z-index: 1 !important;
+  box-shadow: 0 2px 4px rgba(212, 175, 55, 0.3) !important;
 }
 
 section#clients,
@@ -9293,29 +9101,22 @@ section#leaders.section {
 
 /* Extra Small Mobile (max-width: 375px) */
 @media (max-width: 375px) {
-  /* Clients, Leaders & News Headings - Extra Small */
+  /* Clients & Leaders Headings - Extra Small */
   #clients .clients-heading,
   #clients h2.clients-heading,
   #leaders .leaders-heading,
-  #leaders h2.leaders-heading,
-  #news .news-heading,
-  #news h2.news-heading {
+  #leaders h2.leaders-heading {
     font-size: clamp(18px, 3.5vh, 24px) !important;
     padding: 10px 8px 16px 8px !important;
     margin-bottom: 12px !important;
-    color: #8B6914 !important;
-    text-transform: uppercase !important;
   }
 
   #clients .clients-heading::after,
   #clients h2.clients-heading::after,
   #leaders .leaders-heading::after,
-  #leaders h2.leaders-heading::after,
-  #news .news-heading::after,
-  #news h2.news-heading::after {
+  #leaders h2.leaders-heading::after {
     width: clamp(45px, 18vw, 60px) !important;
     height: 2.5px !important;
-    background: #D4AF37 !important;
   }
 
   /* Client Tabs - Extra Small */
@@ -9512,20 +9313,15 @@ section#leaders.section {
 /* Standard Mobile (376px - 480px) */
 @media (min-width: 376px) and (max-width: 480px) {
   .clients-heading,
-  .leaders-heading,
-  .news-heading {
+  .leaders-heading {
     font-size: clamp(19px, 3.5vh, 26px) !important;
     padding: 11px 10px 17px 10px !important;
-    color: #8B6914 !important;
-    text-transform: uppercase !important;
   }
 
   .clients-heading::after,
-  .leaders-heading::after,
-  .news-heading::after {
+  .leaders-heading::after {
     width: clamp(50px, 15vw, 70px) !important;
     height: 3px !important;
-    background: #D4AF37 !important;
   }
 
   .client-logo-item {
@@ -9537,20 +9333,15 @@ section#leaders.section {
 /* Small Mobile (321px - 375px) */
 @media (min-width: 321px) and (max-width: 375px) {
   .clients-heading,
-  .leaders-heading,
-  .news-heading {
+  .leaders-heading {
     font-size: clamp(18px, 3.2vh, 24px) !important;
     padding: 10px 8px 16px 8px !important;
-    color: #8B6914 !important;
-    text-transform: uppercase !important;
   }
 
   .clients-heading::after,
-  .leaders-heading::after,
-  .news-heading::after {
+  .leaders-heading::after {
     width: clamp(45px, 17vw, 65px) !important;
     height: 2.5px !important;
-    background: #D4AF37 !important;
   }
 
   .client-logo-item {
@@ -9562,21 +9353,16 @@ section#leaders.section {
 /* Extra Small Mobile (max-width: 320px) */
 @media (max-width: 320px) {
   .clients-heading,
-  .leaders-heading,
-  .news-heading {
+  .leaders-heading {
     font-size: clamp(16px, 3vh, 22px) !important;
     padding: 10px 6px 15px 6px !important;
     letter-spacing: 0.04em !important;
-    color: #8B6914 !important;
-    text-transform: uppercase !important;
   }
 
   .clients-heading::after,
-  .leaders-heading::after,
-  .news-heading::after {
+  .leaders-heading::after {
     width: clamp(40px, 20vw, 55px) !important;
     height: 2px !important;
-    background: #D4AF37 !important;
   }
 
   .clients-tabs {
@@ -9722,137 +9508,177 @@ section#leaders.section {
     overflow-x: hidden !important;
     max-width: 100vw !important;
   }
-
-  /* Stealth and Inspiration sections - Full width, NO LEFT GAP - ALL SCREEN SIZES */
-  #stealth-video,
-  #stealth-video.page-section,
-  #inspiration,
-  #inspiration.page-section {
-    padding: 0 !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    margin: 0 !important;
-    min-height: 100vh !important;
-    height: 100vh !important;
-    overflow: hidden !important;
-    display: flex !important;
-  }
-
-  .stealth-video-container,
-  .inspiration-container {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-
-  .stealth-card {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-
-  .stealth-image,
-  .inspiration-image-panel {
-    margin-left: 0 !important;
-    padding-left: 0 !important;
-    margin-right: 0 !important;
-    padding-right: 0 !important;
-  }
-
-  .stealth-content,
-  .inspiration-content {
-    margin-left: 0 !important;
-    padding-left: 4vw !important;
-    margin-right: 0 !important;
-    padding-right: 4vw !important;
-  }
 }
 
-/* Mobile/Tablet: Stealth & Inspiration - stacked layout (image on top, content below) and allow scroll */
-@media (max-width: 1000px) {
-  #stealth-video,
-  #stealth-video.page-section,
-  #inspiration,
-  #inspiration.page-section {
-    height: auto !important;
-    min-height: 100vh !important;
-    overflow: auto !important;
-  }
-
-  .stealth-video-container {
-    flex-direction: column !important;
-    height: auto !important;
-    min-height: 0 !important;
-  }
-
-  .stealth-card {
-    flex-direction: column !important;
-    height: auto !important;
-    min-height: auto !important;
-  }
-
-  .stealth-image {
-    width: 100% !important;
-    flex: none !important;
-    min-height: 40vh !important;
-    height: 45vh !important;
-  }
-
-  .stealth-content {
-    width: 100% !important;
-    flex: none !important;
-  }
-
-  /* Inspiration: force full-width stacked (image on top, text below) - remove empty right space */
-  .inspiration-container {
-    flex-direction: column !important;
-    width: 100% !important;
-  }
-
-  .inspiration-image-panel {
-    width: 100% !important;
-    max-width: 100% !important;
-    flex: none !important;
-    min-height: 45vh !important;
-    height: 45vh !important;
-  }
-
-  .inspiration-content {
-    width: 100% !important;
-    max-width: 100% !important;
-    flex: none !important;
-  }
-}
-
-/* Mobile/Tablet: Stealth & Inspiration stacked - allow section to grow and scroll */
-@media (max-width: 1000px) {
-  #stealth-video,
-  #stealth-video.page-section,
-  #inspiration,
-  #inspiration.page-section {
-    height: auto !important;
-    min-height: 100vh !important;
-    overflow: auto !important;
-  }
-}
-
-/* News heading font sizes - distinct for desktop vs mobile */
-@media (min-width: 769px) {
-  #news .news-heading,
-  #news h2.news-heading {
-    font-size: 32px !important; /* Desktop size to match design (image 1) */
-  }
-}
-
+/* ========================================
+   SMOOTH INTERNAL SCROLL - MOBILE
+   Apply to all section scroll containers for smooth touch scrolling
+   ======================================== */
 @media (max-width: 768px) {
-  #news .news-heading,
-  #news h2.news-heading {
-    font-size: 20px !important; /* Mobile size to match design (image 2) */
+  .what-we-do-grid-wrapper,
+  .about-card,
+  .portfolio-content,
+  .services-grid,
+  .services-container,
+  .news-container,
+  .news-carousel-container,
+  .leaders-grid,
+  .leaders-container,
+  .clients-scroll-wrapper,
+  .clients-container,
+  .wcu-container,
+  .wcu-grid {
+    -webkit-overflow-scrolling: touch !important;
+    scroll-behavior: smooth !important;
+    overscroll-behavior: contain !important;
+    overscroll-behavior-y: contain !important;
+    touch-action: pan-y !important;
   }
+}
+
+/* ========================================
+   WHO WE ARE CARD - ALWAYS CENTER (ALL RESOLUTIONS, NO EXCEPTIONS)
+   Highest specificity so nothing overrides. Section full width → shell centered → card centered.
+   ======================================== */
+section#about,
+#about,
+#about.page-section,
+body section#about {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  height: 100vh !important;
+  min-height: 100vh !important;
+  max-height: 100vh !important;
+  overflow: hidden !important;
+  position: relative !important;
+  box-sizing: border-box !important;
+}
+
+section#about .about-shell,
+#about .about-shell,
+#about.page-section .about-shell,
+body #about .about-shell,
+.about-shell {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  max-width: 1400px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: clamp(16px, 2vw, 40px) !important;
+  padding-right: clamp(16px, 2vw, 40px) !important;
+  padding-top: clamp(24px, 4vh, 48px) !important;
+  box-sizing: border-box !important;
+  flex-shrink: 0 !important;
+  min-width: 0 !important;
+}
+
+/* About: no card – content (text + image) centered on page */
+section#about .about-card,
+#about .about-card,
+#about.page-section .about-card,
+.about-shell .about-card,
+body #about .about-card {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 100% !important;
+  max-width: 1200px !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  flex-shrink: 0 !important;
+  flex-grow: 0 !important;
+  align-self: center !important;
+  justify-self: center !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  backdrop-filter: none !important;
+}
+
+/* WHY CHOOSE US heading – move a bit higher on desktop only */
+@media (min-width: 769px) {
+  #why-choose-us .wcu-heading {
+    padding-top: clamp(8px, 1vh, 14px) !important;
+  }
+}
+
+/* ========================================
+   DESKTOP: ALL SECTION HEADINGS MATCH "WHO WE ARE"
+   Same font, same size (clamp(32px, 5vh, 56px)), font-weight 900
+   ======================================== */
+@media (min-width: 769px) {
+  .about-heading,
+  .what-we-do-heading,
+  .portfolio-heading,
+  .services-heading,
+  .news-heading,
+  .wcu-heading,
+  .contact-heading-hello,
+  section#clients .clients-heading,
+  #clients .clients-heading,
+  h2.clients-heading,
+  section#leaders .leaders-heading,
+  #leaders .leaders-heading,
+  .leaders-heading,
+  h2.leaders-heading {
+    font-size: clamp(32px, 5vh, 56px) !important;
+    font-weight: 900 !important;
+    line-height: 1.2 !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  }
+}
+
+/* ========================================
+   LATEST NEWS – SMOOTH SCROLL + HIDE SCROLLBAR + EQUAL CARD HEIGHT
+   ======================================== */
+#news .news-container,
+#news .news-carousel-container {
+  scroll-behavior: smooth !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior: contain !important;
+  overscroll-behavior-y: contain !important;
+  touch-action: pan-y !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+/* Hide scrollbar in all browsers – overrides any media query */
+#news .news-container::-webkit-scrollbar,
+#news .news-carousel-container::-webkit-scrollbar,
+#news .news-card::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+/* Equal height for all news cards in grid (same row = same height) */
+#news .news-carousel-container,
+#news .news-carousel-track {
+  align-items: stretch !important;
+}
+
+#news .news-card {
+  align-self: stretch !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+#news .news-card .news-body {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+#news .news-card .news-meta {
+  margin-top: auto !important;
 }
