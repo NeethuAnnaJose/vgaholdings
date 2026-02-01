@@ -1814,7 +1814,7 @@ h2.wcu-heading {
     transform: translateX(-50%) !important;
     width: clamp(70px, 12vw, 100px) !important;
     height: 4px !important;
-    background: #D4AF37 !important;
+    background: #8B6914 !important;
     border-radius: 2px !important;
     z-index: 1 !important;
   }
@@ -1822,14 +1822,15 @@ h2.wcu-heading {
   .clients-tabs {
     padding: 0 30px !important;
     margin-bottom: 20px !important;
-    gap: 10px !important;
+    gap: clamp(12px, 2vw, 20px) !important;
     flex-shrink: 0 !important;
     position: relative !important;
     z-index: 50 !important;
   }
 
   .client-tab {
-    padding: 8px 20px !important;
+    padding: 10px 16px 12px !important;
+    min-height: 44px !important;
     font-size: clamp(13px, 1.5vh, 16px) !important;
     position: relative !important;
     z-index: 51 !important;
@@ -1863,20 +1864,20 @@ h2.wcu-heading {
   }
 
   .marquee-content {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    justify-content: center !important;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important;
+    justify-items: center !important;
     align-items: center !important;
     gap: 20px !important;
   }
 
   .client-logo-item {
-    width: 160px !important;
-    height: 90px !important;
-    min-width: 160px !important;
-    min-height: 90px !important;
-    max-width: 160px !important;
-    max-height: 90px !important;
+    width: 100% !important;
+    max-width: 180px !important;
+    height: 100px !important;
+    min-width: 140px !important;
+    min-height: 80px !important;
+    max-height: 110px !important;
     margin: 0 !important;
     display: flex !important;
     align-items: center !important;
@@ -5856,12 +5857,12 @@ h3,
 /* --- 7. CLIENTS MARQUEE & SECTIONS BELOW --- */
 /* (Rules for .page-section are already global) */
 
-/* Clients and Leaders - Consistent Background - HIGH PRIORITY */
+/* Clients and Leaders - Vercel design: light off-white/beige */
 #clients,
 #clients.page-section,
 #leaders,
 #leaders.page-section {
-  background: linear-gradient(to bottom, #ffffff 0%, #f8f8f8 100%) !important;
+  background: linear-gradient(to bottom, #faf9f7 0%, #f5f4f0 100%) !important;
 }
 
 .clients-container,
@@ -5877,7 +5878,7 @@ h3,
   gap: 40px !important;
   height: 100% !important;
   min-height: calc(100vh - var(--header-offset)) !important;
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #ffffff 100%) !important;
+  background: linear-gradient(to bottom, #faf9f7 0%, #f5f4f0 100%) !important;
   position: relative !important;
 }
 
@@ -5891,7 +5892,7 @@ h3,
 #clients h2.clients-heading {
   font-size: clamp(32px, 5vw, 48px) !important;
   font-weight: 800 !important;
-  color: #1a1a1a !important;
+  color: #8B6914 !important;
   margin-bottom: 20px !important;
   text-transform: uppercase !important;
   letter-spacing: 0.12em !important;
@@ -5912,19 +5913,19 @@ h3,
   left: 50% !important;
   transform: translateX(-50%) !important;
   width: clamp(100px, 15vw, 180px) !important;
-  height: 6px !important;
-  background: linear-gradient(90deg, #D4AF37 0%, #F4E4C1 50%, #D4AF37 100%) !important;
-  border-radius: 3px !important;
-  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3) !important;
+  height: 4px !important;
+  background: #8B6914 !important;
+  border-radius: 2px !important;
+  z-index: 1 !important;
 }
 
-/* Clients Tabs */
+/* Clients Tabs - Vercel style: text-only with underline for active */
 .clients-tabs {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: clamp(6px, 1.5vw, 12px);
-  margin-bottom: clamp(15px, 3vh, 30px);
+  gap: clamp(16px, 3vw, 32px);
+  margin-bottom: clamp(20px, 4vh, 40px);
   flex-wrap: wrap;
   padding: 0 clamp(10px, 2vw, 20px);
   position: relative;
@@ -5934,38 +5935,48 @@ h3,
 }
 
 .client-tab {
-  padding: 10px 24px;
+  padding: 12px 20px 14px;
+  min-height: 44px;
+  min-width: 44px;
   font-size: clamp(14px, 1.8vh, 18px);
   font-weight: 600;
-  color: #666;
-  background: #f5f5f5;
-  border: 2px solid transparent;
-  border-radius: 8px;
+  color: #888;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   position: relative;
   z-index: 51;
   pointer-events: auto;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(139, 105, 20, 0.15);
+  user-select: none;
   flex-shrink: 0;
   min-width: fit-content;
   margin: 0;
   isolation: isolate;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .client-tab:hover:not(.active) {
-  background: #e8e8e8;
-  color: #333;
+  color: #555;
   z-index: 52;
 }
 
+.client-tab:active {
+  opacity: 0.9;
+}
+
 .client-tab.active {
-  background: #fff;
-  color: #D4AF37;
-  border-color: #D4AF37;
-  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
+  color: #8B6914;
+  border-bottom-color: #8B6914;
+  background: transparent;
   z-index: 53;
 }
 
@@ -5978,23 +5989,25 @@ h3,
   padding: 5px 0;
 }
 
+/* Client logos grid - Vercel style: responsive 2+ column grid */
 .marquee-content {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: clamp(10px, 2vw, 25px);
+  justify-items: center;
+  gap: clamp(16px, 3vw, 28px);
   width: 100%;
+  max-width: 1000px;
   box-sizing: border-box;
 }
 
 .marquee-left .marquee-content {
-  display: flex;
+  display: grid;
   animation: none;
 }
 
 .marquee-right .marquee-content {
-  display: flex;
+  display: grid;
   animation: none;
 }
 
@@ -6002,26 +6015,25 @@ h3,
   animation-play-state: paused;
 }
 
+/* Client logo cards - Vercel style: white cards, rounded corners, subtle shadow */
 .client-logo-item {
   flex-shrink: 0;
-  width: 180px;
-  height: 100px;
-  min-width: 180px;
+  width: 100%;
+  max-width: 220px;
+  height: 120px;
   min-height: 100px;
-  max-width: 180px;
-  max-height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 20px;
-  background: linear-gradient(145deg, #ffffff 0%, #fafbfc 100%);
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
-  border: 2px solid rgba(212, 175, 55, 0.1);
+  margin: 0;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   position: relative;
   overflow: hidden;
-  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: all 0.3s ease;
   box-sizing: border-box;
   cursor: pointer;
 }
@@ -6033,22 +6045,22 @@ h3,
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.08) 50%, rgba(212, 175, 55, 0.02) 100%);
+  background: transparent;
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.3s ease;
   z-index: 0;
-  border-radius: 14px;
+  border-radius: 11px;
 }
 
 .client-logo-item:hover {
-  transform: translateY(-12px) scale(1.08) rotateX(2deg);
-  box-shadow: 0 25px 60px rgba(212, 175, 55, 0.35), 0 12px 30px rgba(212, 175, 55, 0.2), 0 4px 12px rgba(0, 0, 0, 0.1);
-  border: 2px solid #D4AF37;
-  background: linear-gradient(145deg, #fffef8 0%, #fef9e7 100%);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.06);
+  border-color: rgba(139, 105, 20, 0.2);
+  background: #ffffff;
 }
 
 .client-logo-item:hover::before {
-  opacity: 1;
+  opacity: 0;
 }
 
 .client-logo-item img {
@@ -6062,8 +6074,8 @@ h3,
 }
 
 .client-logo-item:hover img {
-  transform: scale(1.1) rotate(1deg);
-  filter: brightness(1.1) saturate(1.2);
+  transform: scale(1.03);
+  filter: brightness(1.02);
 }
 
 /* Animations */
@@ -7626,7 +7638,7 @@ margin-bottom: clamp(60px, 8vw, 115px);
 
   .clients-heading {
     padding: 12px 8px 18px 8px !important;
-    font-size: clamp(20px, 4vh, 28px) !important;
+    font-size: 16px !important;
     font-weight: 700 !important;
     color: #8B6914 !important;
     text-transform: uppercase !important;
@@ -7648,13 +7660,19 @@ margin-bottom: clamp(60px, 8vw, 115px);
 
   .clients-tabs {
     padding: 8px 10px !important;
-    gap: 6px !important;
+    gap: 8px !important;
     margin-bottom: 12px !important;
   }
 
   .client-tab {
-    padding: 5px 10px !important;
-    font-size: 11px !important;
+    padding: 10px 16px 12px !important;
+    min-height: 44px !important;
+    font-size: 14px !important;
+  }
+
+  .client-tab.active {
+    color: #8B6914 !important;
+    border-bottom: 3px solid #8B6914 !important;
   }
 
   .clients-scroll-wrapper {
@@ -7861,7 +7879,7 @@ margin-bottom: clamp(60px, 8vw, 115px);
 
   .clients-heading {
     padding: 12px 6px 18px 6px !important;
-    font-size: clamp(18px, 3.5vh, 24px) !important;
+    font-size: 15px !important;
     line-height: 1.3 !important;
     font-weight: 700 !important;
     color: #8B6914 !important;
@@ -7884,13 +7902,19 @@ margin-bottom: clamp(60px, 8vw, 115px);
 
   .clients-tabs {
     padding: 6px 8px !important;
-    gap: 4px !important;
+    gap: 6px !important;
     margin-bottom: 10px !important;
   }
 
   .client-tab {
-    padding: 4px 8px !important;
-    font-size: 10px !important;
+    padding: 10px 14px 12px !important;
+    min-height: 44px !important;
+    font-size: 14px !important;
+  }
+
+  .client-tab.active {
+    color: #8B6914 !important;
+    border-bottom: 3px solid #8B6914 !important;
   }
 
   .clients-scroll-wrapper {
@@ -9030,11 +9054,11 @@ section#leaders.section {
 
 /* Mobile (max-width: 600px) - Clients & Leaders */
 @media (max-width: 600px) {
-  /* Clients Section - Mobile */
+  /* Clients Section - Mobile (match other section heading sizes) */
   #clients .clients-heading,
   #clients h2.clients-heading,
   .clients-container .clients-heading {
-    font-size: clamp(20px, 4vh, 28px) !important;
+    font-size: clamp(18px, 3.5vh, 24px) !important;
     padding: 12px 10px 18px 10px !important;
     margin-bottom: 15px !important;
   }
@@ -9060,9 +9084,9 @@ section#leaders.section {
     height: 3px !important;
   }
 
-  /* Client Tabs - Mobile */
+  /* Client Tabs - Mobile (larger subheadings, explicit active state) */
   .clients-tabs {
-    gap: 6px !important;
+    gap: 8px !important;
     padding: 8px 10px !important;
     margin-bottom: 12px !important;
     flex-wrap: wrap !important;
@@ -9070,10 +9094,16 @@ section#leaders.section {
   }
 
   .client-tab {
-    padding: 6px 12px !important;
-    font-size: clamp(10px, 2.5vw, 12px) !important;
+    padding: 10px 16px 12px !important;
+    font-size: 14px !important;
     flex: 0 0 auto !important;
     min-width: fit-content !important;
+    min-height: 44px !important;
+  }
+
+  .client-tab.active {
+    color: #8B6914 !important;
+    border-bottom: 3px solid #8B6914 !important;
   }
 
   /* Client Logos - Mobile (Single column) */
@@ -9101,9 +9131,14 @@ section#leaders.section {
 
 /* Extra Small Mobile (max-width: 375px) */
 @media (max-width: 375px) {
-  /* Clients & Leaders Headings - Extra Small */
+  /* Clients & Leaders Headings - Extra Small (clients matches news at 16px) */
   #clients .clients-heading,
-  #clients h2.clients-heading,
+  #clients h2.clients-heading {
+    font-size: 16px !important;
+    padding: 10px 8px 16px 8px !important;
+    margin-bottom: 12px !important;
+  }
+
   #leaders .leaders-heading,
   #leaders h2.leaders-heading {
     font-size: clamp(18px, 3.5vh, 24px) !important;
@@ -9119,15 +9154,21 @@ section#leaders.section {
     height: 2.5px !important;
   }
 
-  /* Client Tabs - Extra Small */
+  /* Client Tabs - Extra Small (larger subheadings, explicit active highlighting) */
   .clients-tabs {
-    gap: 4px !important;
+    gap: 6px !important;
     padding: 6px 8px !important;
   }
 
   .client-tab {
-    padding: 5px 10px !important;
-    font-size: 10px !important;
+    padding: 10px 14px 12px !important;
+    font-size: 14px !important;
+    min-height: 44px !important;
+  }
+
+  .client-tab.active {
+    color: #8B6914 !important;
+    border-bottom: 3px solid #8B6914 !important;
   }
 
   /* Client Logos - Extra Small */
@@ -9332,7 +9373,11 @@ section#leaders.section {
 
 /* Small Mobile (321px - 375px) */
 @media (min-width: 321px) and (max-width: 375px) {
-  .clients-heading,
+  .clients-heading {
+    font-size: 16px !important;
+    padding: 10px 8px 16px 8px !important;
+  }
+
   .leaders-heading {
     font-size: clamp(18px, 3.2vh, 24px) !important;
     padding: 10px 8px 16px 8px !important;
@@ -9342,6 +9387,16 @@ section#leaders.section {
   .leaders-heading::after {
     width: clamp(45px, 17vw, 65px) !important;
     height: 2.5px !important;
+  }
+
+  .client-tab {
+    font-size: 14px !important;
+    padding: 10px 14px 12px !important;
+  }
+
+  .client-tab.active {
+    color: #8B6914 !important;
+    border-bottom: 3px solid #8B6914 !important;
   }
 
   .client-logo-item {
@@ -9354,7 +9409,7 @@ section#leaders.section {
 @media (max-width: 320px) {
   .clients-heading,
   .leaders-heading {
-    font-size: clamp(16px, 3vh, 22px) !important;
+    font-size: clamp(15px, 3vh, 20px) !important;
     padding: 10px 6px 15px 6px !important;
     letter-spacing: 0.04em !important;
   }
@@ -9366,13 +9421,19 @@ section#leaders.section {
   }
 
   .clients-tabs {
-    gap: 3px !important;
+    gap: 4px !important;
     padding: 5px 6px !important;
   }
 
   .client-tab {
-    padding: 4px 8px !important;
-    font-size: 9px !important;
+    padding: 8px 12px 10px !important;
+    font-size: 13px !important;
+    min-height: 44px !important;
+  }
+
+  .client-tab.active {
+    color: #8B6914 !important;
+    border-bottom: 3px solid #8B6914 !important;
   }
 
   .client-logo-item {

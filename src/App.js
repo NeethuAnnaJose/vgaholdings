@@ -239,10 +239,17 @@ function App() {
 
     const handleTouchStart = (e) => {
       window.touchStartY = e.touches[0].clientY;
+      window.touchStartTarget = e.target;
     };
 
     const handleTouchEnd = (e) => {
       if (isScrolling) return;
+
+      // Don't trigger section transition when tapping buttons (e.g. client tabs)
+      const target = window.touchStartTarget || e.target;
+      if (target && (target.closest?.('.client-tab') || target.closest?.('button'))) {
+        return;
+      }
 
       const touchEndY = e.changedTouches[0].clientY;
       const diff = window.touchStartY - touchEndY;
@@ -950,28 +957,40 @@ function App() {
             </h2>
 
             {/* Tab Navigation */}
-            <div className="clients-tabs">
+            <div className="clients-tabs" role="tablist">
               <button 
+                type="button"
+                role="tab"
+                aria-selected={activeClientTab === 'all'}
                 className={`client-tab ${activeClientTab === 'all' ? 'active' : ''}`}
-                onClick={() => setActiveClientTab('all')}
+                onClick={(e) => { e.stopPropagation(); setActiveClientTab('all'); }}
               >
                 All
               </button>
               <button 
+                type="button"
+                role="tab"
+                aria-selected={activeClientTab === 'chemicals'}
                 className={`client-tab ${activeClientTab === 'chemicals' ? 'active' : ''}`}
-                onClick={() => setActiveClientTab('chemicals')}
+                onClick={(e) => { e.stopPropagation(); setActiveClientTab('chemicals'); }}
               >
                 Chemicals
               </button>
               <button 
+                type="button"
+                role="tab"
+                aria-selected={activeClientTab === 'consultancy'}
                 className={`client-tab ${activeClientTab === 'consultancy' ? 'active' : ''}`}
-                onClick={() => setActiveClientTab('consultancy')}
+                onClick={(e) => { e.stopPropagation(); setActiveClientTab('consultancy'); }}
               >
                 Consultancy
               </button>
               <button 
+                type="button"
+                role="tab"
+                aria-selected={activeClientTab === 'oil-gas'}
                 className={`client-tab ${activeClientTab === 'oil-gas' ? 'active' : ''}`}
-                onClick={() => setActiveClientTab('oil-gas')}
+                onClick={(e) => { e.stopPropagation(); setActiveClientTab('oil-gas'); }}
               >
                 Oil and Gas
               </button>
