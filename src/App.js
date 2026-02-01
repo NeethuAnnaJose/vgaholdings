@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header';
+import NewsArticle from './pages/NewsArticle';
+import { newsItems } from './data/newsItems';
 // import { scrollToId } from './utils/smoothScroll';
 
 function App() {
@@ -57,50 +60,6 @@ function App() {
 
 
 
-  const newsItems = [
-    {
-      id: 1,
-      title: 'GREEK STREET "MYKONOS" GETS SOLD TO THE BAHRAIN SOLYMAR GROUP.',
-      text: 'Greek Street first opened its doors on the 6th April 2022. In a very short period of time our customers became regulars and Greek Street became the most attractive hang-out spot in the Kingdom of Bahrain.',
-      image: "/Greekstreet.jpg",
-      link: "https://vgaholdings.com/latest-news-01/",
-    },
-    {
-      id: 2,
-      title: 'GREEK STREET "MYKONOS" GOES LIVE ON BAHRAIN & GREEK TV CHANNELS.',
-      text: 'Live on Bahrain and ALPHA Greek TV. The founders who have brought "a taste of Mykonos" to the Kingdom of Bahrain.',
-      image: "/alphalive.jpg",
-      link: "https://vgaholdings.com/latest-news-02/",
-    },
-    {
-      id: 3,
-      title: 'VGA CHEMICALS SIGNS AGREEMENT WITH CARBONTECH IN BAHRAIN.',
-      text: 'VGA Chemicals signs an exclusive agreement with Carbontech for the supply of Revowrap, a very High-End Leak repair product for the Oil & Gas Industry in the Kingdom of Bahrain.',
-      image: "/CARBONTECH-composite.jpg",
-      link: "https://vgaholdings.com/latest-news-03/",
-    },
-    {
-      id: 4,
-      title: 'VGA CONSULTANTS SIGN AGREEMENT WITH ARTHUR D. LITTLE IN SAUDI ARABIA.',
-      text: 'VGA and Arthur D. Little sign an agreement in Saudi to provide excellent consultancy and planning services for a large insurance firm.',
-      image: "/arthurlittle.jpg",
-      link: "https://vgaholdings.com/latest-news-04/",
-    },
-    {
-      id: 5,
-      title: 'STEALTH-LOCK "NEW GENERATION" LAUNCHED.',
-      text: 'Automation, remote-control, data capture, stabilizer modules – this new generation of the Stealth-Lock pipeline connection technology is the product of innovation.',
-      image: "/STEALTH-LOGO.png",
-      link: "https://vgaholdings.com/latest-news-05/",
-    },
-    {
-      id: 6,
-      title: 'AGODCO & TENARIS INK STEALTH-LOCK LATIN AMERICA CONTRACT.',
-      text: 'After 4 years of relationship development, field trials, end-user qualifications and contractual negotiations, AGODCO and TENARIS inked their deal.',
-      image: "/TENARIS.png",
-      link: "https://vgaholdings.com/latest-news-06/",
-    },
-  ];
 
   // const handleNewsNext = () => {
   //   if (newsIndex < newsItems.length - 3) {
@@ -123,6 +82,8 @@ function App() {
     let wheelTimeout;
 
     const handleWheel = (e) => {
+      // Allow normal scroll on article pages
+      if (document.documentElement.getAttribute('data-page') === 'article') return;
       // Find current section index first
       const currentScrollY = window.pageYOffset || window.scrollY;
       const sections = document.querySelectorAll('.section');
@@ -199,7 +160,8 @@ function App() {
 
     const handleKeyDown = (e) => {
       if (isScrolling) return;
-
+      // Allow normal scroll on article pages
+      if (document.documentElement.getAttribute('data-page') === 'article') return;
       if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
         const currentScrollY = window.pageYOffset;
         const sections = document.querySelectorAll('.section');
@@ -238,20 +200,23 @@ function App() {
     };
 
     const handleTouchStart = (e) => {
-      window.touchStartY = e.touches[0].clientY;
-      window.touchStartTarget = e.target;
+      const t = e.touches[0];
+      window.touchStartY = t.clientY;
+      window.touchStartTarget = document.elementFromPoint(t.clientX, t.clientY);
     };
 
     const handleTouchEnd = (e) => {
       if (isScrolling) return;
-
-      // Don't trigger section transition when tapping buttons (e.g. client tabs)
-      const target = window.touchStartTarget || e.target;
-      if (target && (target.closest?.('.client-tab') || target.closest?.('button'))) {
+      // Allow normal scroll on article pages
+      if (document.documentElement.getAttribute('data-page') === 'article') return;
+      const touch = e.changedTouches[0];
+      // Use touch-start target (more reliable) - don't trigger section scroll when tapping client tabs
+      const target = window.touchStartTarget;
+      if (target && (target.closest?.('.client-tab') || target.closest?.('.clients-tabs') || target.closest?.('button'))) {
         return;
       }
 
-      const touchEndY = e.changedTouches[0].clientY;
+      const touchEndY = touch.clientY;
       const diff = window.touchStartY - touchEndY;
 
       // Find active section
@@ -517,6 +482,9 @@ function App() {
   // ];
 
   return (
+    <Routes>
+      <Route path="/latest-news/:slug" element={<NewsArticle />} />
+      <Route path="/" element={
     <div className="App">
       <Header scrolled={scrolled} activeSection={activeSection} />
 
@@ -934,12 +902,12 @@ function App() {
                           {item.text}
                         </p>
                         <div className="news-meta">
-                          <button
+                          <Link
+                            to={`/latest-news/${item.slug}`}
                             className="news-cta"
-                            onClick={() => window.open(item.link, "_blank")}
                           >
                             READ MORE
-                          </button>
+                          </Link>
                         </div>
                       </div>
                     </article>
@@ -956,13 +924,26 @@ function App() {
               Meet Our Clients
             </h2>
 
-            {/* Tab Navigation */}
-            <div className="clients-tabs" role="tablist">
+            {/* Tab Navigation - handlers on container AND each button for max reliability */}
+            <div 
+              className="clients-tabs" 
+              role="tablist"
+              onPointerDown={(e) => {
+                const btn = e.target.closest?.('[data-tab]');
+                if (btn) { e.preventDefault(); e.stopPropagation(); setActiveClientTab(btn.dataset.tab); }
+              }}
+              onClick={(e) => {
+                const btn = e.target.closest?.('[data-tab]');
+                if (btn) { e.stopPropagation(); setActiveClientTab(btn.dataset.tab); }
+              }}
+            >
               <button 
                 type="button"
                 role="tab"
                 aria-selected={activeClientTab === 'all'}
+                data-tab="all"
                 className={`client-tab ${activeClientTab === 'all' ? 'active' : ''}`}
+                onPointerDown={(e) => { e.preventDefault(); e.stopPropagation(); setActiveClientTab('all'); }}
                 onClick={(e) => { e.stopPropagation(); setActiveClientTab('all'); }}
               >
                 All
@@ -971,7 +952,9 @@ function App() {
                 type="button"
                 role="tab"
                 aria-selected={activeClientTab === 'chemicals'}
+                data-tab="chemicals"
                 className={`client-tab ${activeClientTab === 'chemicals' ? 'active' : ''}`}
+                onPointerDown={(e) => { e.preventDefault(); e.stopPropagation(); setActiveClientTab('chemicals'); }}
                 onClick={(e) => { e.stopPropagation(); setActiveClientTab('chemicals'); }}
               >
                 Chemicals
@@ -980,7 +963,9 @@ function App() {
                 type="button"
                 role="tab"
                 aria-selected={activeClientTab === 'consultancy'}
+                data-tab="consultancy"
                 className={`client-tab ${activeClientTab === 'consultancy' ? 'active' : ''}`}
+                onPointerDown={(e) => { e.preventDefault(); e.stopPropagation(); setActiveClientTab('consultancy'); }}
                 onClick={(e) => { e.stopPropagation(); setActiveClientTab('consultancy'); }}
               >
                 Consultancy
@@ -989,7 +974,9 @@ function App() {
                 type="button"
                 role="tab"
                 aria-selected={activeClientTab === 'oil-gas'}
+                data-tab="oil-gas"
                 className={`client-tab ${activeClientTab === 'oil-gas' ? 'active' : ''}`}
+                onPointerDown={(e) => { e.preventDefault(); e.stopPropagation(); setActiveClientTab('oil-gas'); }}
                 onClick={(e) => { e.stopPropagation(); setActiveClientTab('oil-gas'); }}
               >
                 Oil and Gas
@@ -1501,6 +1488,8 @@ function App() {
         </div>
       )}
     </div>
+      } />
+    </Routes>
   );
 }
 
