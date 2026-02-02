@@ -6263,6 +6263,7 @@ h3,
   gap: clamp(30px, 4vw, 50px);
   align-items: start;
   padding: 0 clamp(20px, 3vw, 40px);
+  padding-bottom: clamp(80px, 15vh, 140px); /* Extra scroll room so last leader (incl. LinkedIn) is visible before next section */
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
@@ -9172,7 +9173,7 @@ section#leaders.section {
   .leaders-grid {
     grid-template-columns: 1fr !important;
     gap: 28px !important;
-    padding: 0 15px !important;
+    padding: 0 15px clamp(80px, 18vh, 140px) 15px !important; /* Extra scroll room so last leader (incl. LinkedIn) visible before next section */
   }
 
   /* Prevent collision with next section - add gap below leaders on mobile */

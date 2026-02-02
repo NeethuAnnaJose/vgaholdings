@@ -108,7 +108,7 @@ function App() {
       const activeSection = sections[targetIndex];
 
       // Check ALL candidate scroll containers; only consider elements that actually scroll (overflow-y auto/scroll)
-      const scrollSelector = '.what-we-do-grid-wrapper, .about-card, .portfolio-content, .services-grid, .news-carousel-container, .news-container, .leaders-grid, .clients-scroll-wrapper, .wcu-grid';
+      const scrollSelector = '.what-we-do-grid-wrapper, .about-card, .portfolio-content, .services-grid, .news-carousel-container, .news-container, .leaders-container, .leaders-grid, .clients-scroll-wrapper, .wcu-grid';
       const scrollCandidates = activeSection ? activeSection.querySelectorAll(scrollSelector) : [];
 
       for (const el of scrollCandidates) {
@@ -234,7 +234,7 @@ function App() {
       const activeSection = sections[targetIndex];
       
       // Check ALL candidate scroll containers; only consider elements that actually scroll (overflow-y auto/scroll)
-      const scrollSelector = '.what-we-do-grid-wrapper, .about-card, .portfolio-content, .services-grid, .news-carousel-container, .news-container, .leaders-grid, .clients-scroll-wrapper, .wcu-grid';
+      const scrollSelector = '.what-we-do-grid-wrapper, .about-card, .portfolio-content, .services-grid, .news-carousel-container, .news-container, .leaders-container, .leaders-grid, .clients-scroll-wrapper, .wcu-grid';
       const scrollCandidates = activeSection ? activeSection.querySelectorAll(scrollSelector) : [];
 
       for (const el of scrollCandidates) {
