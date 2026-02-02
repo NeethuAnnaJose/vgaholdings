@@ -1280,7 +1280,7 @@ function App() {
             </div>
 
             <footer className="site-footer">
-              <p>&copy;Copyright VGA Holdings 2024. Design by <span style={{ opacity: 0.6 }}>VGA</span></p>
+              <p>&copy;Copyright VGA Holdings 2026. Design by <span style={{ opacity: 0.6 }}>VGA</span></p>
               <button
                 className="scroll-top-btn"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
